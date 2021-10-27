@@ -9,16 +9,29 @@ public class TextReader {
         fileLocation = "./";
     }
     
-    public String stringOutput(String input) {
-        return input;
+    public Standard loadStudentAnswers(String standardName, Standard standard) throws IOException {
+        /*String[] splitName = standardName.split(" ");
+        String newName = "";
+        for (String s : splitName) {
+        	newName += s;
+        }
+        newName += ".txt";
+        BufferedReader input = new BufferedReader(new FileReader("studentAnswers/" + newName));
+        String output = input.readLine();
+        return output;*/
+    	return null;
     }
     
-    public void loadStudentAnswers(String standardName) {
-        //String[] splitName = standardName
-        //BufferedReader input = 
-    }
-    
-    public void loadStandard(String standardName) {
-        
+    public Standard loadStandard(String standardName) throws IOException {
+    	/*String[] splitName = standardName.split(" ");
+        String newName = "";
+        for (String s : splitName) {
+        	newName += s;
+        }
+        newName += ".txt";
+        BufferedReader input = new BufferedReader(new FileReader("standards/" + newName));
+        String output = input.readLine();
+        return output;*/
+    	return null;
     }
 }
