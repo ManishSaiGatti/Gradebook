@@ -7,21 +7,19 @@ public class Standard {
 	}
 	
 	public void setIntScore(String student, String question, int score) {
-		//Enter back later
-		/*
 		ArrayList<String> questionAndAnswer = new ArrayList<String>();
-		questionAndAnswer.add(question + score);
+		questionAndAnswer.add(question + " " + score);
 		studentScore.put(student, questionAndAnswer);
-		*/
 	}
 	
 	public int getScore(String student) {
-		/*
 		ArrayList<String> questionsAndAnswers = studentScore.get(student);
+		System.out.println(questionsAndAnswers);
 		for(String s: questionsAndAnswers) {
-			return Integer.parseInt(s.substring(s.length() - 1));
+			int i = Integer.parseInt(s.substring(s.length() - 3).trim());
+			System.out.println(i);
+			return i;
 		}
-		*/
 		return 100;
 	}
 }
