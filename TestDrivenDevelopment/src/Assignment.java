@@ -8,4 +8,8 @@ public class Assignment {
 	public double getScore() {
 		return score;
 	}
+	
+	public double getAvgScore() {
+		return -1;
+	}
 }
