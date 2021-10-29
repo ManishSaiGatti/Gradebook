@@ -9,8 +9,8 @@ public class TextReader {
         fileLocation = "./";
     }
     
-    public Standard loadStudentAnswers(String standardName, Standard standard) throws IOException {
-        /*String[] splitName = standardName.split(" ");
+    public /*Standard*/ String loadStudentAnswers(String standardName/*, Standard standard*/) throws IOException {
+        String[] splitName = standardName.split(" ");
         String newName = "";
         for (String s : splitName) {
         	newName += s;
@@ -18,12 +18,14 @@ public class TextReader {
         newName += ".txt";
         BufferedReader input = new BufferedReader(new FileReader("studentAnswers/" + newName));
         String output = input.readLine();
-        return output;*/
-    	return null;
+        while (input.ready()) {
+        	output += "-" + input.readLine();
+        }
+        return output;
     }
     
-    public Standard loadStandard(String standardName) throws IOException {
-    	/*String[] splitName = standardName.split(" ");
+    public /*Standard*/ String loadStandard(String standardName) throws IOException {
+    	String[] splitName = standardName.split(" ");
         String newName = "";
         for (String s : splitName) {
         	newName += s;
@@ -31,7 +33,26 @@ public class TextReader {
         newName += ".txt";
         BufferedReader input = new BufferedReader(new FileReader("standards/" + newName));
         String output = input.readLine();
-        return output;*/
-    	return null;
+        while (input.ready()) {
+        	output += "-" + input.readLine();
+        }
+        return output;
+    }
+    
+    public List<String> loadRoster(int period) throws IOException {
+        BufferedReader input = new BufferedReader(new FileReader("roster/period" + period + ".txt"));
+        ArrayList<String> output = new ArrayList<String>();
+        while (input.ready()) {
+        	String[] names = input.readLine().split(",");
+        	String newName;
+        	if (names.length > 1) {
+        		newName = names[1] + " " + names[0];
+        	}
+        	else {
+        		newName = names[0];
+        	}
+        	output.add(newName);
+        }
+        return output;
     }
 }
