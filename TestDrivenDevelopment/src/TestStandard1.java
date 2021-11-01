@@ -25,4 +25,19 @@ public class TestStandard1 {
 		assertEquals("One question in standard incorrectly saved", 
 				questions, firstStandard.getQuestions());
 	}
+	
+	@Test
+	public void getScore() {
+		Standard1 firstStandard = new Standard1();
+		ArrayList<String> questions = new ArrayList<String>();
+		questions.add("Did the student use conventional indentation and whitespace?");
+		questions.add("Did the student keep their lines of code under 100 characters in length?");
+		firstStandard.addQuestions(questions);
+		ArrayList<Boolean> answers = new ArrayList<Boolean>();
+		answers.add(true);
+		answers.add(true);
+		firstStandard.giveScores("John", answers);
+		assertEquals("Gave incorrect score for 1 student with 100%",
+				firstStandard.getScores("John"), 100);
+	}
 }
