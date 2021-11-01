@@ -11,12 +11,12 @@ public class TextReader {
     
     public /*Standard*/ HashMap<String, ArrayList<String>> loadStudentAnswers(String standardName, int period/*, Standard standard*/) throws IOException {
         String[] splitName = standardName.split(" ");
-        String newName = "";
+        String newName = "studentAnswers/";
         for (String s : splitName) {
         	newName += s;
         }
         newName += "period" + period + ".txt";
-        BufferedReader input = new BufferedReader(new FileReader("studentAnswers/" + newName));
+        BufferedReader input = new BufferedReader(new FileReader(newName));
         HashMap<String, ArrayList<String>> output = new HashMap<String, ArrayList<String>>();
         ArrayList<String> studentNames = (ArrayList<String>)loadRoster(period);
         while (input.ready()) {
@@ -33,12 +33,12 @@ public class TextReader {
     
     public /*Standard*/ List<String> loadStandard(String standardName) throws IOException {
     	String[] splitName = standardName.split(" ");
-        String newName = "";
+        String newName = "standards/";
         for (String s : splitName) {
         	newName += s;
         }
         newName += ".txt";
-        BufferedReader input = new BufferedReader(new FileReader("standards/" + newName));
+        BufferedReader input = new BufferedReader(new FileReader(newName));
         ArrayList<String> output = new ArrayList<String>();
         while (input.ready()) {
         	output.add(input.readLine());

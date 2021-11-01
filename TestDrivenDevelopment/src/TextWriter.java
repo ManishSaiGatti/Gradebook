@@ -7,12 +7,41 @@ public class TextWriter {
 		
 	}
 	
-	public void SaveStandard(String standardName, List<String> questions) {
-		
+	public void saveStandard(String standardName, List<String> questions) throws IOException {
+		String[] splitName = standardName.split(" ");
+        String newName = "standards/";
+        for (String s : splitName) {
+        	newName += s;
+        }
+        newName += ".txt";
+        String output = "";
+        for (int i = 0; i < questions.size(); i++) {
+        	output += questions.get(i) + "\n";
+        }
+        FileWriter writer = new FileWriter(newName);
+        writer.write(output);
+        writer.close();
 	}
 	
-	public void saveStudentAnswers(String standardName, int period, Map<String, List<String>> answers) {
-		
+	public void saveStudentAnswers(String standardName, int period, Map<String, ArrayList<String>> answers) throws IOException {
+		String[] splitName = standardName.split(" ");
+        String newName = "studentAnswers/";
+        for (String s : splitName) {
+        	newName += s;
+        }
+        newName += "period" + period + ".txt";
+        String output = "";
+        Iterator<String> names = answers.keySet().iterator();
+        while (names.hasNext()) {
+        	String name = names.next();
+        	output += name + "\n";
+        	for (int c = 0; c < answers.get(name).size(); c++) {
+        		output += answers.get(name).get(c) + "\n";
+        	}
+        }
+        FileWriter writer = new FileWriter(newName);
+        writer.write(output);
+        writer.close();
 	}
 	
 	public void saveRoster(int period, List<String> names) throws IOException {
