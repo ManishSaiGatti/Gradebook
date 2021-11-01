@@ -5,4 +5,8 @@ public class Standard3 {
 	public Standard3(int totalPoints) {
 		this.totalPoints = totalPoints;
 	}
+	
+	public int getTotalPoints() {
+		return totalPoints;
+	}
 }
