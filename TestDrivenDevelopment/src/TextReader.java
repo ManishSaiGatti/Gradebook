@@ -9,22 +9,29 @@ public class TextReader {
         fileLocation = "./";
     }
     
-    public /*Standard*/ String loadStudentAnswers(String standardName/*, Standard standard*/) throws IOException {
+    public /*Standard*/ HashMap<String, ArrayList<String>> loadStudentAnswers(String standardName, int period/*, Standard standard*/) throws IOException {
         String[] splitName = standardName.split(" ");
         String newName = "";
         for (String s : splitName) {
         	newName += s;
         }
-        newName += ".txt";
+        newName += "period" + period + ".txt";
         BufferedReader input = new BufferedReader(new FileReader("studentAnswers/" + newName));
-        String output = input.readLine();
+        HashMap<String, ArrayList<String>> output = new HashMap<String, ArrayList<String>>();
+        ArrayList<String> studentNames = (ArrayList<String>)loadRoster(period);
         while (input.ready()) {
-        	output += "-" + input.readLine();
+        	String next = input.readLine();
+        	if (studentNames.contains(next)) {
+        		output.put(next, new ArrayList<String>());
+        	}
+        	else {
+        		output.get(studentNames.get(output.size()-1)).add(next);
+        	}
         }
         return output;
     }
     
-    public /*Standard*/ String loadStandard(String standardName) throws IOException {
+    public /*Standard*/ List<String> loadStandard(String standardName) throws IOException {
     	String[] splitName = standardName.split(" ");
         String newName = "";
         for (String s : splitName) {
@@ -32,9 +39,9 @@ public class TextReader {
         }
         newName += ".txt";
         BufferedReader input = new BufferedReader(new FileReader("standards/" + newName));
-        String output = input.readLine();
+        ArrayList<String> output = new ArrayList<String>();
         while (input.ready()) {
-        	output += "-" + input.readLine();
+        	output.add(input.readLine());
         }
         return output;
     }

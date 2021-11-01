@@ -7,43 +7,58 @@ public class TextReaderTest {
 	@Test
     public void testStudentAnswers1() throws IOException {
         TextReader test = new TextReader();
-        String answer = test.loadStudentAnswers("test");
-        assertEquals("Text exported is incorrect", "test", answer);
+        HashMap<String, ArrayList<String>> answer = test.loadStudentAnswers("test", 1000);
+        HashMap<String, ArrayList<String>> correct = new HashMap<String, ArrayList<String>>();
+        correct.put("test", new ArrayList<String>());
+        assertEquals("Text exported is incorrect", correct, answer);
     }
 	
 	@Test
     public void testStandards1() throws IOException {
         TextReader test = new TextReader();
-        String answer = test.loadStandard("test");
-        assertEquals("Text exported is incorrect", "test", answer);
+        ArrayList<String> answer = (ArrayList<String>)test.loadStandard("test");
+        ArrayList<String> correct = new ArrayList<String>();
+        correct.add("test");
+        assertEquals("Text exported is incorrect", correct, answer);
     }
 	
 	@Test
     public void testStudentAnswers2() throws IOException {
         TextReader test = new TextReader();
-        String answer = test.loadStudentAnswers("test2");
-        assertEquals("Text exported is incorrect", "hopefully this works :)", answer);
+        HashMap<String, ArrayList<String>> answer = test.loadStudentAnswers("test2", 2000);
+        HashMap<String, ArrayList<String>> correct = new HashMap<String, ArrayList<String>>();
+        correct.put("Name", new ArrayList<String>());
+        correct.get("Name").add("hopefully this works :)");
+        assertEquals("Text exported is incorrect", correct, answer);
     }
 	
 	@Test
     public void testStandards2() throws IOException {
         TextReader test = new TextReader();
-        String answer = test.loadStandard("test2");
-        assertEquals("Text exported is incorrect", "if this works", answer);
+        ArrayList<String> answer = (ArrayList<String>)test.loadStandard("test2");
+        ArrayList<String> correct = new ArrayList<String>();
+        correct.add("if this works");
+        assertEquals("Text exported is incorrect", correct, answer);
     }
 	
 	@Test
     public void testStudentAnswers3() throws IOException {
         TextReader test = new TextReader();
-        String answer = test.loadStudentAnswers("test3");
-        assertEquals("Text exported is incorrect", "para1-para2", answer);
+        HashMap<String, ArrayList<String>> answer = test.loadStudentAnswers("test3", 3000);
+        HashMap<String, ArrayList<String>> correct = new HashMap<String, ArrayList<String>>();
+        correct.put("para1", new ArrayList<String>());
+        correct.put("para2", new ArrayList<String>());
+        assertEquals("Text exported is incorrect", correct, answer);
     }
 	
 	@Test
     public void testStandards3() throws IOException {
         TextReader test = new TextReader();
-        String answer = test.loadStandard("test3");
-        assertEquals("Text exported is incorrect", "para3-para4", answer);
+        ArrayList<String> answer = (ArrayList<String>)test.loadStandard("test3");
+        ArrayList<String> correct = new ArrayList<String>();
+        correct.add("para3");
+        correct.add("para4");
+        assertEquals("Text exported is incorrect", correct, answer);
     }
 	
 	@Test
@@ -69,8 +84,8 @@ public class TextReaderTest {
         TextReader test = new TextReader();
         ArrayList<String> answer = (ArrayList<String>)test.loadRoster(3000);
         ArrayList<String> correct = new ArrayList<String>();
-        correct.add("para5");
-        correct.add("para6");
+        correct.add("para1");
+        correct.add("para2");
         assertEquals("Text exported is incorrect", correct, answer);
     }
     
