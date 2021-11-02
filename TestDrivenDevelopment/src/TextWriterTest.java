@@ -17,6 +17,20 @@ public class TextWriterTest {
 	}
 	
 	@Test
+	public void testSaveStudentAnswers1() throws IOException {
+		TextWriter test = new TextWriter();
+		ArrayList<String> roster = new ArrayList<String>();
+		roster.add("test1");
+		test.saveRoster(1100, roster);
+		HashMap<String, ArrayList<String>> correct = new HashMap<String, ArrayList<String>>();
+		correct.put("test1", new ArrayList<String>());
+		test.saveStudentAnswers("testStu", 1100, correct);
+		TextReader reader = new TextReader();
+		HashMap<String, ArrayList<String>> answer = reader.loadStudentAnswers("testStu", 1100);
+		assertEquals("The initial roster test failed", correct, answer);
+	}
+	
+	@Test
 	public void testSaveRoster2() throws IOException {
 		TextWriter test = new TextWriter();
 		ArrayList<String> correct = new ArrayList<String>();
@@ -24,6 +38,20 @@ public class TextWriterTest {
 		test.saveRoster(1100, correct);
 		TextReader reader = new TextReader();
 		ArrayList<String> answer = (ArrayList<String>)reader.loadRoster(1100);
+		assertEquals("The initial roster test failed", correct, answer);
+	}
+	
+	@Test
+	public void testSaveStudentAnswers2() throws IOException {
+		TextWriter test = new TextWriter();
+		ArrayList<String> roster = new ArrayList<String>();
+		roster.add("new test");
+		test.saveRoster(1100, roster);
+		HashMap<String, ArrayList<String>> correct = new HashMap<String, ArrayList<String>>();
+		correct.put("new test", new ArrayList<String>());
+		test.saveStudentAnswers("testStu", 1100, correct);
+		TextReader reader = new TextReader();
+		HashMap<String, ArrayList<String>> answer = reader.loadStudentAnswers("testStu", 1100);
 		assertEquals("The initial roster test failed", correct, answer);
 	}
 	
@@ -40,6 +68,22 @@ public class TextWriterTest {
 	}
 	
 	@Test
+	public void testSaveStudentAnswers3() throws IOException {
+		TextWriter test = new TextWriter();
+		ArrayList<String> roster = new ArrayList<String>();
+		roster.add("para1");
+		roster.add("para2");
+		test.saveRoster(1100, roster);
+		HashMap<String, ArrayList<String>> correct = new HashMap<String, ArrayList<String>>();
+		correct.put("para1", new ArrayList<String>());
+		correct.put("para2", new ArrayList<String>());
+		test.saveStudentAnswers("testStu", 1100, correct);
+		TextReader reader = new TextReader();
+		HashMap<String, ArrayList<String>> answer = reader.loadStudentAnswers("testStu", 1100);
+		assertEquals("The initial roster test failed", correct, answer);
+	}
+	
+	@Test
 	public void testSaveRoster4() throws IOException {
 		TextWriter test = new TextWriter();
 		ArrayList<String> correct = new ArrayList<String>();
@@ -48,6 +92,22 @@ public class TextWriterTest {
 		test.saveRoster(1100, correct);
 		TextReader reader = new TextReader();
 		ArrayList<String> answer = (ArrayList<String>)reader.loadRoster(1100);
+		assertEquals("The initial roster test failed", correct, answer);
+	}
+	
+	@Test
+	public void testSaveStudentAnswers4() throws IOException {
+		TextWriter test = new TextWriter();
+		ArrayList<String> roster = new ArrayList<String>();
+		roster.add("DANNY DEVITO");
+		roster.add("GENO SMITH");
+		test.saveRoster(1100, roster);
+		HashMap<String, ArrayList<String>> correct = new HashMap<String, ArrayList<String>>();
+		correct.put("DANNY DEVITO", new ArrayList<String>());
+		correct.put("GENO SMITH", new ArrayList<String>());
+		test.saveStudentAnswers("testStu", 1100, correct);
+		TextReader reader = new TextReader();
+		HashMap<String, ArrayList<String>> answer = reader.loadStudentAnswers("testStu", 1100);
 		assertEquals("The initial roster test failed", correct, answer);
 	}
 	
@@ -63,13 +123,25 @@ public class TextWriterTest {
 	}
 	
 	@Test
-	public void testSaveStudentAnswers1() throws IOException {
+	public void testSaveStandard2() throws IOException {
 		TextWriter test = new TextWriter();
-		HashMap<String, ArrayList<String>> correct = new HashMap<String, ArrayList<String>>();
-		correct.put("test1", new ArrayList<String>());
-		test.saveStudentAnswers("testStu", 1100, correct);
+		ArrayList<String> correct = new ArrayList<String>();
+		correct.add("ME!!!");
+		test.saveStandard("tester", correct);
 		TextReader reader = new TextReader();
-		HashMap<String, ArrayList<String>> answer = reader.loadStudentAnswers("testStu", 1100);
+		ArrayList<String> answer = (ArrayList<String>)reader.loadStandard("tester");
+		assertEquals("The initial roster test failed", correct, answer);
+	}
+	
+	@Test
+	public void testSaveStandard3() throws IOException {
+		TextWriter test = new TextWriter();
+		ArrayList<String> correct = new ArrayList<String>();
+		correct.add("paragraph");
+		correct.add("another paragraph");
+		test.saveStandard("tester", correct);
+		TextReader reader = new TextReader();
+		ArrayList<String> answer = (ArrayList<String>)reader.loadStandard("tester");
 		assertEquals("The initial roster test failed", correct, answer);
 	}
 }

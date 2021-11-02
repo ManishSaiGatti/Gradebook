@@ -3,10 +3,9 @@ import java.util.*;
 import java.io.*;
 
 public class TextReader {
-	private String fileLocation;
     
     public TextReader() {
-        fileLocation = "./";
+    	
     }
     
     public /*Standard*/ HashMap<String, ArrayList<String>> loadStudentAnswers(String standardName, int period/*, Standard standard*/) throws IOException {
@@ -19,13 +18,15 @@ public class TextReader {
         BufferedReader input = new BufferedReader(new FileReader(newName));
         HashMap<String, ArrayList<String>> output = new HashMap<String, ArrayList<String>>();
         ArrayList<String> studentNames = (ArrayList<String>)loadRoster(period);
+        String currentName = "";
         while (input.ready()) {
         	String next = input.readLine();
         	if (studentNames.contains(next)) {
         		output.put(next, new ArrayList<String>());
+        		currentName = next;
         	}
         	else {
-        		output.get(studentNames.get(output.size()-1)).add(next);
+        		output.get(currentName).add(next);
         	}
         }
         return output;
