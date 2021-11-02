@@ -63,7 +63,7 @@ public class TestStandard1 {
 	}
 	
 	@Test
-	public void get2Score() {
+	public void getManyScore() {
 		Standard1 firstStandard = new Standard1(1, 7);
 		ArrayList<String> questions = new ArrayList<String>();
 		questions.add("Did the student use conventional indentation and whitespace?");
