@@ -15,6 +15,11 @@ public class Assignment {
 		numStudents++;
 	}
 	
+	private double getScore(int standardType) {
+		// if 0/1/2, return the score for that type of standard
+		return -1;
+	}
+	
 	public double getScore() {
 		return score;
 	}
