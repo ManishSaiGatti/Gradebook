@@ -144,4 +144,24 @@ public class TextWriterTest {
 		ArrayList<String> answer = (ArrayList<String>)reader.loadStandard("tester");
 		assertEquals("The initial roster test failed", correct, answer);
 	}
+	
+	@Test
+	public void testSaveStudentAnswersProper1() throws IOException {
+		TextWriter test = new TextWriter();
+		ArrayList<String> roster = new ArrayList<String>();
+		roster.add("DANNY DEVITO");
+		roster.add("GENO SMITH");
+		test.saveRoster(1100, roster);
+		HashMap<String, ArrayList<String>> correct = new HashMap<String, ArrayList<String>>();
+		correct.put("DANNY DEVITO", new ArrayList<String>());
+		correct.get("DANNY DEVITO").add("true");
+		correct.get("DANNY DEVITO").add("false");
+		correct.put("GENO SMITH", new ArrayList<String>());
+		correct.get("GENO SMITH").add("false");
+		correct.get("GENO SMITH").add("false");
+		test.saveStudentAnswers("testStu", 1100, correct);
+		TextReader reader = new TextReader();
+		HashMap<String, ArrayList<String>> answer = reader.loadStudentAnswers("testStu", 1100);
+		assertEquals("The initial roster test failed", correct, answer);
+	}
 }
