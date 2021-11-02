@@ -37,8 +37,8 @@ public class TestStandard1 {
 		answers.add(true);
 		answers.add(true);
 		firstStandard.setAnswers("John", answers);
-		assertEquals("Gave incorrect score for 1 student with 100%",
-				firstStandard.getScore("John"), 100);
+		assertEquals("Gave incorrect score for 1 student with 100%", 100,
+				firstStandard.getScore("John"));
 	}
 	
 	@Test
@@ -85,22 +85,22 @@ public class TestStandard1 {
 			answers.add(true);
 		}
 		firstStandard.setAnswers("John", answers);
-		assertEquals("Gave incorrect score for 1 student with 100%",
-				firstStandard.getScore("John"), 100);
+		assertEquals("Gave incorrect score for 1 student with 100%", 100,
+				firstStandard.getScore("John"));
 		answers.set(0, false);
 		answers.set(1, false);
 		firstStandard.setAnswers("Sally", answers);
-		assertEquals("Gave incorrect score for 1 student with 95%",
-				firstStandard.getScore("Sally"), 95);
+		assertEquals("Gave incorrect score for 1 student with 95%", 95,
+				firstStandard.getScore("Sally"));
 		answers.set(2, false);
 		firstStandard.setAnswers("Tom", answers);
-		assertEquals("Gave incorrect score for 1 student with 85%",
-				firstStandard.getScore("Tom"), 85);
+		assertEquals("Gave incorrect score for 1 student with 85%", 85,
+				firstStandard.getScore("Tom"));
 		for(int i = 3; i < answers.size(); i++) {
 			answers.set(i, false);
 		}
 		firstStandard.setAnswers("Fred", answers);
-		assertEquals("Gave incorrect score for 1 student with 75%",
-				firstStandard.getScore("Fred"), 75);
+		assertEquals("Gave incorrect score for 1 student with 75%", 75,
+				firstStandard.getScore("Fred"));
 	}
 }
