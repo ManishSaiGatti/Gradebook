@@ -1,6 +1,7 @@
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.*;
 
 import org.junit.Test;
 public class TestStandard1 {
@@ -36,8 +37,30 @@ public class TestStandard1 {
 		ArrayList<Boolean> answers = new ArrayList<Boolean>();
 		answers.add(true);
 		answers.add(true);
-		firstStandard.giveScores("John", answers);
+		firstStandard.setAnswers("John", answers);
 		assertEquals("Gave incorrect score for 1 student with 100%",
-				firstStandard.getScores("John"), 100);
+				firstStandard.getScore("John"), 100);
 	}
+	
+	@Test
+	public void testRoster() {
+		Standard1 firstStandard = new Standard1();
+		ArrayList<String> students = new ArrayList<String>();
+		students.add("John");
+		students.add("Sally");
+		students.add("Tom");
+		for(String s: students) {
+			firstStandard.setAnswers(s, null);
+		}
+		//Checks the roster in firstStandard and student values have the same values, regardless
+		//of order.
+		boolean hasSameValues = true;
+ 		for(String s: firstStandard.getRoster()) {
+ 			if(!students.contains(s)) {
+ 				hasSameValues = false;
+ 			}
+ 		}
+		assertTrue("Gave incorrect roster of 3 students", hasSameValues);
+	}
+	
 }

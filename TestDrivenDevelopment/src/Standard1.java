@@ -16,11 +16,23 @@ public class Standard1 {
 		return questions;
 	}
 	
-	public void giveScores(String student, ArrayList<Boolean> scores) {
-		studentScores.put(student, scores);
+	public Set<String> getRoster() {
+		return studentScores.keySet();
 	}
 	
-	public int getScores(String student) {
+	public void setAnswers(String student, ArrayList<Boolean> answers) {
+		studentScores.put(student, answers);
+	}
+	
+	public int getScore(String student) {
 		return 100;
+	}
+	
+	public void editQuestion(String student, String question) {
+		return;
+	}
+	
+	public void editAnswer(String student, String question, boolean answer) {
+		return;
 	}
 }
