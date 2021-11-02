@@ -16,6 +16,10 @@ public class Standard3 {
 		studentScores.put(student, rawScore);
 	}
 	
+	public void editAnswer(String student, int newRawScore) {
+		studentScores.replace(student, newRawScore);
+	}
+	
 	public int getScore(String student) {
 		// 5-100 4-95 3-85 2-75 1-0
 		
