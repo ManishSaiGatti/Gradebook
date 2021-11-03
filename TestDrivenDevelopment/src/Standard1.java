@@ -11,8 +11,15 @@ public class Standard1 {
 		this.numCorrect85 = numCorrect85;
 		this.numCorrect95 = numCorrect95;
 	}
+	
 	public void addQuestions(ArrayList<String> questions) {
 		this.questions = questions;
+	}
+	
+	public void addIndividualQuestion(String question) {
+		if(!questions.contains(question)) {
+			questions.add(question);
+		}
 	}
 	
 	public ArrayList<String> getQuestions() {
@@ -44,8 +51,11 @@ public class Standard1 {
 		return 100;
 	}
 	
-	public void editQuestion(String student, String question) {
-		return;
+	public void editQuestion(String oldQuestion, String newQuestion) {
+		if(questions.contains(oldQuestion)) {
+			questions.set(questions.indexOf(oldQuestion), newQuestion);
+		}
+
 	}
 	
 	public void editAnswer(String student, String question, boolean answer) {

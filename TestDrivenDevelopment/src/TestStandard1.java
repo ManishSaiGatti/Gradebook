@@ -103,4 +103,46 @@ public class TestStandard1 {
 		assertEquals("Gave incorrect score for 1 student with 75%", 75,
 				firstStandard.getScore("Fred"));
 	}
+	
+	@Test
+	public void testEditQuestion() {
+		Standard1 firstStandard = new Standard1(0, 0);
+		ArrayList<String> questions = new ArrayList<String>();
+		questions.add("Did the student use conventional indentation and whitespace?");
+		firstStandard.addQuestions(questions);
+		questions.clear();
+		questions.add("Did the student use opening and closing curly braces correctly?");
+		firstStandard.editQuestion("Did the student use conventional indentation and whitespace?"
+				, "Did the student use opening and closing curly braces correctly?");
+		assertEquals("One question in standard incorrectly saved and edited", 
+				questions, firstStandard.getQuestions());
+	}
+	
+	@Test
+	public void testAddIndividualQuestion() {
+		Standard1 firstStandard = new Standard1(0, 0);
+		ArrayList<String> questions = new ArrayList<String>();
+		questions.add("Did the student use conventional indentation and whitespace?");
+		questions.add("Did the student keep their lines of code under 100 characters in length?");
+		firstStandard.addQuestions(questions);
+		firstStandard.addIndividualQuestion("Did the student follow Java's naming standards?");
+		questions.add("Did the student follow Java's naming standards?");
+		assertEquals("One individual question in standard incorrectly saved", 
+				questions, firstStandard.getQuestions());
+	}
+	
+	@Test
+	public void addIndividualRepeatQuestion() {
+		Standard1 firstStandard = new Standard1(0, 0);
+		ArrayList<String> questions = new ArrayList<String>();
+		questions.add("Did the student use conventional indentation and whitespace?");
+		questions.add("Did the student keep their lines of code under 100 characters in length?");
+		firstStandard.addQuestions(questions);
+		firstStandard.addIndividualQuestion("Did the student follow Java's naming standards?");
+		firstStandard.addIndividualQuestion("Did the student use conventional indentation and"
+				+ " whitespace?");
+		questions.add("Did the student follow Java's naming standards?");
+		assertEquals("Failed to test for repeated question", 
+				questions, firstStandard.getQuestions());
+	}
 }
