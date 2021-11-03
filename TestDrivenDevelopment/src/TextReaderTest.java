@@ -98,4 +98,18 @@ public class TextReaderTest {
         correct.add("MIKE TROUT");
         assertEquals("Text exported is incorrect", correct, answer);
     }
+    
+    @Test
+    public void testStudentAnswers4() throws IOException {
+        TextReader test = new TextReader();
+        HashMap<String, ArrayList<String>> answer = test.loadStudentAnswers("test4", 4000);
+        HashMap<String, ArrayList<String>> correct = new HashMap<String, ArrayList<String>>();
+        correct.put("BRAD PITT", new ArrayList<String>());
+        correct.put("MIKE TROUT", new ArrayList<String>());
+        correct.get("BRAD PITT").add("true");
+        correct.get("BRAD PITT").add("false");
+        correct.get("MIKE TROUT").add("false");
+        correct.get("BRAD PITT").add("false");
+        assertEquals("Text exported is incorrect", correct, answer);
+    }
 }
