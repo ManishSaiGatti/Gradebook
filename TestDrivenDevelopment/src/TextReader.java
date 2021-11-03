@@ -10,23 +10,27 @@ public class TextReader {
     
     public /*Standard*/ HashMap<String, ArrayList<String>> loadStudentAnswers(String standardName, int period/*, Standard standard*/) throws IOException {
         String[] splitName = standardName.split(" ");
-        String newName = "studentAnswers/";
+        String newName = "";
         for (String s : splitName) {
         	newName += s;
         }
         newName += "period" + period + ".txt";
-        BufferedReader input = new BufferedReader(new FileReader(newName));
+        BufferedReader input = new BufferedReader(new FileReader("studentAnswers/" + newName));
         HashMap<String, ArrayList<String>> output = new HashMap<String, ArrayList<String>>();
         ArrayList<String> studentNames = (ArrayList<String>)loadRoster(period);
-        String currentName = "";
+        String name = "";
         while (input.ready()) {
         	String next = input.readLine();
+        	String[] split = next.split(",");
+        	if (split.length > 1) {
+        		next = split[1] + " " + split[0];
+        	}
         	if (studentNames.contains(next)) {
         		output.put(next, new ArrayList<String>());
-        		currentName = next;
+        		name = next;
         	}
         	else {
-        		output.get(currentName).add(next);
+        		output.get(name).add(next);
         	}
         }
         return output;
@@ -34,12 +38,12 @@ public class TextReader {
     
     public /*Standard*/ List<String> loadStandard(String standardName) throws IOException {
     	String[] splitName = standardName.split(" ");
-        String newName = "standards/";
+        String newName = "";
         for (String s : splitName) {
         	newName += s;
         }
         newName += ".txt";
-        BufferedReader input = new BufferedReader(new FileReader(newName));
+        BufferedReader input = new BufferedReader(new FileReader("standards/" + newName));
         ArrayList<String> output = new ArrayList<String>();
         while (input.ready()) {
         	output.add(input.readLine());

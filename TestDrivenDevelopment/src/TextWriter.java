@@ -33,10 +33,18 @@ public class TextWriter {
         String output = "";
         Iterator<String> names = answers.keySet().iterator();
         while (names.hasNext()) {
-        	String name = names.next();
+        	String nameFirst = names.next();
+        	String[] split = nameFirst.split(" ");
+        	String name;
+        	if (split.length > 1) {
+        		name = split[1] + "," + split[0];
+        	}
+        	else {
+        		name = nameFirst;
+        	}
         	output += name + "\n";
-        	for (int c = 0; c < answers.get(name).size(); c++) {
-        		output += answers.get(name).get(c) + "\n";
+        	for (int c = 0; c < answers.get(nameFirst).size(); c++) {
+        		output += answers.get(nameFirst).get(c) + "\n";
         	}
         }
         FileWriter writer = new FileWriter(newName);
