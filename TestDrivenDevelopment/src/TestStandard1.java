@@ -132,7 +132,7 @@ public class TestStandard1 {
 	}
 	
 	@Test
-	public void addIndividualRepeatQuestion() {
+	public void testAddIndividualRepeatQuestion() {
 		Standard1 firstStandard = new Standard1(0, 0);
 		ArrayList<String> questions = new ArrayList<String>();
 		questions.add("Did the student use conventional indentation and whitespace?");
@@ -143,6 +143,19 @@ public class TestStandard1 {
 				+ " whitespace?");
 		questions.add("Did the student follow Java's naming standards?");
 		assertEquals("Failed to test for repeated question", 
+				questions, firstStandard.getQuestions());
+	}
+	
+	@Test
+	public void testNotExistingEditQuestion() {
+		Standard1 firstStandard = new Standard1(0, 0);
+		ArrayList<String> questions = new ArrayList<String>();
+		questions.add("Did the student use conventional indentation and whitespace?");
+		firstStandard.addQuestions(questions);
+		firstStandard.editQuestion("Did the student complete the header at the top of their"
+				+ " submitted .java files?"
+				, "Did the student use opening and closing curly braces correctly?");
+		assertEquals("Question that does not exist in editQuestion not properly handled", 
 				questions, firstStandard.getQuestions());
 	}
 }
