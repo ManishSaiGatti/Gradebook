@@ -1,12 +1,11 @@
 import java.util.*;
-import java.io.*;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class TextWriterTest {
 
 	@Test
-	public void testSaveRoster1() throws IOException {
+	public void testSaveRoster1() {
 		TextWriter test = new TextWriter();
 		ArrayList<String> correct = new ArrayList<String>();
 		correct.add("test1");
@@ -17,7 +16,7 @@ public class TextWriterTest {
 	}
 	
 	@Test
-	public void testSaveStudentAnswers1() throws IOException {
+	public void testSaveStudentAnswers1() {
 		TextWriter test = new TextWriter();
 		ArrayList<String> roster = new ArrayList<String>();
 		roster.add("test1");
@@ -31,7 +30,7 @@ public class TextWriterTest {
 	}
 	
 	@Test
-	public void testSaveRoster2() throws IOException {
+	public void testSaveRoster2() {
 		TextWriter test = new TextWriter();
 		ArrayList<String> correct = new ArrayList<String>();
 		correct.add("new test");
@@ -42,7 +41,7 @@ public class TextWriterTest {
 	}
 	
 	@Test
-	public void testSaveStudentAnswers2() throws IOException {
+	public void testSaveStudentAnswers2() {
 		TextWriter test = new TextWriter();
 		ArrayList<String> roster = new ArrayList<String>();
 		roster.add("new test");
@@ -56,7 +55,7 @@ public class TextWriterTest {
 	}
 	
 	@Test
-	public void testSaveRoster3() throws IOException {
+	public void testSaveRoster3() {
 		TextWriter test = new TextWriter();
 		ArrayList<String> correct = new ArrayList<String>();
 		correct.add("para1");
@@ -68,7 +67,7 @@ public class TextWriterTest {
 	}
 	
 	@Test
-	public void testSaveStudentAnswers3() throws IOException {
+	public void testSaveStudentAnswers3() {
 		TextWriter test = new TextWriter();
 		ArrayList<String> roster = new ArrayList<String>();
 		roster.add("para1");
@@ -84,7 +83,7 @@ public class TextWriterTest {
 	}
 	
 	@Test
-	public void testSaveRoster4() throws IOException {
+	public void testSaveRoster4() {
 		TextWriter test = new TextWriter();
 		ArrayList<String> correct = new ArrayList<String>();
 		correct.add("DANNY DEVITO");
@@ -96,7 +95,7 @@ public class TextWriterTest {
 	}
 	
 	@Test
-	public void testSaveStudentAnswers4() throws IOException {
+	public void testSaveStudentAnswers4() {
 		TextWriter test = new TextWriter();
 		ArrayList<String> roster = new ArrayList<String>();
 		roster.add("DANNY DEVITO");
@@ -112,7 +111,7 @@ public class TextWriterTest {
 	}
 	
 	@Test
-	public void testSaveStandard1() throws IOException {
+	public void testSaveStandard1() {
 		TextWriter test = new TextWriter();
 		ArrayList<String> correct = new ArrayList<String>();
 		correct.add("test1");
@@ -123,7 +122,7 @@ public class TextWriterTest {
 	}
 	
 	@Test
-	public void testSaveStandard2() throws IOException {
+	public void testSaveStandard2() {
 		TextWriter test = new TextWriter();
 		ArrayList<String> correct = new ArrayList<String>();
 		correct.add("ME!!!");
@@ -134,7 +133,7 @@ public class TextWriterTest {
 	}
 	
 	@Test
-	public void testSaveStandard3() throws IOException {
+	public void testSaveStandard3() {
 		TextWriter test = new TextWriter();
 		ArrayList<String> correct = new ArrayList<String>();
 		correct.add("paragraph");
@@ -146,7 +145,7 @@ public class TextWriterTest {
 	}
 	
 	@Test
-	public void testSaveStudentAnswersProper1() throws IOException {
+	public void testSaveStudentAnswersProper1() {
 		TextWriter test = new TextWriter();
 		ArrayList<String> roster = new ArrayList<String>();
 		roster.add("DANNY DEVITO");
