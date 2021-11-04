@@ -13,7 +13,15 @@ public class Standard1 {
 	}
 	
 	public void addQuestions(ArrayList<String> questions) {
-		this.questions = questions;
+		if(!this.questions.isEmpty()) {
+			for(String s: questions) {
+				if(!this.questions.contains(s)) {
+					this.questions.add(s);
+				}
+			}
+		} else {
+			this.questions = questions;
+		}
 	}
 	
 	public void addIndividualQuestion(String question) {
@@ -31,7 +39,20 @@ public class Standard1 {
 	}
 	
 	public void setAnswers(String student, ArrayList<Boolean> answers) {
+		if(studentScores.containsKey(student)) {
+			ArrayList<Boolean> currentAnswers = studentScores.get(student);
+			answers.addAll(currentAnswers);
+		}
 		studentScores.put(student, answers);
+	}
+	
+	public void setIndividualAnswer(String student, boolean answer) {
+		ArrayList<Boolean> currentAnswers = studentScores.get(student);
+		if(currentAnswers == null) {
+			currentAnswers = new ArrayList<Boolean>();
+		}
+		currentAnswers.add(answer);
+		studentScores.put(student, currentAnswers);
 	}
 	
 	public int getScore(String student) {
@@ -59,6 +80,11 @@ public class Standard1 {
 	}
 	
 	public void editAnswer(String student, String question, boolean answer) {
-		return;
+		ArrayList<Boolean> studentAnswers = studentScores.get(student);
+		int indexOfAnswer = questions.indexOf(question);
+		if(indexOfAnswer >= 0 && studentAnswers != null) {
+			studentAnswers.set(indexOfAnswer, answer);
+		}
+		studentScores.put(student, studentAnswers);
 	}
 }

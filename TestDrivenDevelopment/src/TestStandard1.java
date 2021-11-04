@@ -158,4 +158,133 @@ public class TestStandard1 {
 		assertEquals("Question that does not exist in editQuestion not properly handled", 
 				questions, firstStandard.getQuestions());
 	}
+	
+	@Test
+	public void testEditStudentAnswer() {
+		Standard1 firstStandard = new Standard1(1, 2);
+		ArrayList<String> questions = new ArrayList<String>();
+		questions.add("Did the student use conventional indentation and whitespace?");
+		questions.add("Did the student follow Java's naming standards?");
+		questions.add("Did the student keep their lines of code under 100 characters in length?");
+		firstStandard.addQuestions(questions);
+		ArrayList<Boolean> answers = new ArrayList<Boolean>();
+		answers.add(true);
+		answers.add(true);
+		answers.add(true);
+		firstStandard.setAnswers("John", answers);
+		firstStandard.editAnswer("John", questions.get(0), false);
+		assertEquals("Failed to edit student answer", 95,
+				firstStandard.getScore("John"));
+	}
+	
+	@Test
+	public void testEditAnswerNotExist() {
+		Standard1 firstStandard = new Standard1(1, 2);
+		ArrayList<String> questions = new ArrayList<String>();
+		questions.add("Did the student use conventional indentation and whitespace?");
+		questions.add("Did the student follow Java's naming standards?");
+		questions.add("Did the student keep their lines of code under 100 characters in length?");
+		firstStandard.addQuestions(questions);
+		ArrayList<Boolean> answers = new ArrayList<Boolean>();
+		answers.add(true);
+		answers.add(true);
+		answers.add(true);
+		firstStandard.setAnswers("John", answers);
+		firstStandard.editAnswer("John", "Did the student use opening and"
+				+ " closing curly braces correctly?", false);
+		assertEquals("Edited answer that doesn't exist", 100,
+				firstStandard.getScore("John"));
+	}
+	
+	@Test
+	public void testEditStudentNotExist() {
+		Standard1 firstStandard = new Standard1(1, 2);
+		ArrayList<String> questions = new ArrayList<String>();
+		questions.add("Did the student use conventional indentation and whitespace?");
+		questions.add("Did the student keep their lines of code under 100 characters in length?");
+		firstStandard.addQuestions(questions);
+		ArrayList<Boolean> answers = new ArrayList<Boolean>();
+		answers.add(true);
+		answers.add(true);
+		firstStandard.setAnswers("John", answers);
+		firstStandard.editAnswer("Sally", "Did the student use conventional "
+				+ "indentation and whitespace?", false);
+		assertEquals("Gave incorrect score for 1 student with 100%", 100,
+				firstStandard.getScore("John"));
+	}
+	
+	@Test
+	public void testAddMultipleQuestionSets() {
+		Standard1 firstStandard = new Standard1(0, 0);
+		ArrayList<String> questions = new ArrayList<String>();
+		questions.add("Did the student use conventional indentation and whitespace?");
+		questions.add("Did the student keep their lines of code under 100 characters in length?");
+		firstStandard.addQuestions(questions);
+		ArrayList<String> newQuestions = new ArrayList<String>();
+		newQuestions.add("Did the student follow Java's naming standards?");
+		firstStandard.addQuestions(newQuestions);
+		questions.add("Did the student follow Java's naming standards?");
+		assertEquals("Could not add more questions to those already existing", 
+			questions, firstStandard.getQuestions());
+	}
+	
+	@Test
+	public void addDuplicateQuestionSets() {
+		Standard1 firstStandard = new Standard1(0, 0);
+		ArrayList<String> questions = new ArrayList<String>();
+		questions.add("Did the student use conventional indentation and whitespace?");
+		firstStandard.addQuestions(questions);
+		firstStandard.addQuestions(questions);
+		assertEquals("Added questions twice", 
+				questions, firstStandard.getQuestions());
+	}
+	
+	@Test
+	public void addMoreAnswers() {
+		Standard1 firstStandard = new Standard1(1, 2);
+		ArrayList<String> questions = new ArrayList<String>();
+		questions.add("Did the student use conventional indentation and whitespace?");
+		questions.add("Did the student follow Java's naming standards?");
+		questions.add("Did the student keep their lines of code under 100 characters in length?");
+		firstStandard.addQuestions(questions);
+		ArrayList<Boolean> answers = new ArrayList<Boolean>();
+		answers.add(true);
+		answers.add(true);
+		firstStandard.setAnswers("John", answers);
+		ArrayList<Boolean> newAnswers = new ArrayList<Boolean>();
+		newAnswers.add(false);
+		firstStandard.setAnswers("John", newAnswers);
+		assertEquals("Failed to add more answers to student", 95,
+		firstStandard.getScore("John"));
+	}
+	
+	@Test
+	public void addIndividualAnswer() {
+		Standard1 firstStandard = new Standard1(1, 2);
+		ArrayList<String> questions = new ArrayList<String>();
+		questions.add("Did the student use conventional indentation and whitespace?");
+		questions.add("Did the student follow Java's naming standards?");
+		questions.add("Did the student keep their lines of code under 100 characters in length?");
+		firstStandard.addQuestions(questions);
+		ArrayList<Boolean> answers = new ArrayList<Boolean>();
+		answers.add(true);
+		answers.add(true);
+		firstStandard.setAnswers("John", answers);
+		firstStandard.setIndividualAnswer("John", false);
+		assertEquals("Failed to add more answers to student", 95,
+		firstStandard.getScore("John"));
+	}
+	
+	@Test
+	public void setOneIndividualAnswer() {
+		Standard1 firstStandard = new Standard1(1, 2);
+		ArrayList<String> questions = new ArrayList<String>();
+		questions.add("Did the student use conventional indentation and whitespace?");
+		questions.add("Did the student keep their lines of code under 100 characters in length?");
+		firstStandard.addQuestions(questions);
+		firstStandard.setIndividualAnswer("John", true);
+		firstStandard.setIndividualAnswer("John", true);
+		assertEquals("Gave incorrect score for 1 student with 100%", 100,
+				firstStandard.getScore("John"));
+	}
 }
