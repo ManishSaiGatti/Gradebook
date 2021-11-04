@@ -112,4 +112,28 @@ public class TextReaderTest {
         correct.get("BRAD PITT").add("false");
         assertEquals("Text exported is incorrect", correct, answer);
     }
+    
+    @Test
+    public void testStudentAnswersNothing() {
+        TextReader test = new TextReader();
+        HashMap<String, ArrayList<String>> answer = test.loadStudentAnswers("blank", 9999);
+        HashMap<String, ArrayList<String>> correct = new HashMap<String, ArrayList<String>>();
+        assertEquals("Text exported is incorrect", correct, answer);
+    }
+	
+	@Test
+    public void testStandardsNothing() {
+        TextReader test = new TextReader();
+        ArrayList<String> answer = (ArrayList<String>)test.loadStandard("blank");
+        ArrayList<String> correct = new ArrayList<String>();
+        assertEquals("Text exported is incorrect", correct, answer);
+    }
+	
+	@Test
+    public void testRosterNothing() {
+        TextReader test = new TextReader();
+        ArrayList<String> answer = (ArrayList<String>)test.loadRoster(9999);
+        ArrayList<String> correct = new ArrayList<String>();
+        assertEquals("Text exported is incorrect", correct, answer);
+    }
 }

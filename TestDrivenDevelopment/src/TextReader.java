@@ -8,6 +8,10 @@ public class TextReader {
     	
     }
     
+    public void loadAll (String standardName, int period) {
+    	
+    }
+    
     public /*Standard*/ HashMap<String, ArrayList<String>> loadStudentAnswers(String standardName, int period/*, Standard standard*/) {
         String[] splitName = standardName.split(" ");
         String newName = "";
