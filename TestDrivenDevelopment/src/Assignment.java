@@ -2,8 +2,9 @@ public class Assignment {
 	private double score;
 	private static double totalScores;
 	private static int numStudents;
+	// CHANGE THIS TO BE STORED IN HASHMAPS ALSO
 	
-	public Assignment(String student) {
+	public Assignment(String name) {
 		/*
 		 * check to make sure weights for all standards add up to 1
 		 * for each standard a student's assignment has:

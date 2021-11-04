@@ -16,18 +16,16 @@ public class Standard3 {
 	}
 	
 	// setAnswers based on student name (void)
-	public void addStudentScore(String student, int rawScore) {
+	// adds a new student with the score inputted if student does not yet exist, replaces the student's score
+	// with the new given score if student already exists
+	public void changeStudentScore(String student, int rawScore) {
 		studentRawScores.put(student, rawScore);
 	}
 
 	public void editQuestion(String newQuestion) {
 		question = newQuestion;
 	}
-	
-	public void editAnswer(String student, int newRawScore) {
-		studentRawScores.replace(student, newRawScore);
-	}
-	
+		
 	public String getQuestion() {
 		return question;
 	}
@@ -48,13 +46,10 @@ public class Standard3 {
 		 */
 	}
 	
-	// converts raw score to /100 score
+	// converts raw score to /100 score. ASSUMES SCORE IS ALREADY IN THE RANGE OF 1-5
 	private int convertRawScore(int rawScore) {
 		// 5-100 4-95 3-85 2-75 1-0
-		if (rawScore == -1) {
-			throw new IllegalArgumentException("You have not given a student "
-					+ "a score yet!"); // IDK IF THIS IS THE RIGHT TYPE OF EXCEPTION TO THROW
-		} else if (rawScore == 5) {
+		if (rawScore == 5) {
 			return 100;
 		} else if (rawScore == 4) {
 			return 95;
@@ -64,14 +59,14 @@ public class Standard3 {
 			return 75;
 		} else if (rawScore == 1) {
 			return 0;
-		} else {
-			throw new IllegalArgumentException("Raw score for a student" +
-					" was not in the range from 1-5. Please edit their score.");
+		} else { // rawScore will have to be -1 given that GUI makes sure score given when setting is 1-5
+			throw new IllegalArgumentException("You have not given a student "
+					+ "a score yet!"); // IDK IF THIS IS THE RIGHT TYPE OF EXCEPTION TO THROW
 		}
 	}
 	
 	// get roster method (List<String>) use keyset,iterator
 	public List<String> getRoster() {
-		return (List<String>) studentRawScores.keySet().iterator();
+		return new ArrayList<>(studentRawScores.keySet());
 	}
 }
