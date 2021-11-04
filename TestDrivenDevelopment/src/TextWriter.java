@@ -7,7 +7,7 @@ public class TextWriter {
 		
 	}
 	
-	public void saveStandard(String standardName, List<String> questions) throws IOException {
+	public void saveStandard(String standardName, List<String> questions) {
 		String[] splitName = standardName.split(" ");
         String newName = "standards/";
         for (String s : splitName) {
@@ -18,12 +18,17 @@ public class TextWriter {
         for (int i = 0; i < questions.size(); i++) {
         	output += questions.get(i) + "\n";
         }
-        FileWriter writer = new FileWriter(newName);
-        writer.write(output);
-        writer.close();
+        try {
+        	FileWriter writer = new FileWriter(newName);
+            writer.write(output);
+            writer.close();
+        }
+        catch (IOException e) {
+        	e.printStackTrace();
+        }
 	}
 	
-	public void saveStudentAnswers(String standardName, int period, Map<String, ArrayList<String>> answers) throws IOException {
+	public void saveStudentAnswers(String standardName, int period, Map<String, ArrayList<String>> answers) {
 		String[] splitName = standardName.split(" ");
         String newName = "studentAnswers/";
         for (String s : splitName) {
@@ -47,12 +52,17 @@ public class TextWriter {
         		output += answers.get(nameFirst).get(c) + "\n";
         	}
         }
-        FileWriter writer = new FileWriter(newName);
-        writer.write(output);
-        writer.close();
+        try {
+        	FileWriter writer = new FileWriter(newName);
+            writer.write(output);
+            writer.close();
+        }
+        catch (IOException e) {
+        	e.printStackTrace();
+        }
 	}
 	
-	public void saveRoster(int period, List<String> names) throws IOException {
+	public void saveRoster(int period, List<String> names) {
 		String fileName = "roster/period" + period + ".txt"; 
 		String output = "";
 		for (int i = 0; i < names.size(); i++) {
@@ -66,8 +76,13 @@ public class TextWriter {
 			}
 			output += newName + "\n";
 		}
-		FileWriter writer = new FileWriter(fileName);
-		writer.write(output);
-		writer.close();
+		try {
+			FileWriter writer = new FileWriter(fileName);
+			writer.write(output);
+			writer.close();
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

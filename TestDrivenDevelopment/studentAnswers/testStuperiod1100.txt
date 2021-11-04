@@ -1,2 +1,6 @@
-DANNY DEVITO
-GENO SMITH
+DEVITO,DANNY
+true
+false
+SMITH,GENO
+false
+false
