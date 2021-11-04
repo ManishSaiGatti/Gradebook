@@ -5,7 +5,7 @@ import org.junit.Test;
 
 public class TextReaderTest {
 	@Test
-    public void testStudentAnswers1() throws IOException {
+    public void testStudentAnswers1() {
         TextReader test = new TextReader();
         HashMap<String, ArrayList<String>> answer = test.loadStudentAnswers("test", 1000);
         HashMap<String, ArrayList<String>> correct = new HashMap<String, ArrayList<String>>();
@@ -14,7 +14,7 @@ public class TextReaderTest {
     }
 	
 	@Test
-    public void testStandards1() throws IOException {
+    public void testStandards1() {
         TextReader test = new TextReader();
         ArrayList<String> answer = (ArrayList<String>)test.loadStandard("test");
         ArrayList<String> correct = new ArrayList<String>();
@@ -23,7 +23,7 @@ public class TextReaderTest {
     }
 	
 	@Test
-    public void testStudentAnswers2() throws IOException {
+    public void testStudentAnswers2() {
         TextReader test = new TextReader();
         HashMap<String, ArrayList<String>> answer = test.loadStudentAnswers("test2", 2000);
         HashMap<String, ArrayList<String>> correct = new HashMap<String, ArrayList<String>>();
@@ -33,7 +33,7 @@ public class TextReaderTest {
     }
 	
 	@Test
-    public void testStandards2() throws IOException {
+    public void testStandards2() {
         TextReader test = new TextReader();
         ArrayList<String> answer = (ArrayList<String>)test.loadStandard("test2");
         ArrayList<String> correct = new ArrayList<String>();
@@ -42,7 +42,7 @@ public class TextReaderTest {
     }
 	
 	@Test
-    public void testStudentAnswers3() throws IOException {
+    public void testStudentAnswers3() {
         TextReader test = new TextReader();
         HashMap<String, ArrayList<String>> answer = test.loadStudentAnswers("test3", 3000);
         HashMap<String, ArrayList<String>> correct = new HashMap<String, ArrayList<String>>();
@@ -52,7 +52,7 @@ public class TextReaderTest {
     }
 	
 	@Test
-    public void testStandards3() throws IOException {
+    public void testStandards3() {
         TextReader test = new TextReader();
         ArrayList<String> answer = (ArrayList<String>)test.loadStandard("test3");
         ArrayList<String> correct = new ArrayList<String>();
@@ -62,7 +62,7 @@ public class TextReaderTest {
     }
 	
 	@Test
-    public void testRoster1() throws IOException {
+    public void testRoster1() {
         TextReader test = new TextReader();
         ArrayList<String> answer = (ArrayList<String>)test.loadRoster(1000);
         ArrayList<String> correct = new ArrayList<String>();
@@ -71,7 +71,7 @@ public class TextReaderTest {
     }
 	
 	@Test
-    public void testRoster2() throws IOException {
+    public void testRoster2() {
         TextReader test = new TextReader();
         ArrayList<String> answer = (ArrayList<String>)test.loadRoster(2000);
         ArrayList<String> correct = new ArrayList<String>();
@@ -80,7 +80,7 @@ public class TextReaderTest {
     }
     
     @Test
-    public void testRoster3() throws IOException {
+    public void testRoster3() {
         TextReader test = new TextReader();
         ArrayList<String> answer = (ArrayList<String>)test.loadRoster(3000);
         ArrayList<String> correct = new ArrayList<String>();
@@ -90,7 +90,7 @@ public class TextReaderTest {
     }
     
     @Test
-    public void testRoster4() throws IOException {
+    public void testRoster4() {
         TextReader test = new TextReader();
         ArrayList<String> answer = (ArrayList<String>)test.loadRoster(4000);
         ArrayList<String> correct = new ArrayList<String>();
@@ -100,7 +100,7 @@ public class TextReaderTest {
     }
     
     @Test
-    public void testStudentAnswers4() throws IOException {
+    public void testStudentAnswers4() {
         TextReader test = new TextReader();
         HashMap<String, ArrayList<String>> answer = test.loadStudentAnswers("test4", 4000);
         HashMap<String, ArrayList<String>> correct = new HashMap<String, ArrayList<String>>();
