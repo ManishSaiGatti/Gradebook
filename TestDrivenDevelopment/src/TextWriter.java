@@ -7,6 +7,10 @@ public class TextWriter {
 		
 	}
 	
+	public void saveAll(String standardName, int period) {
+		
+	}
+	
 	public void saveStandard(String standardName, List<String> questions) {
 		String[] splitName = standardName.split(" ");
         String newName = "standards/";
