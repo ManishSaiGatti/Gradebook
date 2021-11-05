@@ -8,11 +8,13 @@ public class TextReader {
     	
     }
     
-    public void loadAll (String standardName, int period) {
-    	
+    public Standard1 loadAllStandard1 (String standardName, int period, Standard1 standard) {
+    	Standard1 output = loadStandard1(standardName, standard);
+    	output = loadStudentAnswers1(standardName, period, output);
+    	return output;
     }
     
-    public /*Standard*/ HashMap<String, ArrayList<String>> loadStudentAnswers(String standardName, int period/*, Standard standard*/) {
+    public Standard1 loadStudentAnswers1(String standardName, int period, Standard1 standard) {
         String[] splitName = standardName.split(" ");
         String newName = "";
         for (String s : splitName) {
@@ -21,8 +23,16 @@ public class TextReader {
         newName += "period" + period + ".txt";
         try {
         	BufferedReader input = new BufferedReader(new FileReader("studentAnswers/" + newName));
-            HashMap<String, ArrayList<String>> output = new HashMap<String, ArrayList<String>>();
-            ArrayList<String> studentNames = (ArrayList<String>)loadRoster(period);
+        	int ninetyFive = Integer.parseInt(input.readLine());
+        	int eightyFive = Integer.parseInt(input.readLine());
+        	Standard1 output;
+        	if (standard == null) {
+        		output = new Standard1(eightyFive, ninetyFive);
+        	}
+        	else {
+        		output = standard;
+        	}
+            //ArrayList<String> studentNames = (ArrayList<String>)loadRoster(period);
             String name = "";
             while (input.ready()) {
             	String next = input.readLine();
@@ -30,12 +40,19 @@ public class TextReader {
             	if (split.length > 1) {
             		next = split[1] + " " + split[0];
             	}
-            	if (studentNames.contains(next)) {
-            		output.put(next, new ArrayList<String>());
+            	if (next.contains(",")) {
+            		output.setAnswers(next, new ArrayList<Boolean>());
             		name = next;
             	}
             	else {
-            		output.get(name).add(next);
+            		boolean answer;
+            		if (next.substring(0,1).toLowerCase().equals("t")) {
+            			answer = true;
+            		}
+            		else {
+            			answer = false;
+            		}
+            		output.setIndividualAnswer(name, answer);
             	}
             }
             return output;
@@ -46,7 +63,7 @@ public class TextReader {
         return null;
     }
     
-    public /*Standard*/ List<String> loadStandard(String standardName) {
+    public Standard1 loadStandard1(String standardName, Standard1 standard) {
     	String[] splitName = standardName.split(" ");
         String newName = "";
         for (String s : splitName) {
@@ -55,10 +72,20 @@ public class TextReader {
         newName += ".txt";
         try {
         	BufferedReader input = new BufferedReader(new FileReader("standards/" + newName));
-            ArrayList<String> output = new ArrayList<String>();
+        	int ninetyFive = Integer.parseInt(input.readLine());
+        	int eightyFive = Integer.parseInt(input.readLine());
+        	Standard1 output;
+        	if (standard == null) {
+        		output = new Standard1(eightyFive, ninetyFive);
+        	}
+        	else {
+        		output = standard;
+        	}
+            ArrayList<String> questions = new ArrayList<String>();
             while (input.ready()) {
-            	output.add(input.readLine());
+            	questions.add(input.readLine());
             }
+            output.addQuestions(questions);
             return output;
         }
         catch (IOException e) {
