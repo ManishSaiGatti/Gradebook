@@ -1,5 +1,5 @@
 import static org.junit.Assert.*;
-
+import java.util.*;
 import java.util.ArrayList;
 
 import org.junit.Test;
@@ -320,9 +320,52 @@ public class TestStandard1 {
 	
 	//testGetNumForScore(): Tests that getNumCorrect85 and 95 returns the correct value based on
 	//the one stored in the standard.
+	@Test
 	public void testGetNumForScore() {
 		Standard1 firstStandard = new Standard1(1, 3);
 		assertEquals("numCorrect85 incorrectly saved", 1, firstStandard.getNumCorrect85());
 		assertEquals("numCorrect95 incorrectly saved", 3, firstStandard.getNumCorrect95());
+	}
+	
+	//testGetAllAnswers(): Checks to make sure getAllAnswers returns the correct HashMap
+	//of students and answers
+	@Test
+	public void testGetAllAnswers() {
+		Standard1 firstStandard = new Standard1(1, 2);
+		ArrayList<String> questions = new ArrayList<String>();
+		questions.add("Did the student use conventional indentation and whitespace?");
+		questions.add("Did the student keep their lines of code under 100 characters in length?");
+		firstStandard.addQuestions(questions);
+		ArrayList<Boolean> answers = new ArrayList<Boolean>();
+		answers.add(true);
+		answers.add(true);
+		firstStandard.setAnswers("John", answers);
+		HashMap<String, ArrayList<Boolean>> studentScores = new HashMap<String, 
+				ArrayList<Boolean>>();
+		studentScores.put("John", answers);
+		assertEquals("Return incorrect hashMap on getAllAnswers", studentScores, 
+				firstStandard.getAllAnswers());
+	}
+	
+	//testGetStudentAnswers(): Tests to see that getStudentAnswers returns an ArrayList
+	//of all answers for a student
+	@Test
+	public void testGetStudentAnswers() {
+		Standard1 firstStandard = new Standard1(1, 2);
+		ArrayList<String> questions = new ArrayList<String>();
+		questions.add("Did the student use conventional indentation and whitespace?");
+		questions.add("Did the student keep their lines of code under 100 characters in length?");
+		firstStandard.addQuestions(questions);
+		ArrayList<Boolean> answers = new ArrayList<Boolean>();
+		answers.add(true);
+		answers.add(true);
+		firstStandard.setAnswers("John", answers);
+		assertEquals("Gave incorrect ArrayList of one student's answers", answers, 
+				firstStandard.getStudentAnswers("John"));
+		answers.set(0, false);
+		firstStandard.setAnswers("Sally", answers);
+		assertEquals("Gave incorrect ArrayList of another student's answers", answers, 
+				firstStandard.getStudentAnswers("Sally"));
+		
 	}
 }
