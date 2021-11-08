@@ -106,9 +106,13 @@ public class Standard1 {
 			return 75;
 		} else if (numCorrect < numCorrect95) {
 			return 85;
-		} else if (numCorrect != questions.size()) {
+		//Any number correct that is greater than or equal to numCorrect95 but still below the
+		//total number of questions is a 95
+		} else if (numCorrect < questions.size()) {
 			return 95;
 		}
+		//For a student to get 100, the numCorrect must equal the number of questions, could
+		//include an else statement but unnecessary
 		return 100;
 	}
 	
