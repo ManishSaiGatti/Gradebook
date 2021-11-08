@@ -5,64 +5,63 @@ import org.junit.Test;
 
 public class TextReaderTest {
 	@Test
-    public void testStudentAnswers1() throws IOException {
+    public void testStudentAnswers1() {
         TextReader test = new TextReader();
-        HashMap<String, ArrayList<String>> answer = test.loadStudentAnswers("test", 1000);
-        HashMap<String, ArrayList<String>> correct = new HashMap<String, ArrayList<String>>();
-        correct.put("test", new ArrayList<String>());
-        assertEquals("Text exported is incorrect", correct, answer);
+        Standard1 answer = test.loadStudentAnswers1("test", 1000, null);
+        Standard1 correct = new Standard1(2, 5);
+        correct.setIndividualAnswer("test", false);
+        assertEquals("Text exported is incorrect", correct.getAllAnswers(), answer.getAllAnswers());
     }
 	
 	@Test
-    public void testStandards1() throws IOException {
+    public void testStandards1() {
         TextReader test = new TextReader();
-        ArrayList<String> answer = (ArrayList<String>)test.loadStandard("test");
-        ArrayList<String> correct = new ArrayList<String>();
-        correct.add("test");
-        assertEquals("Text exported is incorrect", correct, answer);
+        Standard1 answer = test.loadStandard1("test", null);
+        Standard1 correct = new Standard1(2, 5);
+        correct.addIndividualQuestion("test");
+        assertEquals("Text exported is incorrect", correct.getQuestions(), answer.getQuestions());
     }
 	
 	@Test
-    public void testStudentAnswers2() throws IOException {
+    public void testStudentAnswers2() {
         TextReader test = new TextReader();
-        HashMap<String, ArrayList<String>> answer = test.loadStudentAnswers("test2", 2000);
-        HashMap<String, ArrayList<String>> correct = new HashMap<String, ArrayList<String>>();
-        correct.put("Name", new ArrayList<String>());
-        correct.get("Name").add("hopefully this works :)");
-        assertEquals("Text exported is incorrect", correct, answer);
+        Standard1 answer = test.loadStudentAnswers1("test2", 2000, null);
+        Standard1 correct = new Standard1(2, 5);
+        correct.setIndividualAnswer("Name", false);
+        assertEquals("Text exported is incorrect", correct.getAllAnswers(), answer.getAllAnswers());
     }
 	
 	@Test
-    public void testStandards2() throws IOException {
-        TextReader test = new TextReader();
-        ArrayList<String> answer = (ArrayList<String>)test.loadStandard("test2");
-        ArrayList<String> correct = new ArrayList<String>();
-        correct.add("if this works");
-        assertEquals("Text exported is incorrect", correct, answer);
+    public void testStandards2() {
+		TextReader test = new TextReader();
+        Standard1 answer = test.loadStandard1("test2", null);
+        Standard1 correct = new Standard1(2, 5);
+        correct.addIndividualQuestion("if this works");
+        assertEquals("Text exported is incorrect", correct.getQuestions(), answer.getQuestions());
     }
 	
 	@Test
-    public void testStudentAnswers3() throws IOException {
+    public void testStudentAnswers3() {
         TextReader test = new TextReader();
-        HashMap<String, ArrayList<String>> answer = test.loadStudentAnswers("test3", 3000);
-        HashMap<String, ArrayList<String>> correct = new HashMap<String, ArrayList<String>>();
-        correct.put("para1", new ArrayList<String>());
-        correct.put("para2", new ArrayList<String>());
-        assertEquals("Text exported is incorrect", correct, answer);
+        Standard1 answer = test.loadStudentAnswers1("test3", 3000, null);
+        Standard1 correct = new Standard1(2, 5);
+        correct.setIndividualAnswer("para1", false);
+        correct.setIndividualAnswer("para2", false);
+        assertEquals("Text exported is incorrect", correct.getAllAnswers(), answer.getAllAnswers());
     }
 	
 	@Test
-    public void testStandards3() throws IOException {
-        TextReader test = new TextReader();
-        ArrayList<String> answer = (ArrayList<String>)test.loadStandard("test3");
-        ArrayList<String> correct = new ArrayList<String>();
-        correct.add("para3");
-        correct.add("para4");
-        assertEquals("Text exported is incorrect", correct, answer);
+    public void testStandards3() {
+		TextReader test = new TextReader();
+        Standard1 answer = test.loadStandard1("test3", null);
+        Standard1 correct = new Standard1(2, 5);
+        correct.addIndividualQuestion("para3");
+        correct.addIndividualQuestion("para4");
+        assertEquals("Text exported is incorrect", correct.getQuestions(), answer.getQuestions());
     }
 	
 	@Test
-    public void testRoster1() throws IOException {
+    public void testRoster1() {
         TextReader test = new TextReader();
         ArrayList<String> answer = (ArrayList<String>)test.loadRoster(1000);
         ArrayList<String> correct = new ArrayList<String>();
@@ -71,7 +70,7 @@ public class TextReaderTest {
     }
 	
 	@Test
-    public void testRoster2() throws IOException {
+    public void testRoster2() {
         TextReader test = new TextReader();
         ArrayList<String> answer = (ArrayList<String>)test.loadRoster(2000);
         ArrayList<String> correct = new ArrayList<String>();
@@ -80,7 +79,7 @@ public class TextReaderTest {
     }
     
     @Test
-    public void testRoster3() throws IOException {
+    public void testRoster3() {
         TextReader test = new TextReader();
         ArrayList<String> answer = (ArrayList<String>)test.loadRoster(3000);
         ArrayList<String> correct = new ArrayList<String>();
@@ -90,12 +89,48 @@ public class TextReaderTest {
     }
     
     @Test
-    public void testRoster4() throws IOException {
+    public void testRoster4() {
         TextReader test = new TextReader();
         ArrayList<String> answer = (ArrayList<String>)test.loadRoster(4000);
         ArrayList<String> correct = new ArrayList<String>();
         correct.add("BRAD PITT");
         correct.add("MIKE TROUT");
+        assertEquals("Text exported is incorrect", correct, answer);
+    }
+    
+    @Test
+    public void testStudentAnswers4() {
+        TextReader test = new TextReader();
+        Standard1 answer = test.loadStudentAnswers1("test4", 4000, null);
+        Standard1 correct = new Standard1(2, 5);
+        correct.setIndividualAnswer("BRAD PITT", true);
+        correct.setIndividualAnswer("BRAD PITT", false);
+        correct.setIndividualAnswer("MIKE TROUT", false);
+        correct.setIndividualAnswer("BRAD PITT", false);
+        assertEquals("Text exported is incorrect", correct.getAllAnswers(), answer.getAllAnswers());
+    }
+    
+    @Test
+    public void testStudentAnswersNothing() {
+        TextReader test = new TextReader();
+        Standard1 answer = test.loadStudentAnswers1("blank", 9999, null);
+        Standard1 correct = new Standard1(2, 5);
+        assertEquals("Text exported is incorrect", correct.getAllAnswers(), answer.getAllAnswers());
+    }
+	
+	@Test
+    public void testStandardsNothing() {
+		TextReader test = new TextReader();
+        Standard1 answer = test.loadStandard1("blank", null);
+        Standard1 correct = new Standard1(2, 5);
+        assertEquals("Text exported is incorrect", correct.getQuestions(), answer.getQuestions());
+    }
+	
+	@Test
+    public void testRosterNothing() {
+        TextReader test = new TextReader();
+        ArrayList<String> answer = (ArrayList<String>)test.loadRoster(9999);
+        ArrayList<String> correct = new ArrayList<String>();
         assertEquals("Text exported is incorrect", correct, answer);
     }
 }

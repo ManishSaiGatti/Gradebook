@@ -7,18 +7,34 @@ public class TextWriter {
 		
 	}
 	
-	public void saveAll(String standardName, int period) {
-		
+	public void saveAll1(String standardName, int period, Standard1 standard) {
+		saveStandard1(standardName, standard);
+		saveStudentAnswers1(standardName, period, standard);
 	}
 	
-	public void saveStandard(String standardName, List<String> questions) {
+	/*public void saveAll2(String standardName, int period, Standard2 standard) {
+		saveStandard2(standardName, standard);
+		saveStudentAnswers2(standardName, period, standard);
+	}
+	
+	public void saveAll3(String standardName, int period, Standard3 standard) {
+		saveStandard3(standardName, standard);
+		saveStudentAnswers3(standardName, period, standard);
+	}*/
+	
+	public void saveStandard1(String standardName, Standard1 standard) {
+		if (standard == null) {
+			return;
+		}
 		String[] splitName = standardName.split(" ");
         String newName = "standards/";
         for (String s : splitName) {
         	newName += s;
         }
         newName += ".txt";
+        ArrayList<String> questions = standard.getQuestions();
         String output = "";
+        output += standard.getNumCorrect85() + "\n" + standard.getNumCorrect95() + "\n";
         for (int i = 0; i < questions.size(); i++) {
         	output += questions.get(i) + "\n";
         }
@@ -32,7 +48,18 @@ public class TextWriter {
         }
 	}
 	
-	public void saveStudentAnswers(String standardName, int period, Map<String, ArrayList<String>> answers) {
+	/*public void saveStandard2(String standardName, Standard2 standard) {
+		
+	}
+	
+	public void saveStandard3(String standardName, Standard3 standard) {
+		
+	}*/
+	
+	public void saveStudentAnswers1(String standardName, int period, Standard1 standard) {
+		if (standard == null) {
+			return;
+		}
 		String[] splitName = standardName.split(" ");
         String newName = "studentAnswers/";
         for (String s : splitName) {
@@ -40,7 +67,8 @@ public class TextWriter {
         }
         newName += "period" + period + ".txt";
         String output = "";
-        Iterator<String> names = answers.keySet().iterator();
+        output += standard.getNumCorrect85() + "\n" + standard.getNumCorrect95() + "\n";
+        Iterator<String> names = standard.getRoster().iterator();
         while (names.hasNext()) {
         	String nameFirst = names.next();
         	String[] split = nameFirst.split(" ");
@@ -52,8 +80,12 @@ public class TextWriter {
         		name = nameFirst;
         	}
         	output += name + "\n";
-        	for (int c = 0; c < answers.get(nameFirst).size(); c++) {
-        		output += answers.get(nameFirst).get(c) + "\n";
+        	ArrayList<Boolean> answers = standard.getStudentAnswers(nameFirst);
+        	if (answers == null) {
+        		continue;
+        	}
+        	for (int c = 0; c < answers.size(); c++) {
+        		output += answers.get(c) + "\n";
         	}
         }
         try {
@@ -66,11 +98,23 @@ public class TextWriter {
         }
 	}
 	
-	public void saveRoster(int period, List<String> names) {
+	/*public void saveStudentAnswers2(String standardName, int period, Standard2 standard) {
+		
+	}
+	
+	public void saveStudentAnswers3(String standardName, int period, Standard3 standard) {
+		
+	}*/
+	
+	public void saveRoster(int period, Standard1 standard) {
+		if (standard == null) {
+			return;
+		}
 		String fileName = "roster/period" + period + ".txt"; 
 		String output = "";
-		for (int i = 0; i < names.size(); i++) {
-			String[] splitName = names.get(i).split(" ");
+		Iterator<String> names = standard.getRoster().iterator();
+		while (names.hasNext()) {
+			String[] splitName = names.next().split(" ");
 			String newName;
 			if (splitName.length > 1) {
 				newName = splitName[1] + "," + splitName[0];

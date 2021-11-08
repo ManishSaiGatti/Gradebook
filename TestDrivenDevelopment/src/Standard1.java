@@ -113,7 +113,7 @@ public class Standard1 {
 	}
 	
 	//Summary - Replaces an old question with a new question in the questions ArrayList
-	//Input - String question to be repalced and String replacement
+	//Input - String question to be replaced and String replacement
 	//Output - None
 	public void editQuestion(String oldQuestion, String newQuestion) {
 		//Only returns value if the questions array has it.
@@ -148,5 +148,19 @@ public class Standard1 {
 	//Output - Number of questions correct for an 95
 	public int getNumCorrect95() {
 		return numCorrect95;
+	}
+	
+	//Summary - Returns a HashMap of all students and answers for testing purposes
+	//Input - None
+	//Output - HashMap of students and answers
+	public HashMap<String, ArrayList<Boolean>> getAllAnswers() {
+		return studentScores;
+	}
+	
+	//Summary - Returns an ArrayList of all answers stored for a particular student
+	//Input - The student who's answers are being checked
+	//Output - ArrayList of all answers for that student
+	public ArrayList<Boolean> getStudentAnswers(String student) {
+		return studentScores.get(student);
 	}
 }
