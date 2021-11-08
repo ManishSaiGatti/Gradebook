@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import org.junit.Test;
 public class TestStandard1 {
 	
+	//get1Question(): Calls setQuestion with an ArrayList of 1 question. 
+	//Tests if getQuestions returns the same ArrayList
 	@Test
 	public void get1Question() {
 		Standard1 firstStandard = new Standard1(0, 0);
@@ -15,6 +17,8 @@ public class TestStandard1 {
 				questions, firstStandard.getQuestions());
 	}
 	
+	//get2Question(): Calls setQuestion with an ArrayList of 2 questions. 
+	//Tests of getQuestions returns the same ArrayList
 	@Test
 	public void get2Question() {
 		Standard1 firstStandard = new Standard1(0, 0);
@@ -26,6 +30,8 @@ public class TestStandard1 {
 				questions, firstStandard.getQuestions());
 	}
 	
+	//get1Score(): Calls setQuestion with questions and giveScores with John and 2 trues. 
+	//Tests if getScore for John returns 100%
 	@Test
 	public void get1Score() {
 		Standard1 firstStandard = new Standard1(1, 2);
@@ -41,6 +47,7 @@ public class TestStandard1 {
 				firstStandard.getScore("John"));
 	}
 	
+	//testRoster(): Checks if roster returned by getRoster is the same as the roster added
 	@Test
 	public void testRoster() {
 		Standard1 firstStandard = new Standard1(0, 0);
@@ -62,6 +69,8 @@ public class TestStandard1 {
 		assertTrue("Gave incorrect roster of 3 students", hasSameValues);
 	}
 	
+	//getManyScore(): Tests if multiple students with a particular number of questions right and 
+	//wrong return corresponding number values
 	@Test
 	public void getManyScore() {
 		Standard1 firstStandard = new Standard1(1, 7);
@@ -104,6 +113,7 @@ public class TestStandard1 {
 				firstStandard.getScore("Fred"));
 	}
 	
+	//testEditQuestion(): Checks if question saved to Standard1 can be edited properly
 	@Test
 	public void testEditQuestion() {
 		Standard1 firstStandard = new Standard1(0, 0);
@@ -118,6 +128,8 @@ public class TestStandard1 {
 				questions, firstStandard.getQuestions());
 	}
 	
+	//testAddIndividualQuestion(): Tests if a new, individual question can be properly
+	//added to an old set of questions
 	@Test
 	public void testAddIndividualQuestion() {
 		Standard1 firstStandard = new Standard1(0, 0);
@@ -131,6 +143,8 @@ public class TestStandard1 {
 				questions, firstStandard.getQuestions());
 	}
 	
+	//testAddIndividualRepeatQuestion(): Tests if addIndividualQuestion() properly deals with
+	//repeat questions passed into its parameters
 	@Test
 	public void testAddIndividualRepeatQuestion() {
 		Standard1 firstStandard = new Standard1(0, 0);
@@ -146,6 +160,8 @@ public class TestStandard1 {
 				questions, firstStandard.getQuestions());
 	}
 	
+	//testNotExistingEditQuestion(): Checks if editQuestion properly handles an old question
+	//parameter that doesn’t already exist
 	@Test
 	public void testNotExistingEditQuestion() {
 		Standard1 firstStandard = new Standard1(0, 0);
@@ -159,6 +175,8 @@ public class TestStandard1 {
 				questions, firstStandard.getQuestions());
 	}
 	
+	//testEditStudentAnswers(): Checks if editAnswers properly changes an answer by checking
+	//score
 	@Test
 	public void testEditStudentAnswer() {
 		Standard1 firstStandard = new Standard1(1, 2);
@@ -177,6 +195,8 @@ public class TestStandard1 {
 				firstStandard.getScore("John"));
 	}
 	
+	//testEditAnswerNotExist(): Checks if editAnswers edits an answer for a question
+	//that does not exist
 	@Test
 	public void testEditAnswerNotExist() {
 		Standard1 firstStandard = new Standard1(1, 2);
@@ -196,6 +216,8 @@ public class TestStandard1 {
 				firstStandard.getScore("John"));
 	}
 	
+	//testEditStudentNotExist(): Checks if editAnswers edits a student’s answer if the
+	//student parameter does not exist
 	@Test
 	public void testEditStudentNotExist() {
 		Standard1 firstStandard = new Standard1(1, 2);
@@ -213,6 +235,8 @@ public class TestStandard1 {
 				firstStandard.getScore("John"));
 	}
 	
+	//testAddMultipleQuestionSets(): Checks if addQuestions works when Standard1
+	//already has some questions
 	@Test
 	public void testAddMultipleQuestionSets() {
 		Standard1 firstStandard = new Standard1(0, 0);
@@ -228,6 +252,8 @@ public class TestStandard1 {
 			questions, firstStandard.getQuestions());
 	}
 	
+	//addDuplicateQuestionSets(): Checks if addQuestions adds the same question twice
+	//to a set of existing questions
 	@Test
 	public void addDuplicateQuestionSets() {
 		Standard1 firstStandard = new Standard1(0, 0);
@@ -239,6 +265,7 @@ public class TestStandard1 {
 				questions, firstStandard.getQuestions());
 	}
 	
+	//addMoreAnswers(): Tests if add answers can account for old answers assigned for a student
 	@Test
 	public void addMoreAnswers() {
 		Standard1 firstStandard = new Standard1(1, 2);
@@ -258,6 +285,7 @@ public class TestStandard1 {
 		firstStandard.getScore("John"));
 	}
 	
+	//addIndividualAnswer(): runs setIndividualAnswer after adding other answers
 	@Test
 	public void addIndividualAnswer() {
 		Standard1 firstStandard = new Standard1(1, 2);
@@ -275,6 +303,8 @@ public class TestStandard1 {
 		firstStandard.getScore("John"));
 	}
 	
+	//setOneIndividualAnswer(): runs setIndividualAnswer initially to set the first answer value,
+	//then again
 	@Test
 	public void setOneIndividualAnswer() {
 		Standard1 firstStandard = new Standard1(1, 2);
@@ -286,5 +316,13 @@ public class TestStandard1 {
 		firstStandard.setIndividualAnswer("John", true);
 		assertEquals("Gave incorrect score for 1 student with 100%", 100,
 				firstStandard.getScore("John"));
+	}
+	
+	//testGetNumForScore(): Tests that getNumCorrect85 and 95 returns the correct value based on
+	//the one stored in the standard.
+	public void testGetNumForScore() {
+		Standard1 firstStandard = new Standard1(1, 3);
+		assertEquals("numCorrect85 incorrectly saved", 1, firstStandard.getNumCorrect85());
+		assertEquals("numCorrect95 incorrectly saved", 3, firstStandard.getNumCorrect95());
 	}
 }
