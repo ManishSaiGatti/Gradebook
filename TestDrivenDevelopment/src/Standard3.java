@@ -18,7 +18,7 @@ public class Standard3 {
 	// setAnswers based on student name (void)
 	// adds a new student with the score inputted if student does not yet exist, replaces the student's score
 	// with the new given score if student already exists
-	public void changeStudentScore(String student, int rawScore) {
+	public void setStudentScore(String student, int rawScore) {
 		studentRawScores.put(student, rawScore);
 	}
 
@@ -28,6 +28,14 @@ public class Standard3 {
 		
 	public String getQuestion() {
 		return question;
+	}
+	
+	public int getScore(String student) {
+		if (studentRawScores.containsKey(student)) {
+			return convertRawScore((int) studentRawScores.get(student));
+		} else {
+			throw new IllegalArgumentException("Student does not exist yet.");
+		}
 	}
 	
 	public List<Integer> getStudentScores() {
@@ -61,7 +69,7 @@ public class Standard3 {
 			return 0;
 		} else { // rawScore will have to be -1 given that GUI makes sure score given when setting is 1-5
 			throw new IllegalArgumentException("You have not given a student "
-					+ "a score yet!"); // IDK IF THIS IS THE RIGHT TYPE OF EXCEPTION TO THROW
+					+ "a score yet!");
 		}
 	}
 	
