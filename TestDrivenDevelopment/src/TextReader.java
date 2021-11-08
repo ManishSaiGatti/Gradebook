@@ -14,6 +14,18 @@ public class TextReader {
     	return output;
     }
     
+    /*public Standard2 loadAllStandard2 (String standardName, int period, Standard2 standard) {
+    	Standard2 output = loadStandard2(standardName, standard);
+    	output = loadStudentAnswers2(standardName, period, output);
+    	return output;
+    }
+    
+    public Standard3 loadAllStandard3 (String standardName, int period, Standard3 standard) {
+    	Standard3 output = loadStandard3(standardName, standard);
+    	output = loadStudentAnswers3(standardName, period, output);
+    	return output;
+    }*/
+    
     public Standard1 loadStudentAnswers1(String standardName, int period, Standard1 standard) {
         String[] splitName = standardName.split(" ");
         String newName = "";
@@ -61,6 +73,14 @@ public class TextReader {
         return null;
     }
     
+    /*public Standard2 loadStudentAnswers2 (String standardName, int period, Standard2 standard) {
+    	return null;
+    }
+    
+    public Standard3 loadStudentAnswers3 (String standardName, int period Standard3 standard) {
+    	return null;
+    }*/
+    
     public Standard1 loadStandard1(String standardName, Standard1 standard) {
     	String[] splitName = standardName.split(" ");
         String newName = "";
@@ -91,6 +111,14 @@ public class TextReader {
         }
         return null;
     }
+    
+    /*public Standard2 loadStandard2 (String standardName, Standard2 standard) {
+    	return null;
+    }
+    
+    public Standard3 loadStandard3 (String standardName, Standard3 standard) {
+    	return null;
+    }*/
     
     public List<String> loadRoster(int period) {
     	try {
