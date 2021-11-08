@@ -10,7 +10,7 @@ public class TextReaderTest {
         Standard1 answer = test.loadStudentAnswers1("test", 1000, null);
         Standard1 correct = new Standard1(2, 5);
         correct.setIndividualAnswer("test", false);
-        assertEquals("Text exported is incorrect", correct, answer);
+        assertEquals("Text exported is incorrect", correct.getAllAnswers(), answer.getAllAnswers());
     }
 	
 	@Test
@@ -28,7 +28,7 @@ public class TextReaderTest {
         Standard1 answer = test.loadStudentAnswers1("test2", 2000, null);
         Standard1 correct = new Standard1(2, 5);
         correct.setIndividualAnswer("Name", false);
-        assertEquals("Text exported is incorrect", correct, answer);
+        assertEquals("Text exported is incorrect", correct.getAllAnswers(), answer.getAllAnswers());
     }
 	
 	@Test
@@ -47,7 +47,7 @@ public class TextReaderTest {
         Standard1 correct = new Standard1(2, 5);
         correct.setIndividualAnswer("para1", false);
         correct.setIndividualAnswer("para2", false);
-        assertEquals("Text exported is incorrect", correct, answer);
+        assertEquals("Text exported is incorrect", correct.getAllAnswers(), answer.getAllAnswers());
     }
 	
 	@Test
@@ -107,7 +107,7 @@ public class TextReaderTest {
         correct.setIndividualAnswer("BRAD PITT", false);
         correct.setIndividualAnswer("MIKE TROUT", false);
         correct.setIndividualAnswer("BRAD PITT", false);
-        assertEquals("Text exported is incorrect", correct, answer);
+        assertEquals("Text exported is incorrect", correct.getAllAnswers(), answer.getAllAnswers());
     }
     
     @Test
@@ -115,7 +115,7 @@ public class TextReaderTest {
         TextReader test = new TextReader();
         Standard1 answer = test.loadStudentAnswers1("blank", 9999, null);
         Standard1 correct = new Standard1(2, 5);
-        assertEquals("Text exported is incorrect", correct, answer);
+        assertEquals("Text exported is incorrect", correct.getAllAnswers(), answer.getAllAnswers());
     }
 	
 	@Test

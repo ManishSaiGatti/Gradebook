@@ -49,10 +49,11 @@ public class TextReader {
             	String next = input.readLine();
             	String[] split = next.split(",");
             	if (split.length > 1) {
-            		next = split[1] + " " + split[0]; //reformat the name
-            	}
-            	if (split.length > 1) {
-            		name = next;
+        			next = split[1] + " " + split[0]; //reformat the name
+        		}
+            	ArrayList<String> roster = (ArrayList<String>) loadRoster(period);
+            	if (roster.contains(next)) {
+            		name = next; //current name is changeds
             	}
             	else {
             		boolean answer;
