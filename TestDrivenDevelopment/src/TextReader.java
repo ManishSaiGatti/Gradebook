@@ -32,7 +32,6 @@ public class TextReader {
         	else {
         		output = standard;
         	}
-            //ArrayList<String> studentNames = (ArrayList<String>)loadRoster(period);
             String name = "";
             while (input.ready()) {
             	String next = input.readLine();
@@ -40,8 +39,7 @@ public class TextReader {
             	if (split.length > 1) {
             		next = split[1] + " " + split[0];
             	}
-            	if (next.contains(",")) {
-            		output.setAnswers(next, new ArrayList<Boolean>());
+            	if (split.length > 1) {
             		name = next;
             	}
             	else {
