@@ -9,7 +9,7 @@ public class TextWriterTest {
 		TextWriter test = new TextWriter();
 		Standard1 roster = new Standard1(2, 5);
 		roster.setIndividualAnswer("test1", false);
-		test.saveRoster(1100, roster);
+		test.saveRoster1(1100, roster);
 		TextReader reader = new TextReader();
 		ArrayList<String> answer = (ArrayList<String>)reader.loadRoster(1100);
 		Iterator<String> itr = roster.getRoster().iterator();
@@ -25,7 +25,7 @@ public class TextWriterTest {
 		TextWriter test = new TextWriter();
 		Standard1 correct = new Standard1(2, 5);
 		correct.setIndividualAnswer("test1", false);
-		test.saveRoster(1100, correct);
+		test.saveRoster1(1100, correct);
 		test.saveStudentAnswers1("testStu", 1100, correct);
 		TextReader reader = new TextReader();
 		Standard1 answer = reader.loadStudentAnswers1("testStu", 1100, null);
@@ -37,7 +37,7 @@ public class TextWriterTest {
 		TextWriter test = new TextWriter();
 		Standard1 roster = new Standard1(2, 5);
 		roster.setIndividualAnswer("new test", false);
-		test.saveRoster(1100, roster);
+		test.saveRoster1(1100, roster);
 		TextReader reader = new TextReader();
 		ArrayList<String> answer = (ArrayList<String>)reader.loadRoster(1100);
 		Iterator<String> itr = roster.getRoster().iterator();
@@ -53,7 +53,7 @@ public class TextWriterTest {
 		TextWriter test = new TextWriter();
 		Standard1 correct = new Standard1(2, 5);
 		correct.setIndividualAnswer("new test", false);
-		test.saveRoster(1100, correct);
+		test.saveRoster1(1100, correct);
 		test.saveStudentAnswers1("testStu", 1100, correct);
 		TextReader reader = new TextReader();
 		Standard1 answer = reader.loadStudentAnswers1("testStu", 1100, null);
@@ -66,7 +66,7 @@ public class TextWriterTest {
 		Standard1 roster = new Standard1(2, 5);
 		roster.setIndividualAnswer("para1", false);
 		roster.setIndividualAnswer("para2", false);
-		test.saveRoster(1100, roster);
+		test.saveRoster1(1100, roster);
 		TextReader reader = new TextReader();
 		ArrayList<String> answer = (ArrayList<String>)reader.loadRoster(1100);
 		Iterator<String> itr = roster.getRoster().iterator();
@@ -83,7 +83,7 @@ public class TextWriterTest {
 		Standard1 correct = new Standard1(2, 5);
 		correct.setIndividualAnswer("para1", false);
 		correct.setIndividualAnswer("para2", false);
-		test.saveRoster(1100, correct);
+		test.saveRoster1(1100, correct);
 		test.saveStudentAnswers1("testStu", 1100, correct);
 		TextReader reader = new TextReader();
 		Standard1 answer = reader.loadStudentAnswers1("testStu", 1100, null);
@@ -96,7 +96,7 @@ public class TextWriterTest {
 		Standard1 roster = new Standard1(2, 5);
 		roster.setIndividualAnswer("DANNY DEVITO", false);
 		roster.setIndividualAnswer("GENO SMITH", false);
-		test.saveRoster(1100, roster);
+		test.saveRoster1(1100, roster);
 		TextReader reader = new TextReader();
 		ArrayList<String> answer = (ArrayList<String>)reader.loadRoster(1100);
 		Iterator<String> itr = roster.getRoster().iterator();
@@ -113,7 +113,7 @@ public class TextWriterTest {
 		Standard1 correct = new Standard1(2, 5);
 		correct.setIndividualAnswer("DANNY DEVITO", false);
 		correct.setIndividualAnswer("GENO SMITH", false);
-		test.saveRoster(1100, correct);
+		test.saveRoster1(1100, correct);
 		test.saveStudentAnswers1("testStu", 1100, correct);
 		TextReader reader = new TextReader();
 		Standard1 answer = reader.loadStudentAnswers1("testStu", 1100, null);
@@ -162,7 +162,7 @@ public class TextWriterTest {
 		correct.setIndividualAnswer("DANNY DEVITO", false);
 		correct.setIndividualAnswer("GENO SMITH", false);
 		correct.setIndividualAnswer("GENO SMITH", false);
-		test.saveRoster(1100, correct);
+		test.saveRoster1(1100, correct);
 		test.saveStudentAnswers1("testStu", 1100, correct);
 		TextReader reader = new TextReader();
 		Standard1 answer = reader.loadStudentAnswers1("testStu", 1100, null);
@@ -172,7 +172,7 @@ public class TextWriterTest {
 	public void testSaveRosterNothing() {
 		TextWriter test = new TextWriter();
 		Standard1 roster = new Standard1(2, 5);
-		test.saveRoster(1100, roster);
+		test.saveRoster1(1100, roster);
 		TextReader reader = new TextReader();
 		ArrayList<String> answer = (ArrayList<String>)reader.loadRoster(1100);
 		Iterator<String> itr = roster.getRoster().iterator();
@@ -197,7 +197,7 @@ public class TextWriterTest {
 	public void testSaveStudentAnswersNothing() {
 		TextWriter test = new TextWriter();
 		Standard1 correct = new Standard1(2, 5);
-		test.saveRoster(1100, correct);
+		test.saveRoster1(1100, correct);
 		test.saveStudentAnswers1("testStu", 1100, correct);
 		TextReader reader = new TextReader();
 		Standard1 answer = reader.loadStudentAnswers1("testStu", 1100, null);
