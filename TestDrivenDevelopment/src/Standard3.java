@@ -1,8 +1,8 @@
 import java.util.*;
 
+// standard 3 is a standard where the student earns a score out of 5 points.
 public class Standard3 {
 	private HashMap<String, Integer> studentRawScores; // key: String studentName, val: int studentRawScore
-	// private final int TOTAL_POINTS = 5;
 	private String question; // eg "how many points out of 5 for ___?"
 	
 	public Standard3(String question) {
@@ -39,19 +39,20 @@ public class Standard3 {
 	}
 	
 	public List<Integer> getStudentScores() {
+		/*
 		List<Integer> scores = (List<Integer>) studentRawScores.values();
 		
 		for (int i = 0; i < scores.size(); i++) {
 			scores.set(i, convertRawScore((int) scores.get(i)));
-		}		
-		return scores;
-		
-		/*
-		if (studentRawScores.get(student) == null) {
-			throw new IllegalArgumentException(student + " does not exist. "
-					+ "Please add their grade to this standard or try another student.");
 		}
-		 */
+		*/
+		
+		List<Integer> scores = new ArrayList<Integer>();
+		for (String s: getRoster()) {
+			scores.add(getScore(s));
+		}
+		
+		return scores;
 	}
 	
 	// converts raw score to /100 score. ASSUMES SCORE IS ALREADY IN THE RANGE OF 1-5
