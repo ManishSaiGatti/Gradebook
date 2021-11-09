@@ -10,9 +10,13 @@
  */
 import java.util.*;
 public class Standard1 {
+	//Stores the number of questions a student must have met to get an 85
 	private final int numCorrect85;
+	//Stores the number of questions a student must have met to get a 95
 	private final int numCorrect95;
+	//List of all questions for the standard
 	private ArrayList<String> questions;
+	//HashMap of key: student name and value: list of whether they they met a question or not
 	private HashMap<String, ArrayList<Boolean>> studentScores;
 	
 	//Summary - Declares variables
@@ -30,9 +34,9 @@ public class Standard1 {
 	//Input - ArrayList of questions to be added
 	//Output - None
 	public void addQuestions(ArrayList<String> questions) {
-		if(!this.questions.isEmpty()) {
-			for(String s: questions) {
-				if(!this.questions.contains(s)) {
+		if (!this.questions.isEmpty()) {
+			for (String s: questions) {
+				if (!this.questions.contains(s)) {
 					this.questions.add(s);
 				}
 			}
@@ -46,7 +50,7 @@ public class Standard1 {
 	//Input - Question string to add
 	//Output - None
 	public void addIndividualQuestion(String question) {
-		if(!questions.contains(question)) {
+		if (!questions.contains(question)) {
 			questions.add(question);
 		}
 	}
@@ -59,7 +63,7 @@ public class Standard1 {
 	}
 	
 	//Summary - Returns a Set of all students in the roster
-	//Input - none
+	//Input - None
 	//Output - Set of Strings representing students in roster
 	public Set<String> getRoster() {
 		return studentScores.keySet();
@@ -72,7 +76,7 @@ public class Standard1 {
 	//They met and did not.
 	//Output - None
 	public void setAnswers(String student, ArrayList<Boolean> answers) {
-		if(studentScores.containsKey(student)) {
+		if (studentScores.containsKey(student)) {
 			ArrayList<Boolean> currentAnswers = studentScores.get(student);
 			answers.addAll(currentAnswers);
 		}
@@ -85,7 +89,7 @@ public class Standard1 {
 	//Output - None
 	public void setIndividualAnswer(String student, boolean answer) {
 		ArrayList<Boolean> currentAnswers = studentScores.get(student);
-		if(currentAnswers == null) {
+		if (currentAnswers == null) {
 			currentAnswers = new ArrayList<Boolean>();
 		}
 		currentAnswers.add(answer);
@@ -97,12 +101,12 @@ public class Standard1 {
 	//Output - The score of a given student
 	public int getScore(String student) {
 		int numCorrect = 0;
-		for(Boolean b: studentScores.get(student)) {
-			if(b) {
+		for (Boolean b: studentScores.get(student)) {
+			if (b) {
 				numCorrect++;
 			}
 		}
-		if(numCorrect < numCorrect85) {
+		if (numCorrect < numCorrect85) {
 			return 75;
 		} else if (numCorrect < numCorrect95) {
 			return 85;
@@ -120,8 +124,8 @@ public class Standard1 {
 	//Input - String question to be replaced and String replacement
 	//Output - None
 	public void editQuestion(String oldQuestion, String newQuestion) {
-		//Only returns value if the questions array has it.
-		if(questions.contains(oldQuestion)) {
+		//Only changes question if its already in the questions array.
+		if (questions.contains(oldQuestion)) {
 			questions.set(questions.indexOf(oldQuestion), newQuestion);
 		}
 
@@ -134,7 +138,7 @@ public class Standard1 {
 	public void editAnswer(String student, String question, boolean answer) {
 		ArrayList<Boolean> studentAnswers = studentScores.get(student);
 		int indexOfAnswer = questions.indexOf(question);
-		if(indexOfAnswer >= 0 && studentAnswers != null) {
+		if (indexOfAnswer >= 0 && studentAnswers != null) {
 			studentAnswers.set(indexOfAnswer, answer);
 		}
 		studentScores.put(student, studentAnswers);
