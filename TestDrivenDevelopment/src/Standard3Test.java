@@ -1,18 +1,8 @@
 import static org.junit.Assert.*;
 import org.junit.Test;
-
 import java.util.*;
 
-public class Standard3Test {
-	/*
-	@Test
-	public void getTotalPoints1() {
-		int totalPoints = 5;
-		Standard3 s = new Standard3(totalPoints);
-		assertEquals("Total points for standard 3 incorrect", totalPoints, s.getTotalPoints());
-	}
-	*/
-	
+public class Standard3Test {	
 	@Test
 	public void initializeStandard() {
 		String q = "How much effort did the student put in (1-5)?";
@@ -65,41 +55,47 @@ public class Standard3Test {
 		}
 		assertEquals("At least one student is missing from roster.", true, containsStudent);
 		assertEquals("Incorrect number of students were added.", 5, s.getRoster().size());
+				
+		// test that getStudentScores lines up with roster and scores were calculated correctly
+		HashMap<Integer, Integer> rawScoreConversions = new HashMap<Integer, Integer>() {{
+			// key: rawScore, value: converted score
+			put(5, 100);
+			put(4, 95);
+			put(3, 85);
+			put(2, 75);
+			put(1, 0);
+		}};
 		
-		// test that each student's score was calculated correctly
-		
-		List<Integer> expectedScores = new ArrayList<Integer>(Arrays.asList(100, 95, 85, 75, 0));
-		int i = 1;
-		for (String student: roster) {
-			assertEquals("Score for student was calculated incorrectly.",
-					(int) expectedScores.get(i), s.getScore(student));
-			i++;
+		for (String student: s.getRoster()) {
+			assertEquals("Score for " + student + " was not calculated correctly/",
+					(int) rawScoreConversions.get(s.getRawScore(student)), s.getScore(student));
 		}
-		// ^^ HERE - BC THE GETROSTER RETURNS RANDOM VARIABLE
 	}
-	
-	// done/working on above, havent looked at below yet
 		
 	@Test
-	public void editQuestion2() {
+	public void editQuestion() {
 		String q = "How much effort did the student put in (1-5)?";
 		Standard3 s = new Standard3(q);
-		assertEquals("Question was not stored correctly.", s.getQuestion(), q);
 		
 		// edit question
 		String newQ = "How well doe the student do overall (1-5)?";
 		s.editQuestion(newQ);
-		assertEquals("Question was not edited correctly.", s.getQuestion(), newQ);
+		assertEquals("Question was not edited correctly.", newQ, s.getQuestion());
 	}
 	
 	@Test
-	public void addStudentNoScorePart2QuestionMark() {
-		Standard3 s = new Standard3("Question");
-		String stu1 = "Student 1";
-		s.addStudent(stu1);
-		assertEquals("Student (no score given) not added correctly.", s.getRoster().get(0), stu1);
-		assertEquals("Student's score (no score given) not set correctly.", (int) s.getStudentScores().get(0), -1);
-	}
-	
-	
+	public void getScoreStudentDoesntExist() {
+		String q = "How much effort did the student put in (1-5)?";
+		Standard3 s = new Standard3(q);
+
+		// test if calling getScore on a student that doesn't exist results in an error
+		try {
+			s.getScore("Student");
+			
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertEquals("Student does not exist yet.", e.getMessage());
+		}
+
+	}	
 }

@@ -30,6 +30,14 @@ public class Standard3 {
 		return question;
 	}
 	
+	public int getRawScore(String student) { // should theoretically only be used internally, to test
+		if (studentRawScores.containsKey(student)) {
+			return studentRawScores.get(student);
+		} else {
+			throw new IllegalArgumentException("Student does not exist yet.");
+		}
+	}
+	
 	public int getScore(String student) {
 		if (studentRawScores.containsKey(student)) {
 			return convertRawScore((int) studentRawScores.get(student));
