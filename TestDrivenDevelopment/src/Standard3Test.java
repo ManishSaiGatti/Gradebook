@@ -6,8 +6,9 @@ public class Standard3Test {
 	@Test
 	public void initializeStandard() {
 		String q = "How much effort did the student put in (1-5)?";
-		Standard3 s = new Standard3(q);
+		Standard3 s = new Standard3(q, 100);
 		assertEquals("Question was not stored correctly.", q, s.getQuestion());
+		assertEquals("Weight was not stored correctly.", 100, s.getWeight());
 		
 		List<String> roster = new ArrayList<String>();
 		assertEquals("Roster was not initialized correctly. It should be empty at first!", roster,  s.getRoster());
@@ -16,7 +17,7 @@ public class Standard3Test {
 	@Test
 	public void addStudentNoScore() {
 		String q = "How much effort did the student put in (1-5)?";
-		Standard3 s = new Standard3(q);
+		Standard3 s = new Standard3(q, 100);
 		s.addStudent("Student 1");
 		
 		// test student was added to roster
@@ -37,7 +38,7 @@ public class Standard3Test {
 	@Test
 	public void getStudentScoresValid() {
 		String q = "How much effort did the student put in (1-5)?";
-		Standard3 s = new Standard3(q);
+		Standard3 s = new Standard3(q, 100);
 		s.setStudentScore("s1", 5);
 		s.setStudentScore("s2", 4);
 		s.setStudentScore("s3", 3);
@@ -75,7 +76,7 @@ public class Standard3Test {
 	@Test
 	public void editQuestion() {
 		String q = "How much effort did the student put in (1-5)?";
-		Standard3 s = new Standard3(q);
+		Standard3 s = new Standard3(q, 100);
 		
 		// edit question
 		String newQ = "How well doe the student do overall (1-5)?";
@@ -86,7 +87,7 @@ public class Standard3Test {
 	@Test
 	public void getScoreStudentDoesntExist() {
 		String q = "How much effort did the student put in (1-5)?";
-		Standard3 s = new Standard3(q);
+		Standard3 s = new Standard3(q, 100);
 
 		// test if calling getScore on a student that doesn't exist results in an error
 		try {

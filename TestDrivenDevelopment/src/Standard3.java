@@ -4,10 +4,12 @@ import java.util.*;
 public class Standard3 {
 	private HashMap<String, Integer> studentRawScores; // key: String studentName, val: int studentRawScore
 	private String question; // eg "how many points out of 5 for ___?"
+	private int weight;
 	
-	public Standard3(String question) {
+	public Standard3(String question, int weight) {
 		this.question = question;
 		studentRawScores = new HashMap<String, Integer>();
+		this.weight = weight;
 	}
 	
 	// adds a new student to hashmap, no score assigned yet (raw score = -1)
@@ -25,9 +27,13 @@ public class Standard3 {
 	public void editQuestion(String newQuestion) {
 		question = newQuestion;
 	}
-		
+
 	public String getQuestion() {
 		return question;
+	}
+	
+	public int getWeight() {
+		return weight;
 	}
 	
 	public int getRawScore(String student) { // should theoretically only be used internally, to test
