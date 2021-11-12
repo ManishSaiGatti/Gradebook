@@ -7,6 +7,30 @@ public class TextWriter {
 		
 	}
 	
+	public void saveStandards(String fileName, List<String> standards) {
+		if (standards == null) {
+			return;
+		}
+		String[] splitName = fileName.split(" ");
+        String newName = "standardNames/" + splitName[0].toLowerCase();
+        for (int i = 1; i < splitName.length; i++) { //remove any spaces to fit the file name
+        	newName += splitName[i].substring(0, 1).toUpperCase() + splitName[i].substring(1).toLowerCase();
+        }
+        newName += ".txt";
+        String output = "";
+        for (int i = 0; i < standards.size(); i++) {
+        	output += standards.get(i) + "\n";
+        }
+        try {
+        	FileWriter writer = new FileWriter(newName);
+            writer.write(output); //write into the file
+            writer.close();
+        }
+        catch(IOException e) {
+        	e.printStackTrace();
+        }
+	}
+	
 	public void saveAll1(String standardName, int period, Standard1 standard) {
 		saveStandard1(standardName, standard); //saves the question
 		saveRoster1(period, standard); //saves the student roster
@@ -53,11 +77,55 @@ public class TextWriter {
 	}
 	
 	/*public void saveStandard2(String standardName, Standard2 standard) {
-		
+		if (standard == null) { //return with a empty input standard
+			return;
+		}
+		String[] splitName = standardName.split(" ");
+        String newName = "standards/";
+        for (String s : splitName) {
+        	newName += s;
+        }
+        newName += ".txt"; //format the inputted file name correctly
+        ArrayList<String> questions = standard.getQuestions(); //get all the questions to save
+        String output = "";
+        //^ the first two lines of the file are for the number of trues/falses to get a score
+        for (int i = 0; i < questions.size(); i++) {
+        	output += questions.get(i) + "\n"; //add each question to the output
+        }
+        try {
+        	FileWriter writer = new FileWriter(newName);
+            writer.write(output); //write into the file
+            writer.close();
+        }
+        catch (IOException e) {
+        	e.printStackTrace();
+        }
 	}
 	
 	public void saveStandard3(String standardName, Standard3 standard) {
-		
+		if (standard == null) { //return with a empty input standard
+			return;
+		}
+		String[] splitName = standardName.split(" ");
+        String newName = "standards/";
+        for (String s : splitName) {
+        	newName += s;
+        }
+        newName += ".txt"; //format the inputted file name correctly
+        ArrayList<String> questions = standard.getQuestions(); //get all the questions to save
+        String output = "";
+        //^ the first two lines of the file are for the number of trues/falses to get a score
+        for (int i = 0; i < questions.size(); i++) {
+        	output += questions.get(i) + "\n"; //add each question to the output
+        }
+        try {
+        	FileWriter writer = new FileWriter(newName);
+            writer.write(output); //write into the file
+            writer.close();
+        }
+        catch (IOException e) {
+        	e.printStackTrace();
+        }
 	}*/
 	
 	public void saveStudentAnswers1(String standardName, int period, Standard1 standard) {
@@ -140,10 +208,58 @@ public class TextWriter {
 	}
 	
 	/*public void saveRoster2(int period, Standard2 standard) {
-		
+		if (standard == null) { //return for a blank standard
+			return;
+		}
+		String fileName = "roster/period" + period + ".txt"; //properly format the file name/location
+		String output = "";
+		Iterator<String> names = standard.getRoster().iterator(); //get all the student names
+		while (names.hasNext()) {
+			String[] splitName = names.next().split(" ");
+			String newName;
+			if (splitName.length > 1) {
+				newName = splitName[1] + "," + splitName[0]; //change first last to last,first to save.
+			}
+			else {
+				newName = splitName[0];
+			}
+			output += newName + "\n"; //add the name to the output
+		}
+		try {
+			FileWriter writer = new FileWriter(fileName);
+			writer.write(output); //write the output into the file
+			writer.close();
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void saveRoster3(int period, Standard3 standard) {
-		
+		if (standard == null) { //return for a blank standard
+			return;
+		}
+		String fileName = "roster/period" + period + ".txt"; //properly format the file name/location
+		String output = "";
+		Iterator<String> names = standard.getRoster().iterator(); //get all the student names
+		while (names.hasNext()) {
+			String[] splitName = names.next().split(" ");
+			String newName;
+			if (splitName.length > 1) {
+				newName = splitName[1] + "," + splitName[0]; //change first last to last,first to save.
+			}
+			else {
+				newName = splitName[0];
+			}
+			output += newName + "\n"; //add the name to the output
+		}
+		try {
+			FileWriter writer = new FileWriter(fileName);
+			writer.write(output); //write the output into the file
+			writer.close();
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}
 	}*/
 }

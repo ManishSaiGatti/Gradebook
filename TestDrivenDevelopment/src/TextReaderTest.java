@@ -133,4 +133,73 @@ public class TextReaderTest {
         ArrayList<String> correct = new ArrayList<String>();
         assertEquals("Text exported is incorrect", correct, answer);
     }
+	
+	@Test
+	public void loadStandardNamesTest1() {
+		TextReader test = new TextReader();
+		ArrayList<String> answer = (ArrayList<String>)test.loadStandards("test1");
+		ArrayList<String> correct = new ArrayList<String>();
+		correct.add("test");
+		assertEquals("Text exported is incorrect", correct, answer);
+	}
+	
+	@Test
+	public void loadStandardNamesTest2() {
+		TextReader test = new TextReader();
+		ArrayList<String> answer = (ArrayList<String>)test.loadStandards("test2");
+		ArrayList<String> correct = new ArrayList<String>();
+		correct.add("me");
+		assertEquals("Text exported is incorrect", correct, answer);
+	}
+	
+	@Test
+	public void loadStandardNamesTestMultiple() {
+		TextReader test = new TextReader();
+		ArrayList<String> answer = (ArrayList<String>)test.loadStandards("test3");
+		ArrayList<String> correct = new ArrayList<String>();
+		correct.add("me");
+		correct.add("again");
+		assertEquals("Text exported is incorrect", correct, answer);
+	}
+	
+	@Test
+	public void loadStandardNamesTestFunnyName() {
+		TextReader test = new TextReader();
+		ArrayList<String> answer = (ArrayList<String>)test.loadStandards("new TEST");
+		ArrayList<String> correct = new ArrayList<String>();
+		correct.add("me1");
+		correct.add("you2");
+		correct.add("me3");
+		assertEquals("Text exported is incorrect", correct, answer);
+	}
+	
+	@Test
+	public void loadStandandardNamesTestNothing() {
+		TextReader test = new TextReader();
+		ArrayList<String> answer = (ArrayList<String>)test.loadStandards("blank");
+		ArrayList<String> correct = new ArrayList<String>();
+		assertEquals("Text exported is incorrect", correct, answer);
+	}
+	
+	@Test
+	public void loadStandardTestFunnyName() {
+		TextReader test = new TextReader();
+        Standard1 answer = test.loadStandard1("haHa laugh", null);
+        Standard1 correct = new Standard1(2, 5);
+        correct.addIndividualQuestion("joke");
+        correct.addIndividualQuestion("para2");
+        assertEquals("Text exported is incorrect", correct.getQuestions(), answer.getQuestions());
+	}
+	
+	@Test
+    public void testStudentAnswersFunnyName() {
+        TextReader test = new TextReader();
+        Standard1 answer = test.loadStudentAnswers1("New TEST", 4000, null);
+        Standard1 correct = new Standard1(2, 5);
+        correct.setIndividualAnswer("BRAD PITT", false);
+        correct.setIndividualAnswer("BRAD PITT", true);
+        correct.setIndividualAnswer("MIKE TROUT", true);
+        correct.setIndividualAnswer("MIKE TROUT", true);
+        assertEquals("Text exported is incorrect", correct.getAllAnswers(), answer.getAllAnswers());
+    }
 }

@@ -203,4 +203,48 @@ public class TextWriterTest {
 		Standard1 answer = reader.loadStudentAnswers1("testStu", 1100, null);
 		assertEquals("The initial roster test failed", correct.getAllAnswers(), answer.getAllAnswers());
 	}
+	
+	@Test
+	public void testSaveStandards1() {
+		TextWriter test = new TextWriter();
+		ArrayList<String> correct = new ArrayList<String>();
+		correct.add("test");
+		test.saveStandards("testStu", correct);
+		TextReader reader = new TextReader();
+		ArrayList<String> answer = (ArrayList<String>)reader.loadStandards("testStu");
+		assertEquals("The standards list test failed", correct, answer);
+	}
+	
+	@Test
+	public void testSaveStandards2() {
+		TextWriter test = new TextWriter();
+		ArrayList<String> correct = new ArrayList<String>();
+		correct.add("another");
+		test.saveStandards("testStu", correct);
+		TextReader reader = new TextReader();
+		ArrayList<String> answer = (ArrayList<String>)reader.loadStandards("testStu");
+		assertEquals("The standards list test failed", correct, answer);
+	}
+	
+	@Test
+	public void testSaveStandards3() {
+		TextWriter test = new TextWriter();
+		ArrayList<String> correct = new ArrayList<String>();
+		correct.add("para1");
+		correct.add("para2");
+		test.saveStandards("testStu", correct);
+		TextReader reader = new TextReader();
+		ArrayList<String> answer = (ArrayList<String>)reader.loadStandards("testStu");
+		assertEquals("The standards list test failed", correct, answer);
+	}
+	
+	@Test
+	public void testSaveStandardsNothing() {
+		TextWriter test = new TextWriter();
+		ArrayList<String> correct = new ArrayList<String>();
+		test.saveStandards("testStu", correct);
+		TextReader reader = new TextReader();
+		ArrayList<String> answer = (ArrayList<String>)reader.loadStandards("testStu");
+		assertEquals("The standards list test failed", correct, answer);
+	}
 }
