@@ -6,13 +6,6 @@ public class StandardTwo {
 	private HashMap<String, ArrayList<Boolean>> studentAnswers;
 	private double weight;
 	
-	public static void main(String args[]) {
-		StandardTwo St2 = new StandardTwo(75);
-		/*St2.addIndividualQ("hello?");
-		St2.editQuestions(0, "goodbye?");
-		St2.getQuestions();*/
-	}
-	
 	public StandardTwo(double weight) {
 		questions = new ArrayList<>();
 		studentAnswers = new HashMap<String, ArrayList<Boolean>>();
@@ -32,13 +25,25 @@ public class StandardTwo {
 	}
 	
 	public void addAllAnswers(String student, ArrayList<Boolean> answers) {
-		studentAnswers.put(student, answers);
+		// if student doesnt have a arlist of bools for answers make one
+		if(studentAnswers.containsKey(student)) {
+			studentAnswers.replace(student, answers);
+		}
+		// if student doesnt exist, add new student with answers
+		studentAnswers.put(student, answers);	
 	}
 	
-	public boolean addIndividualA(String student, Boolean a) {
-		studentAnswers.get(student).add(a);
-		System.out.println("answer is " + studentAnswers.get(student).get(-1));
-		return studentAnswers.get(student).get(-1);
+	public ArrayList<Boolean> addIndividualA(String student, Boolean a) {
+		// if student doesnt have answers arlist yet, make one
+		if(studentAnswers.get(student) == null) {
+			ArrayList<Boolean> stuAns = new ArrayList<Boolean>();
+			stuAns.add(a);
+			studentAnswers.put(student, stuAns);
+		}
+		else {
+			studentAnswers.get(student).add(a);
+		}
+		return studentAnswers.get(student);
 	}
 	
 	public void addStudent(String student) {
@@ -53,8 +58,6 @@ public class StandardTwo {
 	}
 	
 	public ArrayList<Boolean> getOneStuAnswers(String student) {
-		//System.out.println("ans is " + studentAnswers.get(student).get(0));
-		
 		return studentAnswers.get(student);
 	}
 	
@@ -76,9 +79,6 @@ public class StandardTwo {
 	}
 	
 	public List<String> getQuestions() {
-		for(int i = 0; i < questions.size(); i++) {
-			System.out.println("question is " + questions.get(i));
-		}
 		return questions;
 	}
 	
@@ -93,7 +93,6 @@ public class StandardTwo {
 			strScore = "100";
 		}
 		worth = Integer.parseInt(strScore);
-		System.out.println("the int score is " + worth);
 		return worth;
 	}
 	
@@ -110,7 +109,17 @@ public class StandardTwo {
 	
 	// string string bool
 	public void editAnswers(String student, int index, boolean newA) {
-		studentAnswers.get(student).set(index, newA);
+		ArrayList<Boolean> stuAns = studentAnswers.get(student);
+		if(stuAns == null) {
+			stuAns = new ArrayList<Boolean>();
+			stuAns.add(newA);
+		}
+		// if there is already an answer at that index, replace it
+		else {
+			stuAns.set(index, newA);
+		}
+		
+		studentAnswers.put(student, stuAns);
 	}
 	
 }
