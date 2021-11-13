@@ -247,4 +247,165 @@ public class TextWriterTest {
 		ArrayList<String> answer = (ArrayList<String>)reader.loadStandards("testStu");
 		assertEquals("The standards list test failed", correct, answer);
 	}
+	
+	@Test
+	public void testSaveStan31() {
+		TextWriter test = new TextWriter();
+		Standard3 correct = new Standard3("test1", 2);
+		test.saveStandard3("testStan3", correct);
+		TextReader reader = new TextReader();
+		Standard3 answer = reader.loadStandard3("testStan3", null);
+		if (answer.getQuestion().equals(correct.getQuestion()) && answer.getWeight() == correct.getWeight()) {
+			assertTrue("Failed standard3 test", true);
+		}
+		else {
+			assertTrue("Failed standard3 test", false);
+		}
+	}
+	
+	@Test
+	public void testSaveStan32() {
+		TextWriter test = new TextWriter();
+		Standard3 correct = new Standard3("me", 0);
+		test.saveStandard3("testStan3", correct);
+		TextReader reader = new TextReader();
+		Standard3 answer = reader.loadStandard3("testStan3", null);
+		if (answer.getQuestion().equals(correct.getQuestion()) && answer.getWeight() == correct.getWeight()) {
+			assertTrue("Failed standard3 test", true);
+		}
+		else {
+			assertTrue("Failed standard3 test", false);
+		}
+	}
+	
+	@Test
+	public void testSaveStan3Blank() {
+		TextWriter test = new TextWriter();
+		Standard3 correct = new Standard3("", 0);
+		test.saveStandard3("testStan3", correct);
+		TextReader reader = new TextReader();
+		Standard3 answer = reader.loadStandard3("testStan3", null);
+		if (answer.getQuestion().equals(correct.getQuestion()) && answer.getWeight() == correct.getWeight()) {
+			assertTrue("Failed standard3 test", true);
+		}
+		else {
+			assertTrue("Failed standard3 test", false);
+		}
+	}
+	
+	@Test
+	public void testSaveStan3Roster1() {
+		TextWriter test = new TextWriter();
+		Standard3 correct = new Standard3("me", 0);
+		correct.addStudent("jim");
+		test.saveRoster3(1333, correct);
+		TextReader reader = new TextReader();
+		ArrayList<String> answer = (ArrayList<String>)reader.loadRoster(1333);
+		ArrayList<String> list = (ArrayList<String>)correct.getRoster();
+		assertEquals("Failed the standard3 roster test", list, answer);
+	}
+	
+	@Test
+	public void testSaveStan3Roster2() {
+		TextWriter test = new TextWriter();
+		Standard3 correct = new Standard3("me", 0);
+		correct.addStudent("joe");
+		test.saveRoster3(1333, correct);
+		TextReader reader = new TextReader();
+		ArrayList<String> answer = (ArrayList<String>)reader.loadRoster(1333);
+		ArrayList<String> list = (ArrayList<String>)correct.getRoster();
+		assertEquals("Failed the standard3 roster test", list, answer);
+	}
+	
+	@Test
+	public void testSaveStan3RosterMultiple() {
+		TextWriter test = new TextWriter();
+		Standard3 correct = new Standard3("me", 0);
+		correct.addStudent("jim");
+		correct.addStudent("joe");
+		test.saveRoster3(1333, correct);
+		TextReader reader = new TextReader();
+		ArrayList<String> answer = (ArrayList<String>)reader.loadRoster(1333);
+		ArrayList<String> list = (ArrayList<String>)correct.getRoster();
+		assertEquals("Failed the standard3 roster test", list, answer);
+	}
+	
+	@Test
+	public void testSaveStan3RosterBlank() {
+		TextWriter test = new TextWriter();
+		Standard3 correct = new Standard3("me", 0);
+		test.saveRoster3(1333, correct);
+		TextReader reader = new TextReader();
+		ArrayList<String> answer = (ArrayList<String>)reader.loadRoster(1333);
+		ArrayList<String> list = (ArrayList<String>)correct.getRoster();
+		assertEquals("Failed the standard3 roster test", list, answer);
+	}
+	
+	@Test
+	public void testSaveStan3StudentAnswers1() {
+		TextWriter test = new TextWriter();
+		Standard3 correct = new Standard3("test", 0);
+		correct.setStudentScore("me", 3);
+		test.saveStudentAnswers3("testStan3", 1333, correct);
+		test.saveRoster3(1333, correct);
+		TextReader reader = new TextReader();
+		Standard3 answer = reader.loadStudentAnswers3("testStan3", 1333, new Standard3("test", 0));
+		if (answer.getRoster().equals(correct.getRoster()) && answer.getStudentScores().equals(correct.getStudentScores())) {
+			assertTrue("Failed standard3 test", true);
+		}
+		else {
+			assertTrue("Failed standard3 test", false);
+		}
+	}
+	
+	@Test
+	public void testSaveStan3StudentAnswers2() {
+		TextWriter test = new TextWriter();
+		Standard3 correct = new Standard3("test", 0);
+		correct.setStudentScore("test", 4);
+		test.saveStudentAnswers3("testStan3", 1333, correct);
+		test.saveRoster3(1333, correct);
+		TextReader reader = new TextReader();
+		Standard3 answer = reader.loadStudentAnswers3("testStan3", 1333, new Standard3("test", 0));
+		if (answer.getRoster().equals(correct.getRoster()) && answer.getStudentScores().equals(correct.getStudentScores())) {
+			assertTrue("Failed standard3 test", true);
+		}
+		else {
+			assertTrue("Failed standard3 test", false);
+		}
+	}
+	
+	@Test
+	public void testSaveStan3StudentAnswersMultiple() {
+		TextWriter test = new TextWriter();
+		Standard3 correct = new Standard3("test", 0);
+		correct.setStudentScore("me", 3);
+		correct.setStudentScore("you", 1);
+		test.saveStudentAnswers3("testStan3", 1333, correct);
+		test.saveRoster3(1333, correct);
+		TextReader reader = new TextReader();
+		Standard3 answer = reader.loadStudentAnswers3("testStan3", 1333, new Standard3("test", 0));
+		if (answer.getRoster().equals(correct.getRoster()) && answer.getStudentScores().equals(correct.getStudentScores())) {
+			assertTrue("Failed standard3 test", true);
+		}
+		else {
+			assertTrue("Failed standard3 test", false);
+		}
+	}
+	
+	@Test
+	public void testSaveStan3StudentAnswersBlank() {
+		TextWriter test = new TextWriter();
+		Standard3 correct = new Standard3("test", 0);
+		test.saveStudentAnswers3("testStan3", 1333, correct);
+		test.saveRoster3(1333, correct);
+		TextReader reader = new TextReader();
+		Standard3 answer = reader.loadStudentAnswers3("testStan3", 1333, new Standard3("test", 0));
+		if (answer.getRoster().equals(correct.getRoster()) && answer.getStudentScores().equals(correct.getStudentScores())) {
+			assertTrue("Failed standard3 test", true);
+		}
+		else {
+			assertTrue("Failed standard3 test", false);
+		}
+	}
 }

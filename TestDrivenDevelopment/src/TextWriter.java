@@ -61,7 +61,7 @@ public class TextWriter {
         newName += ".txt"; //format the inputted file name correctly
         ArrayList<String> questions = standard.getQuestions(); //get all the questions to save
         String output = "";
-        output += standard.getNumCorrect85() + "\n" + standard.getNumCorrect95() + "\n";
+        output += standard.getWeight() + "\n" + standard.getNumCorrect85() + "\n" + standard.getNumCorrect95() + "\n";
         //^ the first two lines of the file are for the number of trues/falses to get a score
         for (int i = 0; i < questions.size(); i++) {
         	output += questions.get(i) + "\n"; //add each question to the output
@@ -100,7 +100,7 @@ public class TextWriter {
         catch (IOException e) {
         	e.printStackTrace();
         }
-	}
+	}*/
 	
 	public void saveStandard3(String standardName, Standard3 standard) {
 		if (standard == null) { //return with a empty input standard
@@ -112,12 +112,7 @@ public class TextWriter {
         	newName += s;
         }
         newName += ".txt"; //format the inputted file name correctly
-        ArrayList<String> questions = standard.getQuestions(); //get all the questions to save
-        String output = "";
-        //^ the first two lines of the file are for the number of trues/falses to get a score
-        for (int i = 0; i < questions.size(); i++) {
-        	output += questions.get(i) + "\n"; //add each question to the output
-        }
+        String output = standard.getWeight() + "\n" + standard.getQuestion();
         try {
         	FileWriter writer = new FileWriter(newName);
             writer.write(output); //write into the file
@@ -126,7 +121,7 @@ public class TextWriter {
         catch (IOException e) {
         	e.printStackTrace();
         }
-	}*/
+	}
 	
 	public void saveStudentAnswers1(String standardName, int period, Standard1 standard) {
 		if (standard == null) { //return for a blank standard
@@ -139,7 +134,7 @@ public class TextWriter {
         }
         newName += "period" + period + ".txt"; //properly format the file name/location
         String output = "";
-        output += standard.getNumCorrect85() + "\n" + standard.getNumCorrect95() + "\n";
+        output += standard.getWeight() + "\n" + standard.getNumCorrect85() + "\n" + standard.getNumCorrect95() + "\n";
         //^ first two lines are cutoffs for a score
         Iterator<String> names = standard.getRoster().iterator(); //get all the student names
         while (names.hasNext()) {
@@ -173,11 +168,42 @@ public class TextWriter {
 	
 	/*public void saveStudentAnswers2(String standardName, int period, Standard2 standard) {
 		
-	}
+	}*/
 	
 	public void saveStudentAnswers3(String standardName, int period, Standard3 standard) {
-		
-	}*/
+		if (standard == null) { //return for a blank standard
+			return;
+		}
+		String[] splitName = standardName.split(" ");
+        String newName = "studentAnswers/";
+        for (String s : splitName) {
+        	newName += s;
+        }
+        newName += "period" + period + ".txt"; //properly format the file name/location
+        String output = "";
+        //^ first two lines are cutoffs for a score
+        ArrayList<String> names = (ArrayList<String>)standard.getRoster(); //get all the student names
+        for (int i = 0; i < names.size(); i++) {
+        	String nameFirst = names.get(i);
+        	String[] split = nameFirst.split(" ");
+        	String name;
+        	if (split.length > 1) {
+        		name = split[1] + "," + split[0]; //change student name format from first last to last,first
+        	}
+        	else {
+        		name = nameFirst;
+        	}
+        	output += name + "\n" + standard.getRawScore(name) + "\n";
+        }
+        try {
+        	FileWriter writer = new FileWriter(newName);
+            writer.write(output); //write the output in the file
+            writer.close();
+        }
+        catch (IOException e) {
+        	e.printStackTrace();
+        }
+	}
 	
 	public void saveRoster1(int period, Standard1 standard) {
 		if (standard == null) { //return for a blank standard
@@ -233,7 +259,7 @@ public class TextWriter {
 		catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 	
 	public void saveRoster3(int period, Standard3 standard) {
 		if (standard == null) { //return for a blank standard
@@ -261,5 +287,5 @@ public class TextWriter {
 		catch (IOException e) {
 			e.printStackTrace();
 		}
-	}*/
+	}
 }
