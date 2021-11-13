@@ -61,12 +61,16 @@ public class TestStandard1 {
 		//Checks the roster in firstStandard and student values have the same values, regardless
 		//of order.
 		boolean hasSameValues = true;
+		int count = 0;
  		for(String s: firstStandard.getRoster()) {
+ 			count++;
  			if(!students.contains(s)) {
  				hasSameValues = false;
  			}
  		}
 		assertTrue("Gave incorrect roster of 3 students", hasSameValues);
+		assertEquals("The roster you stored has an incorrect number of students", 
+				students.size(), count);
 	}
 	
 	//getManyScore(): Tests if multiple students with a particular number of questions right and 
