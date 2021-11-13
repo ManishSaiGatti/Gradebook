@@ -8,6 +8,27 @@ public class TextReader {
     	
     }
     
+    public List<String> loadStandards(String fileName) {
+    	String[] splitName = fileName.split(" ");
+        String newName = "standardNames/" + splitName[0].toLowerCase();
+        for (int i = 1; i < splitName.length; i++) { //remove any spaces to fit the file name
+        	newName += splitName[i].substring(0, 1).toUpperCase() + splitName[i].substring(1).toLowerCase();
+        }
+        newName += ".txt";
+    	try {
+    		BufferedReader input = new BufferedReader(new FileReader(newName));
+    		ArrayList<String> output = new ArrayList<String>();
+    		while (input.ready()) {
+    			output.add(input.readLine());
+    		}
+    		return output;
+    	}
+    	catch(IOException e) {
+    		e.printStackTrace();
+    	}
+    	return null;
+    }
+    
     public Standard1 loadAllStandard1 (String standardName, int period, Standard1 standard) {
     	Standard1 output = loadStandard1(standardName, standard); //loads the questions
     	output = loadStudentAnswers1(standardName, period, output); //loads the students and their answers

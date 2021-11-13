@@ -208,4 +208,40 @@ public class TextReaderTest {
 		Standard3 answer = test.loadStudentAnswers3("testStan3", 4300, correct);
 		assertEquals("Failed the standard3 student answers test", correct.getStudentScores(), answer.getStudentScores());
 	}
+	
+	@Test
+	public void testLoadStandards1() {
+		TextReader test = new TextReader();
+		ArrayList<String> correct = new ArrayList<String>();
+		correct.add("test");
+		ArrayList<String> answer = (ArrayList<String>)test.loadStandards("test1");
+		assertEquals("Failed the loadStandards test", correct, answer);
+	}
+	
+	@Test
+	public void testLoadStandards2() {
+		TextReader test = new TextReader();
+		ArrayList<String> correct = new ArrayList<String>();
+		correct.add("me");
+		ArrayList<String> answer = (ArrayList<String>)test.loadStandards("test2");
+		assertEquals("Failed the loadStandards test", correct, answer);
+	}
+	
+	@Test
+	public void testLoadStandardsMultiple() {
+		TextReader test = new TextReader();
+		ArrayList<String> correct = new ArrayList<String>();
+		correct.add("me");
+		correct.add("you");
+		ArrayList<String> answer = (ArrayList<String>)test.loadStandards("test3");
+		assertEquals("Failed the loadStandards test", correct, answer);
+	}
+	
+	@Test
+	public void testLoadStandardsBlank() {
+		TextReader test = new TextReader();
+		ArrayList<String> correct = new ArrayList<String>();
+		ArrayList<String> answer = (ArrayList<String>)test.loadStandards("blank");
+		assertEquals("Failed the loadStandards test", correct, answer);
+	}
 }
