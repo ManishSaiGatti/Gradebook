@@ -18,15 +18,25 @@ public class Standard1 {
 	private ArrayList<String> questions;
 	//HashMap of key: student name and value: list of whether they they met a question or not
 	private HashMap<String, ArrayList<Boolean>> studentScores;
+	//Double to store standard weight
+	private double weight;
 	
 	//Summary - Declares variables
 	//Input - Number of questions that need to be correct to get an 85 and 95
 	//Output - None
-	public Standard1(int numCorrect85, int numCorrect95) {
+	public Standard1(int numCorrect85, int numCorrect95, double weight) {
 		questions = new ArrayList<String>();
 		studentScores = new HashMap<String, ArrayList<Boolean>>();
 		this.numCorrect85 = numCorrect85;
 		this.numCorrect95 = numCorrect95;
+		this.weight = weight;
+	}
+	
+	//Summary - Return Standard weight
+	//Input - none
+	//Output - standard weight
+	public double getWeight() {
+		return weight;
 	}
 	
 	//Summary - Adds a question to the questions ArrayList, if a question is already in the 
