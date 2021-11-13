@@ -8,7 +8,7 @@ public class TextReaderTest {
     public void testStudentAnswers1() {
         TextReader test = new TextReader();
         Standard1 answer = test.loadStudentAnswers1("test", 1000, null);
-        Standard1 correct = new Standard1(2, 5);
+        Standard1 correct = new Standard1(2, 5, 0.0);
         correct.setIndividualAnswer("test", false);
         assertEquals("Text exported is incorrect", correct.getAllAnswers(), answer.getAllAnswers());
     }
@@ -17,7 +17,7 @@ public class TextReaderTest {
     public void testStandards1() {
         TextReader test = new TextReader();
         Standard1 answer = test.loadStandard1("test", null);
-        Standard1 correct = new Standard1(2, 5);
+        Standard1 correct = new Standard1(2, 5, 0.0);
         correct.addIndividualQuestion("test");
         assertEquals("Text exported is incorrect", correct.getQuestions(), answer.getQuestions());
     }
@@ -26,7 +26,7 @@ public class TextReaderTest {
     public void testStudentAnswers2() {
         TextReader test = new TextReader();
         Standard1 answer = test.loadStudentAnswers1("test2", 2000, null);
-        Standard1 correct = new Standard1(2, 5);
+        Standard1 correct = new Standard1(2, 5, 0.0);
         correct.setIndividualAnswer("Name", false);
         assertEquals("Text exported is incorrect", correct.getAllAnswers(), answer.getAllAnswers());
     }
@@ -35,7 +35,7 @@ public class TextReaderTest {
     public void testStandards2() {
 		TextReader test = new TextReader();
         Standard1 answer = test.loadStandard1("test2", null);
-        Standard1 correct = new Standard1(2, 5);
+        Standard1 correct = new Standard1(2, 5, 0.0);
         correct.addIndividualQuestion("if this works");
         assertEquals("Text exported is incorrect", correct.getQuestions(), answer.getQuestions());
     }
@@ -44,7 +44,7 @@ public class TextReaderTest {
     public void testStudentAnswers3() {
         TextReader test = new TextReader();
         Standard1 answer = test.loadStudentAnswers1("test3", 3000, null);
-        Standard1 correct = new Standard1(2, 5);
+        Standard1 correct = new Standard1(2, 5, 0.0);
         correct.setIndividualAnswer("para1", false);
         correct.setIndividualAnswer("para2", false);
         assertEquals("Text exported is incorrect", correct.getAllAnswers(), answer.getAllAnswers());
@@ -54,7 +54,7 @@ public class TextReaderTest {
     public void testStandards3() {
 		TextReader test = new TextReader();
         Standard1 answer = test.loadStandard1("test3", null);
-        Standard1 correct = new Standard1(2, 5);
+        Standard1 correct = new Standard1(2, 5, 0.0);
         correct.addIndividualQuestion("para3");
         correct.addIndividualQuestion("para4");
         assertEquals("Text exported is incorrect", correct.getQuestions(), answer.getQuestions());
@@ -102,7 +102,7 @@ public class TextReaderTest {
     public void testStudentAnswers4() {
         TextReader test = new TextReader();
         Standard1 answer = test.loadStudentAnswers1("test4", 4000, null);
-        Standard1 correct = new Standard1(2, 5);
+        Standard1 correct = new Standard1(2, 5, 0.0);
         correct.setIndividualAnswer("BRAD PITT", true);
         correct.setIndividualAnswer("BRAD PITT", false);
         correct.setIndividualAnswer("MIKE TROUT", false);
@@ -114,7 +114,7 @@ public class TextReaderTest {
     public void testStudentAnswersNothing() {
         TextReader test = new TextReader();
         Standard1 answer = test.loadStudentAnswers1("blank", 9999, null);
-        Standard1 correct = new Standard1(2, 5);
+        Standard1 correct = new Standard1(2, 5, 0.0);
         assertEquals("Text exported is incorrect", correct.getAllAnswers(), answer.getAllAnswers());
     }
 	
@@ -122,7 +122,7 @@ public class TextReaderTest {
     public void testStandardsNothing() {
 		TextReader test = new TextReader();
         Standard1 answer = test.loadStandard1("blank", null);
-        Standard1 correct = new Standard1(2, 5);
+        Standard1 correct = new Standard1(2, 5, 0.0);
         assertEquals("Text exported is incorrect", correct.getQuestions(), answer.getQuestions());
     }
 	
@@ -133,4 +133,79 @@ public class TextReaderTest {
         ArrayList<String> correct = new ArrayList<String>();
         assertEquals("Text exported is incorrect", correct, answer);
     }
+	
+	@Test
+	public void testLoadStan31() {
+		TextReader test = new TextReader();
+		Standard3 answer = test.loadStandard3("testStan3", null);
+		Standard3 correct = new Standard3("me", 0);
+		if (answer.getQuestion().equals(correct.getQuestion()) && answer.getWeight() == correct.getWeight()) {
+			assertTrue("Failed standard3 test", true);
+		}
+		else {
+			assertTrue("Failed standard3 test", false);
+		}
+	}
+	
+	@Test
+	public void testLoadStan32() {
+		TextReader test = new TextReader();
+		Standard3 answer = test.loadStandard3("testStan32", null);
+		Standard3 correct = new Standard3("test2", 0);
+		if (answer.getQuestion().equals(correct.getQuestion()) && answer.getWeight() == correct.getWeight()) {
+			assertTrue("Failed standard3 test", true);
+		}
+		else {
+			assertTrue("Failed standard3 test", false);
+		}
+	}
+	
+	@Test
+	public void testLoadStan3Blank() {
+		TextReader test = new TextReader();
+		Standard3 answer = test.loadStandard3("testStan3Blank", null);
+		Standard3 correct = new Standard3("", 0);
+		if (answer.getQuestion().equals(correct.getQuestion()) && answer.getWeight() == correct.getWeight()) {
+			assertTrue("Failed standard3 test", true);
+		}
+		else {
+			assertTrue("Failed standard3 test", false);
+		}
+	}
+	
+	@Test
+	public void testLoadStan3StudentAnswers1() {
+		TextReader test = new TextReader();
+		Standard3 correct = new Standard3("test", 0);
+		Standard3 answer = test.loadStudentAnswers3("testStan3", 1300, correct);
+		correct.setStudentScore("hi", 1);
+		assertEquals("Failed the standard3 student answers test", correct.getStudentScores(), answer.getStudentScores());
+	}
+	
+	@Test
+	public void testLoadStan3StudentAnswers2() {
+		TextReader test = new TextReader();
+		Standard3 correct = new Standard3("test", 0);
+		Standard3 answer = test.loadStudentAnswers3("testStan3", 2300, correct);
+		correct.setStudentScore("me", 2);
+		assertEquals("Failed the standard3 student answers test", correct.getStudentScores(), answer.getStudentScores());
+	}
+	
+	@Test
+	public void testLoadStan3StudentAnswersFull() {
+		TextReader test = new TextReader();
+		Standard3 correct = new Standard3("test", 0);
+		Standard3 answer = test.loadStudentAnswers3("testStan3", 3300, correct);
+		correct.setStudentScore("me", 2);
+		correct.setStudentScore("you", 3);
+		assertEquals("Failed the standard3 student answers test", correct.getStudentScores(), answer.getStudentScores());
+	}
+	
+	@Test
+	public void testLoadStan3StudentAnswersBlank() {
+		TextReader test = new TextReader();
+		Standard3 correct = new Standard3("test", 0);
+		Standard3 answer = test.loadStudentAnswers3("testStan3", 4300, correct);
+		assertEquals("Failed the standard3 student answers test", correct.getStudentScores(), answer.getStudentScores());
+	}
 }
