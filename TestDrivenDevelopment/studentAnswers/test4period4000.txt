@@ -1,0 +1,9 @@
+0.0
+2
+5
+PITT,BRAD
+true
+false
+false
+TROUT,MIKE
+false
