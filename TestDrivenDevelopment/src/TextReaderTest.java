@@ -208,4 +208,112 @@ public class TextReaderTest {
 		Standard3 answer = test.loadStudentAnswers3("testStan3", 4300, correct);
 		assertEquals("Failed the standard3 student answers test", correct.getStudentScores(), answer.getStudentScores());
 	}
+	
+	@Test
+	public void testLoadStandards1() {
+		TextReader test = new TextReader();
+		ArrayList<String> correct = new ArrayList<String>();
+		correct.add("test");
+		ArrayList<String> answer = (ArrayList<String>)test.loadStandards("test1");
+		assertEquals("Failed the loadStandards test", correct, answer);
+	}
+	
+	@Test
+	public void testLoadStandards2() {
+		TextReader test = new TextReader();
+		ArrayList<String> correct = new ArrayList<String>();
+		correct.add("me");
+		ArrayList<String> answer = (ArrayList<String>)test.loadStandards("test2");
+		assertEquals("Failed the loadStandards test", correct, answer);
+	}
+	
+	@Test
+	public void testLoadStandardsMultiple() {
+		TextReader test = new TextReader();
+		ArrayList<String> correct = new ArrayList<String>();
+		correct.add("me");
+		correct.add("you");
+		ArrayList<String> answer = (ArrayList<String>)test.loadStandards("test3");
+		assertEquals("Failed the loadStandards test", correct, answer);
+	}
+	
+	@Test
+	public void testLoadStandardsBlank() {
+		TextReader test = new TextReader();
+		ArrayList<String> correct = new ArrayList<String>();
+		ArrayList<String> answer = (ArrayList<String>)test.loadStandards("blank");
+		assertEquals("Failed the loadStandards test", correct, answer);
+	}
+	
+	@Test
+	public void testLoadStan21() {
+		TextReader test = new TextReader();
+		StandardTwo correct = new StandardTwo(0.0);
+		correct.addIndividualQ("test");
+		StandardTwo answer = test.loadStandard2("testStan2", null);
+		assertEquals("Failed the standard 2 test", correct.getQuestions(), answer.getQuestions());
+	}
+	
+	@Test
+	public void testLoadStan22() {
+		TextReader test = new TextReader();
+		StandardTwo correct = new StandardTwo(0.0);
+		correct.addIndividualQ("me");
+		StandardTwo answer = test.loadStandard2("testStan22", null);
+		assertEquals("Failed the standard 2 test", correct.getQuestions(), answer.getQuestions());
+	}
+	
+	@Test
+	public void testLoadStan2Multiple() {
+		TextReader test = new TextReader();
+		StandardTwo correct = new StandardTwo(0.0);
+		correct.addIndividualQ("you");
+		correct.addIndividualQ("me");
+		StandardTwo answer = test.loadStandard2("testStan23", null);
+		assertEquals("Failed the standard 2 test", correct.getQuestions(), answer.getQuestions());
+	}
+	
+	@Test
+	public void testLoadStan2Blank() {
+		TextReader test = new TextReader();
+		StandardTwo correct = new StandardTwo(0.0);
+		StandardTwo answer = test.loadStandard2("testStan2Blank", null);
+		assertEquals("Failed the standard 2 test", correct.getQuestions(), answer.getQuestions());
+	}
+	
+	@Test
+	public void testLoadStan2StudentAnswers1() {
+		TextReader test = new TextReader();
+		StandardTwo correct = new StandardTwo(0.0);
+		correct.addIndividualA("me", false);
+		StandardTwo answer = test.loadStudentAnswers2("testStan2", 1400, null);
+		assertEquals("failed the standard 2 get student answers test", correct.getAllStudentAnswers(), answer.getAllStudentAnswers());
+	}
+	
+	@Test
+	public void testLoadStan2StudentAnswers2() {
+		TextReader test = new TextReader();
+		StandardTwo correct = new StandardTwo(0.0);
+		correct.addIndividualA("you", true);
+		StandardTwo answer = test.loadStudentAnswers2("testStan2", 2400, null);
+		assertEquals("failed the standard 2 get student answers test", correct.getAllStudentAnswers(), answer.getAllStudentAnswers());
+	}
+	
+	@Test
+	public void testLoadStan2StudentAnswersMultiple() {
+		TextReader test = new TextReader();
+		StandardTwo correct = new StandardTwo(0.0);
+		correct.addIndividualA("me", false);
+		correct.addIndividualA("you", false);
+		StandardTwo answer = test.loadStudentAnswers2("testStan2", 3400, null);
+		assertEquals("failed the standard 2 get student answers test", correct.getAllStudentAnswers(), answer.getAllStudentAnswers());
+	}
+	
+	@Test
+	public void testLoadStan2StudentAnswersBlank() {
+		TextReader test = new TextReader();
+		StandardTwo correct = new StandardTwo(0.0);
+		StandardTwo answer = test.loadStudentAnswers2("testStan2", 4400, null);
+		assertEquals("failed the standard 2 get student answers test", correct.getAllStudentAnswers(), answer.getAllStudentAnswers());
+	}
 }
