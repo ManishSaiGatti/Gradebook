@@ -1,2 +1,7 @@
+0.0
+2
+5
 para1
+false
 para2
+false
