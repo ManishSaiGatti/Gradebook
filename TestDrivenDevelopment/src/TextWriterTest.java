@@ -408,4 +408,96 @@ public class TextWriterTest {
 			assertTrue("Failed standard3 test", false);
 		}
 	}
+	
+	@Test
+	public void testSaveStan21() {
+		TextWriter test = new TextWriter();
+		StandardTwo correct = new StandardTwo(0.0);
+		correct.addIndividualQ("test");
+		test.saveStandard2("testStan2write", correct);
+		TextReader reader = new TextReader();
+		StandardTwo answer = reader.loadStandard2("testStan2write", null);
+		assertEquals("failed test for save standard 2", correct.getQuestions(), answer.getQuestions());
+	}
+	
+	@Test
+	public void testSaveStan22() {
+		TextWriter test = new TextWriter();
+		StandardTwo correct = new StandardTwo(0.0);
+		correct.addIndividualQ("me");
+		test.saveStandard2("testStan2write", correct);
+		TextReader reader = new TextReader();
+		StandardTwo answer = reader.loadStandard2("testStan2write", null);
+		assertEquals("failed test for save standard 2", correct.getQuestions(), answer.getQuestions());
+	}
+	
+	@Test
+	public void testSaveStan2Multiple() {
+		TextWriter test = new TextWriter();
+		StandardTwo correct = new StandardTwo(0.0);
+		correct.addIndividualQ("you");
+		correct.addIndividualQ("me");
+		test.saveStandard2("testStan2write", correct);
+		TextReader reader = new TextReader();
+		StandardTwo answer = reader.loadStandard2("testStan2write", null);
+		assertEquals("failed test for save standard 2", correct.getQuestions(), answer.getQuestions());
+	}
+	
+	@Test
+	public void testSaveStan2Blank() {
+		TextWriter test = new TextWriter();
+		StandardTwo correct = new StandardTwo(0.0);
+		test.saveStandard2("testStan2write", correct);
+		TextReader reader = new TextReader();
+		StandardTwo answer = reader.loadStandard2("testStan2write", null);
+		assertEquals("failed test for save standard 2", correct.getQuestions(), answer.getQuestions());
+	}
+	
+	@Test
+	public void testSaveStan2StudentAnswers1() {
+		TextWriter test = new TextWriter();
+		StandardTwo correct = new StandardTwo(0.0);
+		correct.addIndividualA("me", true);
+		test.saveRoster2(1222, correct);
+		test.saveStudentAnswers2("testStan2", 1222, correct);
+		TextReader reader = new TextReader();
+		StandardTwo answer = reader.loadStudentAnswers2("testStan2", 1222, null);
+		assertEquals("failed test for save student answers 2", correct.getAllStudentAnswers(), answer.getAllStudentAnswers());
+	}
+	
+	@Test
+	public void testSaveStan2StudentAnswers2() {
+		TextWriter test = new TextWriter();
+		StandardTwo correct = new StandardTwo(0.0);
+		correct.addIndividualA("tom", true);
+		test.saveRoster2(1222, correct);
+		test.saveStudentAnswers2("testStan2", 1222, correct);
+		TextReader reader = new TextReader();
+		StandardTwo answer = reader.loadStudentAnswers2("testStan2", 1222, null);
+		assertEquals("failed test for save student answers 2", correct.getAllStudentAnswers(), answer.getAllStudentAnswers());
+	}
+	
+	@Test
+	public void testSaveStan2StudentAnswersMultiple() {
+		TextWriter test = new TextWriter();
+		StandardTwo correct = new StandardTwo(0.0);
+		correct.addIndividualA("mario", true);
+		correct.addIndividualA("luigi", false);
+		test.saveRoster2(1222, correct);
+		test.saveStudentAnswers2("testStan2", 1222, correct);
+		TextReader reader = new TextReader();
+		StandardTwo answer = reader.loadStudentAnswers2("testStan2", 1222, null);
+		assertEquals("failed test for save student answers 2", correct.getAllStudentAnswers(), answer.getAllStudentAnswers());
+	}
+	
+	@Test
+	public void testSaveStan2StudentAnswersBlank() {
+		TextWriter test = new TextWriter();
+		StandardTwo correct = new StandardTwo(0.0);
+		test.saveRoster2(1222, correct);
+		test.saveStudentAnswers2("testStan2", 1222, correct);
+		TextReader reader = new TextReader();
+		StandardTwo answer = reader.loadStudentAnswers2("testStan2", 1222, null);
+		assertEquals("failed test for save student answers 2", correct.getAllStudentAnswers(), answer.getAllStudentAnswers());
+	}
 }
