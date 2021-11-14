@@ -35,11 +35,11 @@ public class TextReader {
     	return output;
     }
     
-    /*public Standard2 loadAllStandard2 (String standardName, int period, Standard2 standard) {
-    	Standard2 output = loadStandard2(standardName, standard);
+    public StandardTwo loadAllStandard2 (String standardName, int period, StandardTwo standard) {
+    	StandardTwo output = loadStandard2(standardName, standard);
     	output = loadStudentAnswers2(standardName, period, output);
     	return output;
-    }*/
+    }
     
     public Standard3 loadAllStandard3 (String standardName, int period, Standard3 standard) {
     	Standard3 output = loadStandard3(standardName, standard);
@@ -97,9 +97,53 @@ public class TextReader {
         return null;
     }
     
-    /*public Standard2 loadStudentAnswers2 (String standardName, int period, Standard2 standard) {
+    public StandardTwo loadStudentAnswers2 (String standardName, int period, StandardTwo standard) {
+    	String[] splitName = standardName.split(" ");
+        String newName = "";
+        for (String s : splitName) { //recombine name since file names won't have spaces
+        	newName += s;
+        }
+        newName += "period" + period + ".txt";
+        try {
+        	BufferedReader input = new BufferedReader(new FileReader("studentAnswers/" + newName));
+        	double weight = Double.parseDouble(input.readLine());
+        	StandardTwo output;
+        	if (standard == null) { //create the standard if needed
+        		output = new StandardTwo(weight);
+        	}
+        	else {
+        		output = standard;
+        	}
+        	String name = "";
+        	while (input.ready()) {
+        		String next = input.readLine();
+            	String[] split = next.split(",");
+            	if (split.length > 1) {
+        			next = split[1] + " " + split[0]; //reformat the name
+        		}
+            	ArrayList<String> roster = (ArrayList<String>) loadRoster(period);
+            	if (roster.contains(next)) {
+            		name = next; //current name is changeds
+            	}
+            	else {
+            		boolean answer;
+            		if (next.substring(0,1).toLowerCase().equals("t")) {
+            			//get the boolean based off the first letter in the line
+            			answer = true;
+            		}
+            		else {
+            			answer = false;
+            		}
+            		output.addIndividualA(name, answer);
+            	}
+        	}
+        	return output;
+        }
+        catch(IOException e) {
+        	e.printStackTrace();
+        }
     	return null;
-    }*/
+    }
     
     public Standard3 loadStudentAnswers3 (String standardName, int period, Standard3 standard) {
     	String[] splitName = standardName.split(" ");
@@ -155,11 +199,9 @@ public class TextReader {
         	else {
         		output = standard;
         	}
-            ArrayList<String> questions = new ArrayList<String>();
             while (input.ready()) { //get a list of all the questions
-            	questions.add(input.readLine());
+            	output.addIndividualQuestion(input.readLine());
             }
-            output.addQuestions(questions); //add all the questions together
             return output;
         }
         catch (IOException e) {
@@ -168,9 +210,33 @@ public class TextReader {
         return null;
     }
     
-    /*public Standard2 loadStandard2 (String standardName, Standard2 standard) {
+    public StandardTwo loadStandard2 (String standardName, StandardTwo standard) {
+    	String[] splitName = standardName.split(" ");
+        String newName = "";
+        for (String s : splitName) { //remove any spaces to fit the file name
+        	newName += s;
+        }
+        newName += ".txt";
+        try {
+        	BufferedReader input = new BufferedReader(new FileReader("standards/" + newName));
+        	double weight = Double.parseDouble(input.readLine());
+        	StandardTwo output;
+        	if (standard == null) {
+        		output = new StandardTwo(weight);
+        	}
+        	else {
+        		output = standard;
+        	}
+        	while (input.ready()) {
+        		output.addIndividualQ(input.readLine());
+        	}
+        	return output;
+        }
+        catch(IOException e) {
+        	e.printStackTrace();
+        }
     	return null;
-    }*/
+    }
     
     public Standard3 loadStandard3 (String standardName, Standard3 standard) {
     	String[] splitName = standardName.split(" ");

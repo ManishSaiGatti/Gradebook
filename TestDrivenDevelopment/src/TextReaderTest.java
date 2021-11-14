@@ -244,4 +244,76 @@ public class TextReaderTest {
 		ArrayList<String> answer = (ArrayList<String>)test.loadStandards("blank");
 		assertEquals("Failed the loadStandards test", correct, answer);
 	}
+	
+	@Test
+	public void testLoadStan21() {
+		TextReader test = new TextReader();
+		StandardTwo correct = new StandardTwo(0.0);
+		correct.addIndividualQ("test");
+		StandardTwo answer = test.loadStandard2("testStan2", null);
+		assertEquals("Failed the standard 2 test", correct.getQuestions(), answer.getQuestions());
+	}
+	
+	@Test
+	public void testLoadStan22() {
+		TextReader test = new TextReader();
+		StandardTwo correct = new StandardTwo(0.0);
+		correct.addIndividualQ("me");
+		StandardTwo answer = test.loadStandard2("testStan22", null);
+		assertEquals("Failed the standard 2 test", correct.getQuestions(), answer.getQuestions());
+	}
+	
+	@Test
+	public void testLoadStan2Multiple() {
+		TextReader test = new TextReader();
+		StandardTwo correct = new StandardTwo(0.0);
+		correct.addIndividualQ("you");
+		correct.addIndividualQ("me");
+		StandardTwo answer = test.loadStandard2("testStan23", null);
+		assertEquals("Failed the standard 2 test", correct.getQuestions(), answer.getQuestions());
+	}
+	
+	@Test
+	public void testLoadStan2Blank() {
+		TextReader test = new TextReader();
+		StandardTwo correct = new StandardTwo(0.0);
+		StandardTwo answer = test.loadStandard2("testStan2Blank", null);
+		assertEquals("Failed the standard 2 test", correct.getQuestions(), answer.getQuestions());
+	}
+	
+	@Test
+	public void testLoadStan2StudentAnswers1() {
+		TextReader test = new TextReader();
+		StandardTwo correct = new StandardTwo(0.0);
+		correct.addIndividualA("me", false);
+		StandardTwo answer = test.loadStudentAnswers2("testStan2", 1400, null);
+		assertEquals("failed the standard 2 get student answers test", correct.getAllStudentAnswers(), answer.getAllStudentAnswers());
+	}
+	
+	@Test
+	public void testLoadStan2StudentAnswers2() {
+		TextReader test = new TextReader();
+		StandardTwo correct = new StandardTwo(0.0);
+		correct.addIndividualA("you", true);
+		StandardTwo answer = test.loadStudentAnswers2("testStan2", 2400, null);
+		assertEquals("failed the standard 2 get student answers test", correct.getAllStudentAnswers(), answer.getAllStudentAnswers());
+	}
+	
+	@Test
+	public void testLoadStan2StudentAnswersMultiple() {
+		TextReader test = new TextReader();
+		StandardTwo correct = new StandardTwo(0.0);
+		correct.addIndividualA("me", false);
+		correct.addIndividualA("you", false);
+		StandardTwo answer = test.loadStudentAnswers2("testStan2", 3400, null);
+		assertEquals("failed the standard 2 get student answers test", correct.getAllStudentAnswers(), answer.getAllStudentAnswers());
+	}
+	
+	@Test
+	public void testLoadStan2StudentAnswersBlank() {
+		TextReader test = new TextReader();
+		StandardTwo correct = new StandardTwo(0.0);
+		StandardTwo answer = test.loadStudentAnswers2("testStan2", 4400, null);
+		assertEquals("failed the standard 2 get student answers test", correct.getAllStudentAnswers(), answer.getAllStudentAnswers());
+	}
 }
