@@ -1,67 +1,81 @@
 import java.util.*;
 public class StandardTwo {
 	// eg: "How are you? 75"
-	List<String> questions;
-	ArrayList<Boolean> trueOrFalse;
-	// hashmap for student, arraylist<bboolean> that line up with questions' indices
-	private HashMap<String, ArrayList<Boolean>> studentScore;
-	private List<String> roster;
+	ArrayList<String> questions;
+	// hashmap for student, arraylist<boolean> that line up with questions' indices
+	private HashMap<String, ArrayList<Boolean>> studentAnswers;
+	private double weight;
 	
-	
-	public StandardTwo() {
+	public StandardTwo(double weight) {
 		questions = new ArrayList<>();
-		trueOrFalse = new ArrayList<>();
-		studentScore = new HashMap<String, ArrayList<Boolean>>();
-		roster = new ArrayList<>();
+		studentAnswers = new HashMap<String, ArrayList<Boolean>>();
+		this.weight = weight;
 	}
 	
+	// ADD ANSWERS, STUDENT, ALL QUESTIONS, INDIV QUESTIONS
 	// put question and answers based on student name in hashmap
-	public void setAnswers(String student, String question, boolean correct) {
-		questions.add(question);
-		trueOrFalse.add(correct);
-		studentScore.put(student, trueOrFalse);
+	// only string arraylist
+	public ArrayList<String> addAllQuestions(ArrayList<String> ar) {
+		questions = ar;
+		return questions;
+	}
+	
+	public void addIndividualQ(String q) {
+		questions.add(q);
+	}
+	
+	public void addAllAnswers(String student, ArrayList<Boolean> answers) {
+		// if student doesnt have a arlist of bools for answers make one
+		if(studentAnswers.containsKey(student)) {
+			studentAnswers.replace(student, answers);
+		}
+		// if student doesnt exist, add new student with answers
+		studentAnswers.put(student, answers);	
+	}
+	
+	public ArrayList<Boolean> addIndividualA(String student, Boolean a) {
+		// if student doesnt have answers arlist yet, make one
+		if(studentAnswers.get(student) == null) {
+			ArrayList<Boolean> stuAns = new ArrayList<Boolean>();
+			stuAns.add(a);
+			studentAnswers.put(student, stuAns);
+		}
+		else {
+			studentAnswers.get(student).add(a);
+		}
+		return studentAnswers.get(student);
 	}
 	
 	public void addStudent(String student) {
 		ArrayList<Boolean> temp = new ArrayList<>();
-		studentScore.put(student, temp);
+		studentAnswers.put(student, temp);
 	}
 	
-	public List<String> getRoster() {
-		// need to return the set itself instead of a list
-		Set<String> rosSet = new HashSet<String>();
-		rosSet = studentScore.keySet();
-		for(String x: rosSet) {
-			roster.add(x);
-		}
-		return roster;
+	// GET ROSTER, 1 STUDENT SCORE, ALL ANSWERS, ALL STUDENT SCORES, ALL QUESTIONS, QUEST WORTH, WEIGHT
+	public Set<String> getRoster() {
+		// make list of roster names
+		return studentAnswers.keySet();
 	}
 	
-	public List<Integer> getAllStudentScores() {
-		ArrayList<Integer> allScores = new ArrayList<>();
-		// for every student, calculate score
-		for(int i = 0; i < roster.size(); i++) {
-			allScores.add(calculateOneStudentTotal(roster.get(i)));
-		}
-		return allScores;
+	public ArrayList<Boolean> getOneStuAnswers(String student) {
+		return studentAnswers.get(student);
 	}
 	
 	public int calculateOneStudentTotal(String student) {
 		int totalScore = 0;
-		for(int i = 0; i < trueOrFalse.size(); i++) {
+		for(int i = 0; i < studentAnswers.get(student).size(); i++) {
 			int worth = getQuestionWorth(i);
-			// if student's answer for the specific question is null
-			if(studentScore.get(student).get(i) == null) {
-				//then break
-				break;
-			}
 			// if student's answer for the specific question is true
-			else if(studentScore.get(student).get(i) == true) {
+			if(studentAnswers.get(student).get(i) == true && worth >= totalScore) {
 				//then the total score is the worth
 				totalScore = worth;
 			}
 		}
 		return totalScore;
+	}
+	
+	public HashMap<String, ArrayList<Boolean>> getAllStudentAnswers() {
+		return studentAnswers;
 	}
 	
 	public List<String> getQuestions() {
@@ -73,19 +87,39 @@ public class StandardTwo {
 		int worth = 0;
 		
 		String q = questions.get(index);
-		strScore = q.substring(q.length() - 3); 
-		System.out.println("the score is " + strScore);
+		// get the last 3 characters (the score) & make it a number
+		strScore = q.substring(q.length() - 2);
+		if(strScore.equals("00")) {
+			strScore = "100";
+		}
 		worth = Integer.parseInt(strScore);
-		System.out.println("score is " + worth);
 		return worth;
 	}
 	
+	public double getWeight() {
+		return weight;
+	}
+	
+	
+	// EDIT QUESTIONS, ANSWERS, 
+	// string string, old and new question
 	public void editQuestions(int index, String newQ) {
 		questions.set(index, newQ);
 	}
 	
-	public void editAnswers(int index, boolean newA) {
-		trueOrFalse.set(index, newA);
+	// string string bool
+	public void editAnswers(String student, int index, boolean newA) {
+		ArrayList<Boolean> stuAns = studentAnswers.get(student);
+		if(stuAns == null) {
+			stuAns = new ArrayList<Boolean>();
+			stuAns.add(newA);
+		}
+		// if there is already an answer at that index, replace it
+		else {
+			stuAns.set(index, newA);
+		}
+		
+		studentAnswers.put(student, stuAns);
 	}
 	
 }
