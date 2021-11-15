@@ -4,9 +4,9 @@ import java.util.*;
 public class Standard3 {
 	private HashMap<String, Integer> studentRawScores; // key: String studentName, val: int studentRawScore
 	private String question; // eg "how many points out of 5 for ___?"
-	private int weight;
+	private double weight;
 	
-	public Standard3(String question, int weight) {
+	public Standard3(String question, double weight) {
 		this.question = question;
 		studentRawScores = new HashMap<String, Integer>();
 		this.weight = weight;
@@ -32,7 +32,7 @@ public class Standard3 {
 		return question;
 	}
 	
-	public int getWeight() {
+	public double getWeight() {
 		return weight;
 	}
 	
