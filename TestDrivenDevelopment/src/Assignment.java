@@ -1,7 +1,10 @@
+// Catherine Yu
+
 import java.util.*;
 
 public class Assignment {
-	private HashMap<String, Integer> studentScores; // key: String studentName, val: int studentScore
+	// key: String studentName, val: int studentScore
+	private HashMap<String, Integer> studentScores;
 	private String assignmentName;
 	// store all the standards for that assignment, sorted by type
 	private ArrayList<Standard1> standards1;
@@ -17,13 +20,14 @@ public class Assignment {
 		this.standards3 = standards3;
 	}
 	
-	// adds a new student with their calculated  score.
+	// adds a student's calculated  score.
 	// if student's score already exists, recalculates and updates their score.
 	public void calculateStudentScore(String student) {
 		studentScores.put(student, calculateScore(student));
 	}
 		
 	// assumes that the weight of the standards adds up to 100
+	// uses the weight for each standard to calculate the student's total score
 	private int calculateScore(String student) {
 		double score = 0;
 		for (Standard1 s1: standards1) {
@@ -71,6 +75,7 @@ public class Assignment {
 		return (List<Integer>) studentScores.values();
 	}
 
+	// class average score for the assignment
 	public int getAvgScore() {
 		double total = 0;
 		// add all student scores together
