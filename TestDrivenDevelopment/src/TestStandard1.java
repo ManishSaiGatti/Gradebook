@@ -9,7 +9,7 @@ public class TestStandard1 {
 	//Tests if getQuestions returns the same ArrayList
 	@Test
 	public void get1Question() {
-		Standard1 firstStandard = new Standard1(0, 0);
+		Standard1 firstStandard = new Standard1(0, 0, 30);
 		ArrayList<String> questions = new ArrayList<String>();
 		questions.add("Did the student use conventional indentation and whitespace?");
 		firstStandard.addQuestions(questions);
@@ -21,7 +21,7 @@ public class TestStandard1 {
 	//Tests of getQuestions returns the same ArrayList
 	@Test
 	public void get2Question() {
-		Standard1 firstStandard = new Standard1(0, 0);
+		Standard1 firstStandard = new Standard1(0, 0, 30);
 		ArrayList<String> questions = new ArrayList<String>();
 		questions.add("Did the student use conventional indentation and whitespace?");
 		questions.add("Did the student keep their lines of code under 100 characters in length?");
@@ -34,7 +34,7 @@ public class TestStandard1 {
 	//Tests if getScore for John returns 100%
 	@Test
 	public void get1Score() {
-		Standard1 firstStandard = new Standard1(1, 2);
+		Standard1 firstStandard = new Standard1(1, 2, 30);
 		ArrayList<String> questions = new ArrayList<String>();
 		questions.add("Did the student use conventional indentation and whitespace?");
 		questions.add("Did the student keep their lines of code under 100 characters in length?");
@@ -50,7 +50,7 @@ public class TestStandard1 {
 	//testRoster(): Checks if roster returned by getRoster is the same as the roster added
 	@Test
 	public void testRoster() {
-		Standard1 firstStandard = new Standard1(0, 0);
+		Standard1 firstStandard = new Standard1(0, 0, 30);
 		ArrayList<String> students = new ArrayList<String>();
 		students.add("John");
 		students.add("Sally");
@@ -61,19 +61,23 @@ public class TestStandard1 {
 		//Checks the roster in firstStandard and student values have the same values, regardless
 		//of order.
 		boolean hasSameValues = true;
+		int count = 0;
  		for(String s: firstStandard.getRoster()) {
+ 			count++;
  			if(!students.contains(s)) {
  				hasSameValues = false;
  			}
  		}
 		assertTrue("Gave incorrect roster of 3 students", hasSameValues);
+		assertEquals("The roster you stored has an incorrect number of students", 
+				students.size(), count);
 	}
 	
 	//getManyScore(): Tests if multiple students with a particular number of questions right and 
 	//wrong return corresponding number values
 	@Test
 	public void getManyScore() {
-		Standard1 firstStandard = new Standard1(1, 7);
+		Standard1 firstStandard = new Standard1(1, 7, 30);
 		ArrayList<String> questions = new ArrayList<String>();
 		questions.add("Did the student use conventional indentation and whitespace?");
 		questions.add("Did the student keep their lines of code under 100 characters in length?");
@@ -116,7 +120,7 @@ public class TestStandard1 {
 	//testEditQuestion(): Checks if question saved to Standard1 can be edited properly
 	@Test
 	public void testEditQuestion() {
-		Standard1 firstStandard = new Standard1(0, 0);
+		Standard1 firstStandard = new Standard1(0, 0, 30);
 		ArrayList<String> questions = new ArrayList<String>();
 		questions.add("Did the student use conventional indentation and whitespace?");
 		firstStandard.addQuestions(questions);
@@ -132,7 +136,7 @@ public class TestStandard1 {
 	//added to an old set of questions
 	@Test
 	public void testAddIndividualQuestion() {
-		Standard1 firstStandard = new Standard1(0, 0);
+		Standard1 firstStandard = new Standard1(0, 0, 30);
 		ArrayList<String> questions = new ArrayList<String>();
 		questions.add("Did the student use conventional indentation and whitespace?");
 		questions.add("Did the student keep their lines of code under 100 characters in length?");
@@ -147,7 +151,7 @@ public class TestStandard1 {
 	//repeat questions passed into its parameters
 	@Test
 	public void testAddIndividualRepeatQuestion() {
-		Standard1 firstStandard = new Standard1(0, 0);
+		Standard1 firstStandard = new Standard1(0, 0, 30);
 		ArrayList<String> questions = new ArrayList<String>();
 		questions.add("Did the student use conventional indentation and whitespace?");
 		questions.add("Did the student keep their lines of code under 100 characters in length?");
@@ -164,7 +168,7 @@ public class TestStandard1 {
 	//parameter that doesn’t already exist
 	@Test
 	public void testNotExistingEditQuestion() {
-		Standard1 firstStandard = new Standard1(0, 0);
+		Standard1 firstStandard = new Standard1(0, 0, 30);
 		ArrayList<String> questions = new ArrayList<String>();
 		questions.add("Did the student use conventional indentation and whitespace?");
 		firstStandard.addQuestions(questions);
@@ -179,7 +183,7 @@ public class TestStandard1 {
 	//score
 	@Test
 	public void testEditStudentAnswer() {
-		Standard1 firstStandard = new Standard1(1, 2);
+		Standard1 firstStandard = new Standard1(1, 2, 30);
 		ArrayList<String> questions = new ArrayList<String>();
 		questions.add("Did the student use conventional indentation and whitespace?");
 		questions.add("Did the student follow Java's naming standards?");
@@ -199,7 +203,7 @@ public class TestStandard1 {
 	//that does not exist
 	@Test
 	public void testEditAnswerNotExist() {
-		Standard1 firstStandard = new Standard1(1, 2);
+		Standard1 firstStandard = new Standard1(1, 2, 30);
 		ArrayList<String> questions = new ArrayList<String>();
 		questions.add("Did the student use conventional indentation and whitespace?");
 		questions.add("Did the student follow Java's naming standards?");
@@ -220,7 +224,7 @@ public class TestStandard1 {
 	//student parameter does not exist
 	@Test
 	public void testEditStudentNotExist() {
-		Standard1 firstStandard = new Standard1(1, 2);
+		Standard1 firstStandard = new Standard1(1, 2, 30);
 		ArrayList<String> questions = new ArrayList<String>();
 		questions.add("Did the student use conventional indentation and whitespace?");
 		questions.add("Did the student keep their lines of code under 100 characters in length?");
@@ -239,7 +243,7 @@ public class TestStandard1 {
 	//already has some questions
 	@Test
 	public void testAddMultipleQuestionSets() {
-		Standard1 firstStandard = new Standard1(0, 0);
+		Standard1 firstStandard = new Standard1(0, 0, 30);
 		ArrayList<String> questions = new ArrayList<String>();
 		questions.add("Did the student use conventional indentation and whitespace?");
 		questions.add("Did the student keep their lines of code under 100 characters in length?");
@@ -256,7 +260,7 @@ public class TestStandard1 {
 	//to a set of existing questions
 	@Test
 	public void addDuplicateQuestionSets() {
-		Standard1 firstStandard = new Standard1(0, 0);
+		Standard1 firstStandard = new Standard1(0, 0, 30);
 		ArrayList<String> questions = new ArrayList<String>();
 		questions.add("Did the student use conventional indentation and whitespace?");
 		firstStandard.addQuestions(questions);
@@ -268,7 +272,7 @@ public class TestStandard1 {
 	//addMoreAnswers(): Tests if add answers can account for old answers assigned for a student
 	@Test
 	public void addMoreAnswers() {
-		Standard1 firstStandard = new Standard1(1, 2);
+		Standard1 firstStandard = new Standard1(1, 2, 30);
 		ArrayList<String> questions = new ArrayList<String>();
 		questions.add("Did the student use conventional indentation and whitespace?");
 		questions.add("Did the student follow Java's naming standards?");
@@ -288,7 +292,7 @@ public class TestStandard1 {
 	//addIndividualAnswer(): runs setIndividualAnswer after adding other answers
 	@Test
 	public void addIndividualAnswer() {
-		Standard1 firstStandard = new Standard1(1, 2);
+		Standard1 firstStandard = new Standard1(1, 2, 30);
 		ArrayList<String> questions = new ArrayList<String>();
 		questions.add("Did the student use conventional indentation and whitespace?");
 		questions.add("Did the student follow Java's naming standards?");
@@ -307,7 +311,7 @@ public class TestStandard1 {
 	//then again
 	@Test
 	public void setOneIndividualAnswer() {
-		Standard1 firstStandard = new Standard1(1, 2);
+		Standard1 firstStandard = new Standard1(1, 2, 30);
 		ArrayList<String> questions = new ArrayList<String>();
 		questions.add("Did the student use conventional indentation and whitespace?");
 		questions.add("Did the student keep their lines of code under 100 characters in length?");
@@ -322,7 +326,7 @@ public class TestStandard1 {
 	//the one stored in the standard.
 	@Test
 	public void testGetNumForScore() {
-		Standard1 firstStandard = new Standard1(1, 3);
+		Standard1 firstStandard = new Standard1(1, 3, 30);
 		assertEquals("numCorrect85 incorrectly saved", 1, firstStandard.getNumCorrect85());
 		assertEquals("numCorrect95 incorrectly saved", 3, firstStandard.getNumCorrect95());
 	}
@@ -331,7 +335,7 @@ public class TestStandard1 {
 	//of students and answers
 	@Test
 	public void testGetAllAnswers() {
-		Standard1 firstStandard = new Standard1(1, 2);
+		Standard1 firstStandard = new Standard1(1, 2, 30);
 		ArrayList<String> questions = new ArrayList<String>();
 		questions.add("Did the student use conventional indentation and whitespace?");
 		questions.add("Did the student keep their lines of code under 100 characters in length?");
@@ -351,7 +355,7 @@ public class TestStandard1 {
 	//of all answers for a student
 	@Test
 	public void testGetStudentAnswers() {
-		Standard1 firstStandard = new Standard1(1, 2);
+		Standard1 firstStandard = new Standard1(1, 2, 30);
 		ArrayList<String> questions = new ArrayList<String>();
 		questions.add("Did the student use conventional indentation and whitespace?");
 		questions.add("Did the student keep their lines of code under 100 characters in length?");
@@ -367,5 +371,14 @@ public class TestStandard1 {
 		assertEquals("Gave incorrect ArrayList of another student's answers", answers, 
 				firstStandard.getStudentAnswers("Sally"));
 		
+	}
+	
+	//testGetWeight: Tests whether getWeight returns the weight of the standard
+	//initialized in the constructor
+	@Test
+	public void testGetWeight() {
+		Standard1 firstStandard = new Standard1(1, 2, 33.3);
+		assertEquals("Standard weight does not equal the value set in constructor",
+				firstStandard.getWeight(), 33.3, .01);
 	}
 }
