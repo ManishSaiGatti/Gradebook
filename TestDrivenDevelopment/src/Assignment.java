@@ -23,40 +23,19 @@ public class Assignment {
 		studentScores.put(student, calculateScore(student));
 	}
 		
+	// assumes that the weight of the standards adds up to 100
 	private int calculateScore(String student) {
 		double score = 0;
-		if (weightsAddUp()) {
-			/* NEED GETWEIGHT TO BE IMPLEMENTED FOR S1 AND S2
-			for (Standard1 s1: standards1) {
-				score += (s1.getScore(student) * s1.getWeight() / 100.0);
-			}
-			for (StandardTwo s2: standards2) {
-				score += (s2.getScore(student) * s2.getWeight() / 100.0);
-			}
-			*/
-			for (Standard3 s3: standards3) {
-				score += (s3.getScore(student) * s3.getWeight() / 100.0);
-			}
-			return (int) Math.round(score);
-		} else {
-			throw new IllegalArgumentException("Standard weights do not add up to 100!");
-		}
-	}
-	
-	private boolean weightsAddUp() {
-		int totalWeight = 0;
-		/* NEED GETWEIGHT TO BE IMPLEMENTED FOR S1 AND S2
 		for (Standard1 s1: standards1) {
-			totalWeight += s1.getWeight();
+			score += (s1.getScore(student) * s1.getWeight() / 100.0);
 		}
 		for (StandardTwo s2: standards2) {
-			totalWeight += s2.getWeight();
+			score += (s2.calculateOneStudentTotal(student) * s2.getWeight() / 100.0);
 		}
-		*/
 		for (Standard3 s3: standards3) {
-			totalWeight += s3.getWeight();
+			score += (s3.getScore(student) * s3.getWeight() / 100.0);
 		}
-		return (totalWeight == 100);
+		return (int) Math.round(score);
 	}
 	
 	public void editAssignmentName(String newName) {

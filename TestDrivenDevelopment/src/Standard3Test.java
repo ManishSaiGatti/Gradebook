@@ -6,9 +6,9 @@ public class Standard3Test {
 	@Test
 	public void initializeStandard() {
 		String q = "How much effort did the student put in (1-5)?";
-		Standard3 s = new Standard3(q, 100);
+		Standard3 s = new Standard3(q, 100.0);
 		assertEquals("Question was not stored correctly.", q, s.getQuestion());
-		assertEquals("Weight was not stored correctly.", 100, s.getWeight());
+		assertEquals("Weight was not stored correctly.", 100, s.getWeight(), 0.01);
 		
 		List<String> roster = new ArrayList<String>();
 		assertEquals("Roster was not initialized correctly. It should be empty at first!", roster,  s.getRoster());
