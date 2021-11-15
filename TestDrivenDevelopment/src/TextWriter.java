@@ -1,6 +1,15 @@
 import java.util.*;
 import java.io.*;
 
+/*
+ * Connor O'Rourke
+ * 11/15/21
+ * 
+ * Test Driven Development Project
+ * 
+ * This class helps save the standard into a file for later use.
+ */
+
 public class TextWriter {
 	
 	public TextWriter() {
@@ -8,7 +17,7 @@ public class TextWriter {
 	}
 	
 	public void saveStandards(String fileName, List<String> standards) {
-		if (standards == null) {
+		if (standards == null) { //if no standards return
 			return;
 		}
 		String[] splitName = fileName.split(" ");
@@ -19,7 +28,7 @@ public class TextWriter {
         newName += ".txt";
         String output = "";
         for (int i = 0; i < standards.size(); i++) {
-        	output += standards.get(i) + "\n";
+        	output += standards.get(i) + "\n"; //add each standard name/type to output
         }
         try {
         	FileWriter writer = new FileWriter(newName);
@@ -112,7 +121,7 @@ public class TextWriter {
         	newName += s;
         }
         newName += ".txt"; //format the inputted file name correctly
-        String output = standard.getWeight() + "\n" + standard.getQuestion();
+        String output = standard.getWeight() + "\n" + standard.getQuestion(); //add the weight and question to output
         try {
         	FileWriter writer = new FileWriter(newName);
             writer.write(output); //write into the file
@@ -230,7 +239,7 @@ public class TextWriter {
         	else {
         		name = nameFirst;
         	}
-        	output += name + "\n" + standard.getRawScore(name) + "\n";
+        	output += name + "\n" + standard.getRawScore(nameFirst) + "\n"; //add the student's name and their answer to the output
         }
         try {
         	FileWriter writer = new FileWriter(newName);
