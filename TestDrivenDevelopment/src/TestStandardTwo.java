@@ -9,9 +9,7 @@ public class TestStandardTwo {
 	public void testAddAllQuestions() {
 		StandardTwo St2 = new StandardTwo(75);
 		ArrayList<String> ques = new ArrayList<String>();
-		/*ques.add("Hello? 75");
-		ques.add("who is this? 85");
-		ques.add("where are you? 95");*/
+
 		St2.addAllQuestions(ques);
 		assertEquals("The score is not 0", ques, St2.getQuestions());
 	}
@@ -68,26 +66,27 @@ public class TestStandardTwo {
 		List<String> ros = new ArrayList<String>();
 		ros.add("Bob");
 		ros.add("Eric");
-		//assertEquals("The score is not 75", St2.getRoster(), ros);
 		assertTrue(St2.getRoster().contains("Eric"));
 	}
 	
 	@Test
 	public void testEditQ() {
 		StandardTwo St2 = new StandardTwo(75);
-		St2.addIndividualQ("hello?");
-		St2.editQuestions(0, "goodbye?");
+		St2.addIndividualQ("Correct?");
+		St2.editQuestions("Correct?", "What's 1+1?");
+		
 		ArrayList<String> ques = new ArrayList<String>();
-		ques.add("goodbye?");
+		ques.add("What's 1+1?");
 		assertEquals("The question didn't edit correctly", ques, St2.getQuestions());
 	}
 	
 	@Test
 	public void testEditA() {
 		StandardTwo St2 = new StandardTwo(75);
+		St2.addIndividualQ("Correct?");
 		St2.addIndividualA("Bob", true);
 		St2.addIndividualA("Mary", false);
-		St2.editAnswers("Mary", 0, true);
+		St2.editAnswers("Mary", "Correct?", true);
 		
 		HashMap<String, ArrayList<Boolean>> real = new HashMap<String, ArrayList<Boolean>>();
 		ArrayList<Boolean> ans3 = new ArrayList<Boolean>();
@@ -104,9 +103,6 @@ public class TestStandardTwo {
 	public void testGetQs() {
 		StandardTwo St2 = new StandardTwo(75);
 		ArrayList<String> ques = new ArrayList<String>();
-		/*ques.add("Hello? 75");
-		ques.add("who is this? 85");
-		ques.add("where are you? 95");*/
 		St2.addAllQuestions(ques);
 		assertEquals("the questions came out wrong", ques, St2.getQuestions());
 	}
