@@ -12,18 +12,18 @@ public class StandardTwo {
 		this.weight = weight;
 	}
 	
-	// ADD ANSWERS, STUDENT, ALL QUESTIONS, INDIV QUESTIONS
-	// put question and answers based on student name in hashmap
-	// only string arraylist
-	public ArrayList<String> addAllQuestions(ArrayList<String> ar) {
+	// ADD METHODS
+	// add all questions as string arraylist
+	public void addAllQuestions(ArrayList<String> ar) {
 		questions = ar;
-		return questions;
 	}
 	
+	// add individual question to end of questions arraylist
 	public void addIndividualQ(String q) {
 		questions.add(q);
 	}
 	
+	// add all answers for 1 student
 	public void addAllAnswers(String student, ArrayList<Boolean> answers) {
 		// if student doesnt have a arlist of bools for answers make one
 		if(studentAnswers.containsKey(student)) {
@@ -33,6 +33,7 @@ public class StandardTwo {
 		studentAnswers.put(student, answers);	
 	}
 	
+	// add individual answer for 1 student at the end of their arraylist
 	public ArrayList<Boolean> addIndividualA(String student, Boolean a) {
 		// if student doesnt have answers arlist yet, make one
 		if(studentAnswers.get(student) == null) {
@@ -46,23 +47,28 @@ public class StandardTwo {
 		return studentAnswers.get(student);
 	}
 	
+	// add a student with an empty list for their answers
 	public void addStudent(String student) {
 		ArrayList<Boolean> temp = new ArrayList<>();
 		studentAnswers.put(student, temp);
 	}
 	
-	// GET ROSTER, 1 STUDENT SCORE, ALL ANSWERS, ALL STUDENT SCORES, ALL QUESTIONS, QUEST WORTH, WEIGHT
+	// GET METHODS
+	// get all names from studentAnswers hashmap and return as a set
 	public Set<String> getRoster() {
-		// make list of roster names
 		return studentAnswers.keySet();
 	}
 	
+	// get all answers of 1 student
 	public ArrayList<Boolean> getOneStuAnswers(String student) {
 		return studentAnswers.get(student);
 	}
 	
+	// calculate 1 student's total score after checking all of their answers
+	// for all questions in 1 standard
 	public int calculateOneStudentTotal(String student) {
 		int totalScore = 0;
+		boolean flagHund = true;
 		for(int i = 0; i < studentAnswers.get(student).size(); i++) {
 			int worth = getQuestionWorth(i);
 			// if student's answer for the specific question is true
@@ -70,18 +76,29 @@ public class StandardTwo {
 				//then the total score is the worth
 				totalScore = worth;
 			}
+			// if a student ever misses a grade, they wont get 100
+			if(studentAnswers.get(student).get(i) == false) {
+				flagHund = false;
+			}
+		}
+		// student got all questions correct, they get a 100
+		if(flagHund) {
+			totalScore = 100;
 		}
 		return totalScore;
 	}
 	
+	// get answers of every student as 1 hashmap
 	public HashMap<String, ArrayList<Boolean>> getAllStudentAnswers() {
 		return studentAnswers;
 	}
 	
+	// get all questions as 1 list
 	public List<String> getQuestions() {
 		return questions;
 	}
 	
+	// get worth of 1 question
 	public int getQuestionWorth(int index) {
 		String strScore = "";
 		int worth = 0;
@@ -96,21 +113,27 @@ public class StandardTwo {
 		return worth;
 	}
 	
+	// get weight
 	public double getWeight() {
 		return weight;
 	}
 	
 	
-	// EDIT QUESTIONS, ANSWERS, 
-	// string string, old and new question
-	public void editQuestions(int index, String newQ) {
-		questions.set(index, newQ);
+	// EDIT METHODS
+	// edit 1 question by first specifying which question to edit
+	public void editQuestions(String oldQ, String newQ) {
+		if (questions.contains(oldQ)) {
+			questions.set(questions.indexOf(oldQ), newQ);
+		}
 	}
 	
-	// string string bool
-	public void editAnswers(String student, int index, boolean newA) {
+	// edit answer of 1 student by first specifying the student and question to edit
+	public void editAnswers(String student, String q, boolean newA) {
 		ArrayList<Boolean> stuAns = studentAnswers.get(student);
+		int index = questions.indexOf(q);
+		// if student answer is null
 		if(stuAns == null) {
+			// make new empty arraylist and add answer to it for that student
 			stuAns = new ArrayList<Boolean>();
 			stuAns.add(newA);
 		}
