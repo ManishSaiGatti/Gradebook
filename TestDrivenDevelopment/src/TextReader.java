@@ -1,4 +1,3 @@
-
 import java.util.*;
 import java.io.*;
 
@@ -261,7 +260,7 @@ public class TextReader {
         newName += ".txt";
         try {
         	BufferedReader input = new BufferedReader(new FileReader(newName));
-        	int weight = Integer.parseInt(input.readLine()); //first line is the weight
+        	double weight = Double.parseDouble(input.readLine()); //first line is the weight
         	if (!input.ready()) { //if there's no question in file
         		if (standard == null) { //create a new standard if needed
         			Standard3 output = new Standard3("", weight);
