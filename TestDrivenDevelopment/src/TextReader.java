@@ -247,7 +247,7 @@ public class TextReader {
         newName += ".txt";
         try {
         	BufferedReader input = new BufferedReader(new FileReader("standards/" + newName));
-        	int weight = Integer.parseInt(input.readLine());
+        	double weight = Double.parseDouble(input.readLine());
         	if (!input.ready()) {
         		if (standard == null) {
         			Standard3 output = new Standard3("", weight);

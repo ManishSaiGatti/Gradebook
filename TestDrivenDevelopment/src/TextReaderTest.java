@@ -138,7 +138,7 @@ public class TextReaderTest {
 	public void testLoadStan31() {
 		TextReader test = new TextReader();
 		Standard3 answer = test.loadStandard3("testStan3", null);
-		Standard3 correct = new Standard3("me", 0);
+		Standard3 correct = new Standard3("me", 0.0);
 		if (answer.getQuestion().equals(correct.getQuestion()) && answer.getWeight() == correct.getWeight()) {
 			assertTrue("Failed standard3 test", true);
 		}
@@ -151,7 +151,7 @@ public class TextReaderTest {
 	public void testLoadStan32() {
 		TextReader test = new TextReader();
 		Standard3 answer = test.loadStandard3("testStan32", null);
-		Standard3 correct = new Standard3("test2", 0);
+		Standard3 correct = new Standard3("test2", 0.0);
 		if (answer.getQuestion().equals(correct.getQuestion()) && answer.getWeight() == correct.getWeight()) {
 			assertTrue("Failed standard3 test", true);
 		}
@@ -164,7 +164,7 @@ public class TextReaderTest {
 	public void testLoadStan3Blank() {
 		TextReader test = new TextReader();
 		Standard3 answer = test.loadStandard3("testStan3Blank", null);
-		Standard3 correct = new Standard3("", 0);
+		Standard3 correct = new Standard3("", 0.0);
 		if (answer.getQuestion().equals(correct.getQuestion()) && answer.getWeight() == correct.getWeight()) {
 			assertTrue("Failed standard3 test", true);
 		}
@@ -176,7 +176,7 @@ public class TextReaderTest {
 	@Test
 	public void testLoadStan3StudentAnswers1() {
 		TextReader test = new TextReader();
-		Standard3 correct = new Standard3("test", 0);
+		Standard3 correct = new Standard3("test", 0.0);
 		Standard3 answer = test.loadStudentAnswers3("testStan3", 1300, correct);
 		correct.setStudentScore("hi", 1);
 		assertEquals("Failed the standard3 student answers test", correct.getStudentScores(), answer.getStudentScores());
@@ -185,7 +185,7 @@ public class TextReaderTest {
 	@Test
 	public void testLoadStan3StudentAnswers2() {
 		TextReader test = new TextReader();
-		Standard3 correct = new Standard3("test", 0);
+		Standard3 correct = new Standard3("test", 0.0);
 		Standard3 answer = test.loadStudentAnswers3("testStan3", 2300, correct);
 		correct.setStudentScore("me", 2);
 		assertEquals("Failed the standard3 student answers test", correct.getStudentScores(), answer.getStudentScores());
@@ -194,7 +194,7 @@ public class TextReaderTest {
 	@Test
 	public void testLoadStan3StudentAnswersFull() {
 		TextReader test = new TextReader();
-		Standard3 correct = new Standard3("test", 0);
+		Standard3 correct = new Standard3("test", 0.0);
 		Standard3 answer = test.loadStudentAnswers3("testStan3", 3300, correct);
 		correct.setStudentScore("me", 2);
 		correct.setStudentScore("you", 3);
@@ -204,7 +204,7 @@ public class TextReaderTest {
 	@Test
 	public void testLoadStan3StudentAnswersBlank() {
 		TextReader test = new TextReader();
-		Standard3 correct = new Standard3("test", 0);
+		Standard3 correct = new Standard3("test", 0.0);
 		Standard3 answer = test.loadStudentAnswers3("testStan3", 4300, correct);
 		assertEquals("Failed the standard3 student answers test", correct.getStudentScores(), answer.getStudentScores());
 	}

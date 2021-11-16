@@ -279,7 +279,7 @@ public class TextWriterTest {
 	public void testSaveStan31() {
 		//Tests saving a question in standard 3
 		TextWriter test = new TextWriter();
-		Standard3 correct = new Standard3("test1", 2);
+		Standard3 correct = new Standard3("test1", 2.0);
 		test.saveStandard3("testStan3", correct);
 		TextReader reader = new TextReader();
 		Standard3 answer = reader.loadStandard3("testStan3", null);
@@ -295,7 +295,7 @@ public class TextWriterTest {
 	public void testSaveStan32() {
 		//tests saving a different question in standard 3
 		TextWriter test = new TextWriter();
-		Standard3 correct = new Standard3("me", 0);
+		Standard3 correct = new Standard3("me", 0.0);
 		test.saveStandard3("testStan3", correct);
 		TextReader reader = new TextReader();
 		Standard3 answer = reader.loadStandard3("testStan3", null);
@@ -311,7 +311,7 @@ public class TextWriterTest {
 	public void testSaveStan3Blank() {
 		//tests saving no questions for standard 3
 		TextWriter test = new TextWriter();
-		Standard3 correct = new Standard3("", 0);
+		Standard3 correct = new Standard3("", 0.0);
 		test.saveStandard3("testStan3", correct);
 		TextReader reader = new TextReader();
 		Standard3 answer = reader.loadStandard3("testStan3", null);
@@ -327,7 +327,7 @@ public class TextWriterTest {
 	public void testSaveStan3Roster1() {
 		//tests saving a name from standard 3
 		TextWriter test = new TextWriter();
-		Standard3 correct = new Standard3("me", 0);
+		Standard3 correct = new Standard3("me", 0.0);
 		correct.addStudent("jim");
 		test.saveRoster3(1333, correct);
 		TextReader reader = new TextReader();
@@ -340,7 +340,7 @@ public class TextWriterTest {
 	public void testSaveStan3Roster2() {
 		//tests saving a different name from standard 3
 		TextWriter test = new TextWriter();
-		Standard3 correct = new Standard3("me", 0);
+		Standard3 correct = new Standard3("me", 0.0);
 		correct.addStudent("joe");
 		test.saveRoster3(1333, correct);
 		TextReader reader = new TextReader();
@@ -353,7 +353,7 @@ public class TextWriterTest {
 	public void testSaveStan3RosterMultiple() {
 		//tests saving multiple names from standard 3
 		TextWriter test = new TextWriter();
-		Standard3 correct = new Standard3("me", 0);
+		Standard3 correct = new Standard3("me", 0.0);
 		correct.addStudent("jim");
 		correct.addStudent("joe");
 		test.saveRoster3(1333, correct);
@@ -367,7 +367,7 @@ public class TextWriterTest {
 	public void testSaveStan3RosterProper() {
 		//tests saving multiple names from standard 3 with proper formatting
 		TextWriter test = new TextWriter();
-		Standard3 correct = new Standard3("me", 0);
+		Standard3 correct = new Standard3("me", 0.0);
 		correct.addStudent("JOE BIDEN");
 		correct.addStudent("BARACK OBAMA");
 		test.saveRoster3(1333, correct);
@@ -381,7 +381,7 @@ public class TextWriterTest {
 	public void testSaveStan3RosterBlank() {
 		//tests saving no names from standard 3
 		TextWriter test = new TextWriter();
-		Standard3 correct = new Standard3("me", 0);
+		Standard3 correct = new Standard3("me", 0.0);
 		test.saveRoster3(1333, correct);
 		TextReader reader = new TextReader();
 		ArrayList<String> answer = (ArrayList<String>)reader.loadRoster(1333);
@@ -393,12 +393,12 @@ public class TextWriterTest {
 	public void testSaveStan3StudentAnswers1() {
 		//tests saving a student - answer pair from standard 3
 		TextWriter test = new TextWriter();
-		Standard3 correct = new Standard3("test", 0);
+		Standard3 correct = new Standard3("test", 0.0);
 		correct.setStudentScore("me", 3);
 		test.saveStudentAnswers3("testStan3", 1333, correct);
 		test.saveRoster3(1333, correct);
 		TextReader reader = new TextReader();
-		Standard3 answer = reader.loadStudentAnswers3("testStan3", 1333, new Standard3("test", 0));
+		Standard3 answer = reader.loadStudentAnswers3("testStan3", 1333, new Standard3("test", 0.0));
 		if (answer.getRoster().equals(correct.getRoster()) && answer.getStudentScores().equals(correct.getStudentScores())) {
 			assertTrue("Failed standard3 test", true);
 		}
@@ -411,12 +411,12 @@ public class TextWriterTest {
 	public void testSaveStan3StudentAnswers2() {
 		//tests saving a different student - answer pair from standard 3
 		TextWriter test = new TextWriter();
-		Standard3 correct = new Standard3("test", 0);
+		Standard3 correct = new Standard3("test", 0.0);
 		correct.setStudentScore("test", 4);
 		test.saveStudentAnswers3("testStan3", 1333, correct);
 		test.saveRoster3(1333, correct);
 		TextReader reader = new TextReader();
-		Standard3 answer = reader.loadStudentAnswers3("testStan3", 1333, new Standard3("test", 0));
+		Standard3 answer = reader.loadStudentAnswers3("testStan3", 1333, new Standard3("test", 0.0));
 		if (answer.getRoster().equals(correct.getRoster()) && answer.getStudentScores().equals(correct.getStudentScores())) {
 			assertTrue("Failed standard3 test", true);
 		}
@@ -429,13 +429,13 @@ public class TextWriterTest {
 	public void testSaveStan3StudentAnswersMultiple() {
 		//tests saving multiple student - answer pairs from Standard 3
 		TextWriter test = new TextWriter();
-		Standard3 correct = new Standard3("test", 0);
+		Standard3 correct = new Standard3("test", 0.0);
 		correct.setStudentScore("me", 3);
 		correct.setStudentScore("you", 1);
 		test.saveStudentAnswers3("testStan3", 1333, correct);
 		test.saveRoster3(1333, correct);
 		TextReader reader = new TextReader();
-		Standard3 answer = reader.loadStudentAnswers3("testStan3", 1333, new Standard3("test", 0));
+		Standard3 answer = reader.loadStudentAnswers3("testStan3", 1333, new Standard3("test", 0.0));
 		if (answer.getRoster().equals(correct.getRoster()) && answer.getStudentScores().equals(correct.getStudentScores())) {
 			assertTrue("Failed standard3 test", true);
 		}
@@ -448,13 +448,13 @@ public class TextWriterTest {
 	public void testSaveStan3StudentAnswersProper() {
 		//tests saving multiple student - answer pairs from Standard 3 with proper names
 		TextWriter test = new TextWriter();
-		Standard3 correct = new Standard3("test", 0);
+		Standard3 correct = new Standard3("test", 0.0);
 		correct.setStudentScore("SENOR SENOR", 3);
 		correct.setStudentScore("WILL SMITH", 1);
 		test.saveStudentAnswers3("testStan3", 1333, correct);
 		test.saveRoster3(1333, correct);
 		TextReader reader = new TextReader();
-		Standard3 answer = reader.loadStudentAnswers3("testStan3", 1333, new Standard3("test", 0));
+		Standard3 answer = reader.loadStudentAnswers3("testStan3", 1333, new Standard3("test", 0.0));
 		if (answer.getRoster().equals(correct.getRoster()) && answer.getStudentScores().equals(correct.getStudentScores())) {
 			assertTrue("Failed standard3 test", true);
 		}
@@ -467,11 +467,11 @@ public class TextWriterTest {
 	public void testSaveStan3StudentAnswersBlank() {
 		//tests saving no student - answer pairs
 		TextWriter test = new TextWriter();
-		Standard3 correct = new Standard3("test", 0);
+		Standard3 correct = new Standard3("test", 0.0);
 		test.saveStudentAnswers3("testStan3", 1333, correct);
 		test.saveRoster3(1333, correct);
 		TextReader reader = new TextReader();
-		Standard3 answer = reader.loadStudentAnswers3("testStan3", 1333, new Standard3("test", 0));
+		Standard3 answer = reader.loadStudentAnswers3("testStan3", 1333, new Standard3("test", 0.0));
 		if (answer.getRoster().equals(correct.getRoster()) && answer.getStudentScores().equals(correct.getStudentScores())) {
 			assertTrue("Failed standard3 test", true);
 		}
