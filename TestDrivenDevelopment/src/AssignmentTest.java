@@ -1,10 +1,13 @@
+// Catherine Yu
+
 import static org.junit.Assert.*;
 import org.junit.Test;
 import java.util.*;
 
 public class AssignmentTest {	
+	// tests assignment values were generally stored correctly after adding a student
 	@Test
-	public void emptyAssignment() {
+	public void addStudent() {
 		Standard3 s = new Standard3("How many out of 5?", 100);
 		s.setStudentScore("Student 1", 4);
 		
@@ -25,6 +28,7 @@ public class AssignmentTest {
 		assertEquals("Student was not added to roster.", roster, a.getRoster());
 	}
 	
+	// multiple standards, tests for correct weight calculations
 	@Test
 	public void weightedStandards() {
 		Standard3 stan1 = new Standard3("How many out of 5?", 75);
