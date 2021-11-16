@@ -72,7 +72,12 @@ public class Assignment {
 		
 	// get all students' scores
 	public List<Integer> getStudentScores() {
-		return (List<Integer>) studentScores.values();
+		Iterator<Integer> items = studentScores.values().iterator();
+		ArrayList<Integer> output = new ArrayList<Integer>();
+		while (items.hasNext()) {
+			output.add(items.next());
+		}
+		return output;
 	}
 
 	// class average score for the assignment
