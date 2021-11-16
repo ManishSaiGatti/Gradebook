@@ -1,19 +1,25 @@
+// Catherine Yu
+
 import static org.junit.Assert.*;
 import org.junit.Test;
 import java.util.*;
 
 public class Standard3Test {	
+	// tests all values are correctly initialized if no students were added
 	@Test
 	public void initializeStandard() {
 		String q = "How much effort did the student put in (1-5)?";
-		Standard3 s = new Standard3(q, 100);
+		Standard3 s = new Standard3(q, 100.0);
 		assertEquals("Question was not stored correctly.", q, s.getQuestion());
-		assertEquals("Weight was not stored correctly.", 100, s.getWeight());
+		assertEquals("Weight was not stored correctly.", 100, s.getWeight(), 0.01);
 		
 		List<String> roster = new ArrayList<String>();
-		assertEquals("Roster was not initialized correctly. It should be empty at first!", roster,  s.getRoster());
+		assertEquals("Roster was not initialized correctly. It should be empty at first!",
+				roster,  s.getRoster());
 	}
 	
+	// makes sure student can be added correctly
+	// cannot call getScore if the student doesn't have a grade assigned yet
 	@Test
 	public void addStudentNoScore() {
 		String q = "How much effort did the student put in (1-5)?";
@@ -35,6 +41,8 @@ public class Standard3Test {
 		}
 	}
 	
+	// tests for correct matching of student raw score --> actual score
+	// and roster was correctly updated
 	@Test
 	public void getStudentScoresValid() {
 		String q = "How much effort did the student put in (1-5)?";
@@ -84,6 +92,7 @@ public class Standard3Test {
 		assertEquals("Question was not edited correctly.", newQ, s.getQuestion());
 	}
 	
+	// cannot call getScore if a student does not exist
 	@Test
 	public void getScoreStudentDoesntExist() {
 		String q = "How much effort did the student put in (1-5)?";

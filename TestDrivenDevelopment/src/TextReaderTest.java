@@ -3,9 +3,17 @@ import java.io.*;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
+/*
+ * Connor O'Rourke
+ * 11/15/21
+ * Test Driven Development Project
+ * 
+ * This class has the test cases for the TextReader class
+ */
 public class TextReaderTest {
 	@Test
     public void testStudentAnswers1() {
+		//tests loading a student - answer pair for standard 1
         TextReader test = new TextReader();
         Standard1 answer = test.loadStudentAnswers1("test", 1000, null);
         Standard1 correct = new Standard1(2, 5, 0.0);
@@ -15,6 +23,7 @@ public class TextReaderTest {
 	
 	@Test
     public void testStandards1() {
+		//tests loading a question from standard 1
         TextReader test = new TextReader();
         Standard1 answer = test.loadStandard1("test", null);
         Standard1 correct = new Standard1(2, 5, 0.0);
@@ -24,6 +33,7 @@ public class TextReaderTest {
 	
 	@Test
     public void testStudentAnswers2() {
+		//tests loading a different student - answer pair from standard 1
         TextReader test = new TextReader();
         Standard1 answer = test.loadStudentAnswers1("test2", 2000, null);
         Standard1 correct = new Standard1(2, 5, 0.0);
@@ -33,6 +43,7 @@ public class TextReaderTest {
 	
 	@Test
     public void testStandards2() {
+		//tests loading a different question from standard 1
 		TextReader test = new TextReader();
         Standard1 answer = test.loadStandard1("test2", null);
         Standard1 correct = new Standard1(2, 5, 0.0);
@@ -42,6 +53,7 @@ public class TextReaderTest {
 	
 	@Test
     public void testStudentAnswers3() {
+		//tests loading multiple student - answer pairs from the standard 1
         TextReader test = new TextReader();
         Standard1 answer = test.loadStudentAnswers1("test3", 3000, null);
         Standard1 correct = new Standard1(2, 5, 0.0);
@@ -52,6 +64,7 @@ public class TextReaderTest {
 	
 	@Test
     public void testStandards3() {
+		//tests loading multiple questions from standard 1
 		TextReader test = new TextReader();
         Standard1 answer = test.loadStandard1("test3", null);
         Standard1 correct = new Standard1(2, 5, 0.0);
@@ -62,6 +75,7 @@ public class TextReaderTest {
 	
 	@Test
     public void testRoster1() {
+		//tests loading a name from standard 1
         TextReader test = new TextReader();
         ArrayList<String> answer = (ArrayList<String>)test.loadRoster(1000);
         ArrayList<String> correct = new ArrayList<String>();
@@ -71,6 +85,7 @@ public class TextReaderTest {
 	
 	@Test
     public void testRoster2() {
+		//tests loading a different name from standard 1
         TextReader test = new TextReader();
         ArrayList<String> answer = (ArrayList<String>)test.loadRoster(2000);
         ArrayList<String> correct = new ArrayList<String>();
@@ -80,6 +95,7 @@ public class TextReaderTest {
     
     @Test
     public void testRoster3() {
+    	//tests loading multiple names from standard 1
         TextReader test = new TextReader();
         ArrayList<String> answer = (ArrayList<String>)test.loadRoster(3000);
         ArrayList<String> correct = new ArrayList<String>();
@@ -90,6 +106,7 @@ public class TextReaderTest {
     
     @Test
     public void testRoster4() {
+    	//tests loading multiple names from standard 1 with proper formatting
         TextReader test = new TextReader();
         ArrayList<String> answer = (ArrayList<String>)test.loadRoster(4000);
         ArrayList<String> correct = new ArrayList<String>();
@@ -100,6 +117,7 @@ public class TextReaderTest {
     
     @Test
     public void testStudentAnswers4() {
+    	//tests loading multiple names and answers from standard 1 with proper formatting
         TextReader test = new TextReader();
         Standard1 answer = test.loadStudentAnswers1("test4", 4000, null);
         Standard1 correct = new Standard1(2, 5, 0.0);
@@ -112,6 +130,7 @@ public class TextReaderTest {
     
     @Test
     public void testStudentAnswersNothing() {
+    	//tests loading no name - answer pairs from standard 1
         TextReader test = new TextReader();
         Standard1 answer = test.loadStudentAnswers1("blank", 9999, null);
         Standard1 correct = new Standard1(2, 5, 0.0);
@@ -120,6 +139,7 @@ public class TextReaderTest {
 	
 	@Test
     public void testStandardsNothing() {
+		//tests loading no questions from standard 1
 		TextReader test = new TextReader();
         Standard1 answer = test.loadStandard1("blank", null);
         Standard1 correct = new Standard1(2, 5, 0.0);
@@ -128,6 +148,7 @@ public class TextReaderTest {
 	
 	@Test
     public void testRosterNothing() {
+		//tests loading no names from standard 1
         TextReader test = new TextReader();
         ArrayList<String> answer = (ArrayList<String>)test.loadRoster(9999);
         ArrayList<String> correct = new ArrayList<String>();
@@ -136,6 +157,7 @@ public class TextReaderTest {
 	
 	@Test
 	public void testLoadStan31() {
+		//tests loading a question from standard 3
 		TextReader test = new TextReader();
 		Standard3 answer = test.loadStandard3("testStan3", null);
 		Standard3 correct = new Standard3("me", 0.0);
@@ -149,6 +171,7 @@ public class TextReaderTest {
 	
 	@Test
 	public void testLoadStan32() {
+		//tests loading a different question from standard 3
 		TextReader test = new TextReader();
 		Standard3 answer = test.loadStandard3("testStan32", null);
 		Standard3 correct = new Standard3("test2", 0.0);
@@ -162,6 +185,7 @@ public class TextReaderTest {
 	
 	@Test
 	public void testLoadStan3Blank() {
+		//tests loading no questions from standard 3
 		TextReader test = new TextReader();
 		Standard3 answer = test.loadStandard3("testStan3Blank", null);
 		Standard3 correct = new Standard3("", 0.0);
@@ -175,6 +199,7 @@ public class TextReaderTest {
 	
 	@Test
 	public void testLoadStan3StudentAnswers1() {
+		//tests loading a student - answer pair for standard 3
 		TextReader test = new TextReader();
 		Standard3 correct = new Standard3("test", 0.0);
 		Standard3 answer = test.loadStudentAnswers3("testStan3", 1300, correct);
@@ -184,6 +209,7 @@ public class TextReaderTest {
 	
 	@Test
 	public void testLoadStan3StudentAnswers2() {
+		//tests loading another student - answer pair from standard 3
 		TextReader test = new TextReader();
 		Standard3 correct = new Standard3("test", 0.0);
 		Standard3 answer = test.loadStudentAnswers3("testStan3", 2300, correct);
@@ -193,6 +219,7 @@ public class TextReaderTest {
 	
 	@Test
 	public void testLoadStan3StudentAnswersFull() {
+		//tests loading multiple student - answer pairs from standard 3
 		TextReader test = new TextReader();
 		Standard3 correct = new Standard3("test", 0.0);
 		Standard3 answer = test.loadStudentAnswers3("testStan3", 3300, correct);
@@ -203,6 +230,7 @@ public class TextReaderTest {
 	
 	@Test
 	public void testLoadStan3StudentAnswersBlank() {
+		//tests loading no student - answer pairs from standard 3
 		TextReader test = new TextReader();
 		Standard3 correct = new Standard3("test", 0.0);
 		Standard3 answer = test.loadStudentAnswers3("testStan3", 4300, correct);
@@ -211,6 +239,7 @@ public class TextReaderTest {
 	
 	@Test
 	public void testLoadStandards1() {
+		//tests loading a standard - type pair
 		TextReader test = new TextReader();
 		ArrayList<String> correct = new ArrayList<String>();
 		correct.add("test");
@@ -220,6 +249,7 @@ public class TextReaderTest {
 	
 	@Test
 	public void testLoadStandards2() {
+		//tests loading a different standard - type pair
 		TextReader test = new TextReader();
 		ArrayList<String> correct = new ArrayList<String>();
 		correct.add("me");
@@ -229,6 +259,7 @@ public class TextReaderTest {
 	
 	@Test
 	public void testLoadStandardsMultiple() {
+		//tests loading multiple student - answer pairs
 		TextReader test = new TextReader();
 		ArrayList<String> correct = new ArrayList<String>();
 		correct.add("me");
@@ -239,6 +270,7 @@ public class TextReaderTest {
 	
 	@Test
 	public void testLoadStandardsBlank() {
+		//tests loading no standards
 		TextReader test = new TextReader();
 		ArrayList<String> correct = new ArrayList<String>();
 		ArrayList<String> answer = (ArrayList<String>)test.loadStandards("blank");
@@ -247,6 +279,7 @@ public class TextReaderTest {
 	
 	@Test
 	public void testLoadStan21() {
+		//tests loading a question from standard 2
 		TextReader test = new TextReader();
 		StandardTwo correct = new StandardTwo(0.0);
 		correct.addIndividualQ("test");
@@ -256,6 +289,7 @@ public class TextReaderTest {
 	
 	@Test
 	public void testLoadStan22() {
+		//tests loading a different question from standard 2
 		TextReader test = new TextReader();
 		StandardTwo correct = new StandardTwo(0.0);
 		correct.addIndividualQ("me");
@@ -265,6 +299,7 @@ public class TextReaderTest {
 	
 	@Test
 	public void testLoadStan2Multiple() {
+		//tests loading multiple questions from standard 2
 		TextReader test = new TextReader();
 		StandardTwo correct = new StandardTwo(0.0);
 		correct.addIndividualQ("you");
@@ -275,6 +310,7 @@ public class TextReaderTest {
 	
 	@Test
 	public void testLoadStan2Blank() {
+		//tests loading no questions from standard 2
 		TextReader test = new TextReader();
 		StandardTwo correct = new StandardTwo(0.0);
 		StandardTwo answer = test.loadStandard2("testStan2Blank", null);
@@ -283,6 +319,7 @@ public class TextReaderTest {
 	
 	@Test
 	public void testLoadStan2StudentAnswers1() {
+		//tests loading a student - answer pair from standard 2
 		TextReader test = new TextReader();
 		StandardTwo correct = new StandardTwo(0.0);
 		correct.addIndividualA("me", false);
@@ -292,6 +329,7 @@ public class TextReaderTest {
 	
 	@Test
 	public void testLoadStan2StudentAnswers2() {
+		//tests loading a different student - answer pair from standard 2
 		TextReader test = new TextReader();
 		StandardTwo correct = new StandardTwo(0.0);
 		correct.addIndividualA("you", true);
@@ -301,6 +339,7 @@ public class TextReaderTest {
 	
 	@Test
 	public void testLoadStan2StudentAnswersMultiple() {
+		//tests loading multiple student - answer pairs from standard 2
 		TextReader test = new TextReader();
 		StandardTwo correct = new StandardTwo(0.0);
 		correct.addIndividualA("me", false);
@@ -311,6 +350,7 @@ public class TextReaderTest {
 	
 	@Test
 	public void testLoadStan2StudentAnswersBlank() {
+		//tests loading no student - answer pairs from standard 2
 		TextReader test = new TextReader();
 		StandardTwo correct = new StandardTwo(0.0);
 		StandardTwo answer = test.loadStudentAnswers2("testStan2", 4400, null);
